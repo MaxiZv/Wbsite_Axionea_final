@@ -18,8 +18,40 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Axionea — KI-Automatisierung für den Mittelstand",
-  description: "KI-Automatisierung für den Mittelstand — ohne IT-Abteilung, ohne Technik-Kenntnisse, ohne versteckte Kosten.",
+  title: "Axionea | KI-Automatisierung für den Mittelstand",
+  description: "Axionea ist die führende KI-Agentur im DACH-Raum für den Mittelstand. Wir automatisieren Prozesse mit KI-Agenten, Chatbots und nahtloser Software-Integration – ohne versteckte Kosten.",
+  keywords: [
+    "KI-Automatisierung",
+    "Mittelstand",
+    "KI Beratung",
+    "KI Agentur",
+    "Axionea",
+    "Prozesse automatisieren",
+    "Künstliche Intelligenz",
+    "Chatbots für Unternehmen",
+    "Voicebots",
+    "KI Integration",
+    "Make",
+    "Zapier",
+    "Workflow Automatisierung",
+    "DACH"
+  ],
+  authors: [{ name: "Axionea GbR" }],
+  creator: "Axionea GbR",
+  publisher: "Axionea GbR",
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: "https://axionea.de",
+    title: "Axionea | KI-Automatisierung für den Mittelstand",
+    description: "KI-Automatisierung für den Mittelstand — ohne IT-Abteilung, ohne Technik-Kenntnisse, ohne versteckte Kosten.",
+    siteName: "Axionea",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Axionea | KI-Automatisierung für den Mittelstand",
+    description: "KI-Automatisierung für den Mittelstand — ohne IT-Abteilung, ohne Technik-Kenntnisse, ohne versteckte Kosten.",
+  },
 };
 
 export default function RootLayout({
