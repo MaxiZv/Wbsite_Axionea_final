@@ -89,8 +89,7 @@ export default function Footer() {
 
                 {/* Copyright */}
                 <p className="text-xs text-muted-foreground">
-                    AXIONEA © {new Date().getFullYear()}. Designed by{" "}
-                    <a href="#" className="underline hover:text-foreground transition-colors">Axionea</a>
+                    AXIONEA © {new Date().getFullYear()}. All rights reserved.
                 </p>
             </div>
         </footer>

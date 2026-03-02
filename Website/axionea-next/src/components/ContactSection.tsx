@@ -24,8 +24,8 @@ const contactInfo = [
             </svg>
         ),
         label: "Mail",
-        value: "hello@axionea.com",
-        href: "mailto:hello@axionea.com",
+        value: "info@axionea-solutions.de",
+        href: "mailto:info@axionea-solutions.de",
     },
     {
         icon: (
@@ -34,8 +34,8 @@ const contactInfo = [
             </svg>
         ),
         label: "Telefon",
-        value: "+49 176 123 456 78",
-        href: "tel:+4917612345678",
+        value: "+49 173 1726939",
+        href: "tel:+491731726939",
     },
     {
         icon: (

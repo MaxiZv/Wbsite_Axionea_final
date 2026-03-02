@@ -199,7 +199,9 @@ const CardNav: React.FC<CardNavProps> = ({
           </div>
 
           <div className="logo-container flex items-center gap-2 md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none transition-all duration-500 hover:opacity-80 cursor-pointer">
-            <img src={logo} alt={logoAlt} className="logo h-[32px] -mr-0.5 transition-all duration-500" />
+            <a href="/">
+              <img src={logo} alt={logoAlt} className="logo h-[32px] -mr-0.5 transition-all duration-500" />
+            </a>
           </div>
 
           <div className="flex items-center gap-2 order-2 overflow-visible">
@@ -210,20 +212,12 @@ const CardNav: React.FC<CardNavProps> = ({
               sparkCount={6}
               duration={400}
             >
-              <a href="#kontakt" className="relative overflow-hidden inline-flex h-10 items-center justify-center rounded-lg bg-sapphire px-5 text-sm font-semibold text-white shadow transition-colors hover:bg-sapphire-hover focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
-                <div className="flex items-center space-x-1.5">
-                  <RotatingText
-                    texts={['Jetzt starten', 'Jetzt optimieren', 'Kosten sparen']}
-                    mainClassName="font-bold flex items-center justify-center overflow-hidden"
-                    staggerFrom={"last"}
-                    initial={{ y: "100%" }}
-                    animate={{ y: 0 }}
-                    exit={{ y: "-120%" }}
-                    staggerDuration={0.025}
-                    splitLevelClassName="overflow-hidden"
-                    transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                    rotationInterval={3000}
-                  />
+              <a href="#kontakt" className="group relative overflow-hidden inline-flex h-10 items-center justify-center rounded-lg bg-sapphire px-5 text-sm font-semibold text-white shadow transition-all duration-300 hover:bg-sapphire-hover hover:shadow-[0_4px_16px_rgba(15,82,186,0.3)] hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+                {/* Shine effect */}
+                <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
+
+                <div className="flex items-center space-x-1.5 relative z-10 transition-colors duration-300">
+                  <span className="font-bold tracking-tight">Kostenlos beraten lassen</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -231,10 +225,10 @@ const CardNav: React.FC<CardNavProps> = ({
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="ml-1"
+                    className="ml-1 transition-transform duration-300 group-hover:translate-x-1"
                   >
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />

@@ -51,7 +51,7 @@ export default function Preloader() {
                         width={64}
                         height={64}
                         priority
-                        className="object-contain drop-shadow-[0_0_20px_rgba(15,82,186,0.8)] animate-glow-pulse"
+                        className="object-contain drop-shadow-[0_0_20px_rgba(15,82,186,0.8)]"
                     />
                 </div>
 

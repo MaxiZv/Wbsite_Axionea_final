@@ -39,7 +39,6 @@ function ProcessCard({
     className?: string;
 }) {
     const { ref, isInView } = useInView(0.1);
-    const fromLeft = index % 2 === 0;
 
     return (
         <div
@@ -47,8 +46,8 @@ function ProcessCard({
             className={className}
             style={{
                 opacity: isInView ? 1 : 0,
-                transform: isInView ? "translate(0)" : fromLeft ? "translateX(-80px)" : "translateX(80px)",
-                transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.15}s`,
+                transform: isInView ? "translateY(0)" : "translateY(30px)",
+                transition: `all 1.5s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.25}s`,
             }}
         >
             <div className="group relative h-full rounded-3xl border border-gray-200 bg-white transition-all duration-500 hover:border-sapphire/30 hover:shadow-[0_20px_60px_-15px_rgba(15,82,186,0.12)] shadow-[0_2px_16px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
