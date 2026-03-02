@@ -216,7 +216,7 @@ export default function WhyChooseUs() {
                         <LetterReveal text="Warum Axionea?" />
                     </h2>
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                        <LetterReveal text="Dein Partner für KI-Automatisierung — smarte Lösungen, die sofort wirken." delay={0.2} stagger={0.015} />
+                        <LetterReveal text="Dein Partner für KI-Automatisierung — smarte Lösungen, die sofort wirken" delay={0.2} stagger={0.015} />
                     </p>
                 </div>
 
@@ -225,19 +225,19 @@ export default function WhyChooseUs() {
                     <BenefitCard
                         index={0}
                         title="Echtzeit-Analysen"
-                        description="Deine Geschäftsdaten live aufbereitet — als verständliches Dashboard statt Excel-Chaos."
+                        description="Deine Geschäftsdaten live aufbereitet — als verständliches Dashboard statt Excel-Chaos"
                         illustration={<ClockIllustration />}
                     />
                     <BenefitCard
                         index={1}
                         title="KI-getriebenes Wachstum"
-                        description="Intelligentere Entscheidungen durch akkurate Echtzeit-Geschäftseinblicke und KI-Analysen."
+                        description="Intelligentere Entscheidungen durch akkurate Echtzeit-Geschäftseinblicke und KI-Analysen"
                         illustration={<BarChartIllustration />}
                     />
                     <BenefitCard
                         index={2}
                         title="Sync in Echtzeit"
-                        description="Verbinde dein Team sofort — verfolge Fortschritte und Updates in Echtzeit."
+                        description="Verbinde dein Team sofort — verfolge Fortschritte und Updates in Echtzeit"
                         illustration={<SyncIllustration />}
                     />
                 </div>

@@ -90,7 +90,7 @@ export default function ROICalculator() {
                     </h2>
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
                         <LetterReveal
-                            text="Finden Sie heraus, wie viel Geld Ihr Unternehmen aktuell jeden Monat für manuelle, repetitive Aufgaben verbrennt – basierend auf echten Branchendaten von McKinsey & EY."
+                            text="Finden Sie heraus, wie viel Geld Ihr Unternehmen aktuell jeden Monat für manuelle, repetitive Aufgaben verbrennt – basierend auf echten Branchendaten von McKinsey & EY"
                             delay={0.6}
                             stagger={0.015}
                         />

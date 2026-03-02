@@ -59,7 +59,7 @@ export default function ComparisonSection() {
                         <LetterReveal text="Präzision vs. Standard" />
                     </h2>
                     <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-                        <LetterReveal text="Sieh, wie unsere KI die Konkurrenz in Geschwindigkeit und Qualität übertrifft." delay={0.2} stagger={0.015} />
+                        <LetterReveal text="Sieh, wie unsere KI die Konkurrenz in Geschwindigkeit und Qualität übertrifft" delay={0.2} stagger={0.015} />
                     </p>
                 </div>
 

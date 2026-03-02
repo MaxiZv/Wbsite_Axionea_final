@@ -124,7 +124,7 @@ export default function FAQ() {
                         <LetterReveal text="Häufige Fragen" />
                     </h2>
                     <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-                        <LetterReveal text="Alles was du über unsere KI-Lösungen wissen musst, auf einen Blick." delay={0.2} stagger={0.015} />
+                        <LetterReveal text="Alles was du über unsere KI-Lösungen wissen musst, auf einen Blick" delay={0.2} stagger={0.015} />
                     </p>
                 </div>
 

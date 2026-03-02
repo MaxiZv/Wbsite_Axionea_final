@@ -85,13 +85,13 @@ const team = [
         name: "Maximilian Zvada",
         role: "CEO & Founder",
         initials: "MZ",
-        description: "Visionär und Stratege — verbindet Business-Expertise mit modernster KI-Technologie, um Unternehmen in die Zukunft zu führen.",
+        description: "Visionär und Stratege — verbindet Business-Expertise mit modernster KI-Technologie, um Unternehmen in die Zukunft zu führen",
     },
     {
         name: "Nico Fisseler",
         role: "Co-Founder & CTO",
         initials: "NF",
-        description: "KI-Architekt und Technik-Lead — entwickelt skalierbare KI-Systeme und automatisierte Workflows mit höchster Qualität.",
+        description: "KI-Architekt und Technik-Lead — entwickelt skalierbare KI-Systeme und automatisierte Workflows mit höchster Qualität",
     },
 ];
 
@@ -118,7 +118,7 @@ export default function TeamSection() {
                         <LetterReveal text="Behind the Scenes" />
                     </h2>
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                        <LetterReveal text="Das Team hinter Axionea — Experten mit Leidenschaft für KI und Innovation." delay={0.2} stagger={0.015} />
+                        <LetterReveal text="Das Team hinter Axionea — Experten mit Leidenschaft für KI und Innovation" delay={0.2} stagger={0.015} />
                     </p>
                 </div>
 

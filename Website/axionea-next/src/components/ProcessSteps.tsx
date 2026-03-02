@@ -127,7 +127,7 @@ export default function ProcessSteps() {
                         Einfach & Skalierbar
                     </h2>
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                        Ein transparenter Prozess aus Zusammenarbeit und Feedback — von der Analyse bis zum laufenden System.
+                        Ein transparenter Prozess aus Zusammenarbeit und Feedback — von der Analyse bis zum laufenden System
                     </p>
                 </div>
 
@@ -138,8 +138,8 @@ export default function ProcessSteps() {
                         index={0}
                         step="01"
                         title="Workflow-Analyse"
-                        description="Wir analysieren deine bestehenden Abläufe und identifizieren, wo KI den größten Mehrwert liefern kann."
-                        imageSrc="/images/process-analyse.png"
+                        description="Wir analysieren deine bestehenden Abläufe und identifizieren, wo KI den größten Mehrwert liefern kann"
+                        imageSrc="/images/process-analyse-v2.png"
                         className="md:row-span-2"
                         icon={
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-sapphire">
@@ -153,8 +153,8 @@ export default function ProcessSteps() {
                         index={1}
                         step="02"
                         title="Mit Sicherheit deployen"
-                        description="Unser Team entwickelt maßgeschneiderte KI-Systeme, die auf deine Ziele ausgerichtet sind — sicher und zuverlässig."
-                        imageSrc="/images/process-strategie.png"
+                        description="Unser Team entwickelt maßgeschneiderte KI-Systeme, die auf deine Ziele ausgerichtet sind — sicher und zuverlässig"
+                        imageSrc="/images/process-deploy-v2.png"
                         icon={
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-sapphire">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -170,8 +170,8 @@ export default function ProcessSteps() {
                         index={2}
                         step="03"
                         title="Laufende Optimierung"
-                        description="Nach dem Deployment unterstützen und optimieren wir deine KI-Systeme, damit sie immer auf Höchstleistung laufen."
-                        imageSrc="/images/process-umsetzung.png"
+                        description="Nach dem Deployment unterstützen und optimieren wir deine KI-Systeme, damit sie immer auf Höchstleistung laufen"
+                        imageSrc="/images/process-optimize-v2.png"
                         icon={
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-sapphire">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
