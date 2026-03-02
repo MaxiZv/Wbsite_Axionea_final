@@ -113,7 +113,7 @@
 }
 
 .animate-scroll-left {
-  animation: scroll-left 50s linear infinite;
+  animation: scroll-left 120s linear infinite;
 }
 
 /* Workflow diagram lines */
