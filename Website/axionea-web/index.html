@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Axionea — KI-Automatisierung für den Mittelstand. Wir automatisieren manuelle Prozesse — ohne IT-Abteilung, ohne versteckte Kosten.">
+    <meta name="theme-color" content="#0F52BA">
+
+    <title>Axionea — KI-Automatisierung für den Mittelstand</title>
+
+    <!-- Preconnect to critical origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://prod.spline.design" crossorigin>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+        rel="stylesheet">
+
+    <!-- Preload Spline scene -->
+    <link rel="preload" href="https://prod.spline.design/n7xL8JVxaUHqpS55/scene.splinecode" as="fetch" crossorigin>
+
+    <!-- Import map removed; using explicit URL in spline.js instead -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/tokens.css?v=2">
+    <link rel="stylesheet" href="css/base.css?v=2">
+    <link rel="stylesheet" href="css/components.css?v=2">
+    <link rel="stylesheet" href="css/hero.css?v=2">
+    <link rel="stylesheet" href="css/animations.css?v=2">
+    <link rel="stylesheet" href="css/sections.css?v=2">
+
+    <!-- Apply theme immediately to prevent flash -->
+    <script>
+        (function () {
+            var theme = localStorage.getItem('axionea-theme');
+            if (!theme) theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════
+       PRELOADER
+       ═══════════════════════════════════════════════════════ -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <img src="assets/logo/Asset 5@4x.png" alt="Axionea Logo" class="preloader-logo" height="48"
+                style="height: 48px; width: auto; max-width: 200px;">
+            <div class="preloader-spinner"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+       GRAIN OVERLAY (Subtle texture)
+       ═══════════════════════════════════════════════════════ -->
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════════════════════════ -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Hauptnavigation">
+        <div class="navbar-inner">
+
+            <!-- Logo -->
+            <a href="/" class="navbar-logo" aria-label="Axionea Startseite">
+                <!-- Light mode logo (blue/sapphire) -->
+                <img id="logo-light" src="assets/logo/Asset 5@4x.png" alt="Axionea Logo" height="32" width="32">
+                <!-- Dark mode logo (gray/white) -->
+                <img id="logo-dark" src="assets/logo/Asset 4@4x.png" alt="Axionea Logo" height="32" width="32"
+                    style="display: none;">
+                <span class="navbar-logo-text">Axionea</span>
+            </a>
+
+            <!-- Nav Links -->
+            <div class="navbar-links">
+                <a href="#services">Services</a>
+                <a href="#prozess">Prozess</a>
+                <a href="#team">Team</a>
+                <a href="#faq">FAQ</a>
+            </div>
+
+            <!-- Actions -->
+            <div class="navbar-actions">
+                <!-- Theme Toggle -->
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Farbmodus wechseln"
+                    title="Farbmodus wechseln">
+                    <!-- Sun icon (shown in light mode) -->
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    <!-- Moon icon (shown in dark mode) -->
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+
+                <!-- CTA Button -->
+                <a href="#kontakt" class="btn btn-nav">Jetzt starten</a>
+
+                <!-- Mobile toggle -->
+                <button class="navbar-mobile-toggle" aria-label="Menü öffnen">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════
+       HERO SECTION
+       ═══════════════════════════════════════════════════════ -->
+    <section class="hero" id="hero">
+
+        <!-- Spline Fallback (gradient bg for non-capable devices) -->
+        <div class="spline-fallback active" id="spline-fallback" aria-hidden="true"></div>
+
+        <!-- Spline 3D Scene Wrapper (Temporarily Removed) -->
+        <!-- 
+        <div class="spline-bg" id="spline-bg-container" aria-hidden="true">
+            <canvas id="canvas3d"></canvas>
+        </div> 
+        -->
+
+        <!-- Hero Content Overlay -->
+        <div class="hero-content">
+
+            <!-- Eyebrow -->
+            <div class="hero-eyebrow animate-in" data-delay="0">
+                <span class="dot"></span>
+                KI-AUTOMATISIERUNG
+            </div>
+
+            <!-- Headline -->
+            <h1 class="animate-in" data-delay="1">
+                Dein Unternehmen.<br>Automatisiert.
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="hero-subtitle animate-in" data-delay="2">
+                KI-Automatisierung für den Mittelstand — ohne IT-Abteilung, ohne Technik-Kenntnisse, ohne versteckte
+                Kosten.
+            </p>
+
+            <!-- CTAs -->
+            <div class="hero-ctas animate-in" data-delay="3">
+                <a href="#kontakt" class="btn btn-primary" id="hero-cta-primary">
+                    Jetzt starten →
+                </a>
+                <a href="#demo" class="btn btn-secondary" id="hero-cta-secondary">
+                    Demo ansehen
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator animate-in" data-delay="5">
+            <div class="scroll-indicator-line"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+       SECTION DIVIDER
+       ═══════════════════════════════════════════════════════ -->
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════════════
+       INDUSTRY TAGS BAND
+       ═══════════════════════════════════════════════════════ -->
+    <div class="tags-band fade-in-up" id="industries">
+        <div class="tags-track" aria-label="Branchen die wir bedienen">
+            <!-- Set 1 -->
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                </svg>
+                Arztpraxen
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                Rechtsanwälte
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                    <line x1="9" y1="9" x2="9.01" y2="9" />
+                    <line x1="15" y1="9" x2="15.01" y2="9" />
+                </svg>
+                Beautystudios
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                </svg>
+                Handwerk
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                Sportvereine
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg>
+                Kleine Agenturen
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+                Finanzberater
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                Immobilienbüros
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+                Steuerberater
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                    <line x1="8" y1="21" x2="16" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+                E-Commerce
+            </span>
+            <!-- Set 2 (duplicate for infinite scroll) -->
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                </svg>
+                Arztpraxen
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                Rechtsanwälte
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                    <line x1="9" y1="9" x2="9.01" y2="9" />
+                    <line x1="15" y1="9" x2="15.01" y2="9" />
+                </svg>
+                Beautystudios
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                </svg>
+                Handwerk
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                Sportvereine
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                </svg>
+                Kleine Agenturen
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+                Finanzberater
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                Immobilienbüros
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+                Steuerberater
+            </span>
+            <span class="tag">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                    <line x1="8" y1="21" x2="16" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+                E-Commerce
+            </span>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+       SERVICES SECTION
+       ═══════════════════════════════════════════════════════ -->
+    <section class="services" id="services">
+        <div class="container">
+
+            <!-- Section Header -->
+            <div class="section-header fade-in-up">
+                <span class="eyebrow">SERVICES</span>
+                <h2>Was wir für dich automatisieren</h2>
+                <p>Wiederkehrende Aufgaben, die jeden Tag Zeit kosten — wir bauen KI-Systeme, die das für dich
+                    übernehmen.</p>
+            </div>
+
+            <!-- Services Grid (6 cells, Vercel-style) -->
+            <div class="services-grid fade-in-up">
+
+                <!-- Cell 1: Kundenkommunikation -->
+                <div class="service-cell">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                    </div>
+                    <h3>Kundenkommunikation</h3>
+                    <p>KI-Chatbots und automatische Antworten — deine Kunden bekommen sofort Hilfe, du sparst Stunden.
+                    </p>
+                    <div class="service-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Cell 2: Terminverwaltung -->
+                <div class="service-cell">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                    </div>
+                    <h3>Terminverwaltung</h3>
+                    <p>Automatische Buchung, Erinnerungen und Kalender-Sync — kein Hin und Her per Telefon mehr.</p>
+                    <div class="service-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Cell 3: Dokumenten-Workflows -->
+                <div class="service-cell">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                            <polyline points="10 9 9 9 8 9" />
+                        </svg>
+                    </div>
+                    <h3>Dokumenten-Workflows</h3>
+                    <p>Rechnungen, Angebote und Verträge automatisch erstellen, versenden und ablegen.</p>
+                    <div class="service-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Cell 4: Datenanalyse -->
+                <div class="service-cell">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="20" x2="18" y2="10" />
+                            <line x1="12" y1="20" x2="12" y2="4" />
+                            <line x1="6" y1="20" x2="6" y2="14" />
+                        </svg>
+                    </div>
+                    <h3>Datenanalyse</h3>
+                    <p>Deine Geschäftsdaten aufbereitet und verständlich — als Dashboard, nicht als Excel-Chaos.</p>
+                    <div class="service-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Cell 5: Lead-Generierung -->
+                <div class="service-cell">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <line x1="19" y1="8" x2="19" y2="14" />
+                            <line x1="22" y1="11" x2="16" y2="11" />
+                        </svg>
+                    </div>
+                    <h3>Lead-Generierung</h3>
+                    <p>Automatische Kontaktaufnahme, Follow-ups und CRM-Pflege — dein Vertrieb läuft auch nachts.</p>
+                    <div class="service-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Cell 6: Individuelle Workflows -->
+                <div class="service-cell">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                        </svg>
+                    </div>
+                    <h3>Individuelle Workflows</h3>
+                    <p>Kein Prozess ist wie der andere — wir bauen genau die Automatisierung, die dein Unternehmen
+                        braucht.</p>
+                    <div class="service-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+       PROZESS SECTION
+       ═══════════════════════════════════════════════════════ -->
+    <section class="prozess" id="prozess">
+        <div class="container">
+
+            <!-- Section Header -->
+            <div class="section-header fade-in-up">
+                <span class="eyebrow">PROZESS</span>
+                <h2>In 4 Schritten zur Automatisierung</h2>
+                <p>Kein Technik-Wissen nötig. Wir übernehmen alles — von der Analyse bis zum laufenden System.</p>
+            </div>
+
+            <!-- 4 Steps -->
+            <div class="prozess-steps fade-in-up">
+
+                <!-- Step 1 -->
+                <div class="prozess-step">
+                    <div class="step-number">
+                        <svg class="step-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                    </div>
+                    <h3>Analyse</h3>
+                    <p>Wir schauen uns deine Prozesse an und finden die größten Zeitfresser.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="prozess-step">
+                    <div class="step-number">
+                        <svg class="step-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                            <polyline points="2 17 12 22 22 17" />
+                            <polyline points="2 12 12 17 22 12" />
+                        </svg>
+                    </div>
+                    <h3>Strategie</h3>
+                    <p>Du bekommst einen klaren Plan — was automatisiert wird und warum.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="prozess-step">
+                    <div class="step-number">
+                        <svg class="step-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6" />
+                            <polyline points="8 6 2 12 8 18" />
+                        </svg>
+                    </div>
+                    <h3>Umsetzung</h3>
+                    <p>Wir bauen dein System in wenigen Tagen — du musst nichts tun.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="prozess-step">
+                    <div class="step-number">
+                        <svg class="step-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
+                            <path d="M22 12A10 10 0 0 0 12 2v10z" />
+                        </svg>
+                    </div>
+                    <h3>Optimierung</h3>
+                    <p>Wir überwachen, testen und verbessern — dein System wird jeden Tag besser.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+       WORKFLOW DIAGRAM (Baseten-style)
+       ═══════════════════════════════════════════════════════ -->
+    <section class="workflow-section" id="workflow">
+        <div class="container">
+
+            <div class="section-header fade-in-up">
+                <span class="eyebrow">ARCHITEKTUR</span>
+                <h2>So arbeitet dein KI-System</h2>
+                <p>Daten rein, Ergebnisse raus — vollautomatisch, rund um die Uhr.</p>
+            </div>
+
+            <div class="workflow-diagram fade-in-up">
+
+                <!-- Input nodes (left) -->
+                <div class="workflow-column">
+                    <div class="workflow-node">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                        <span class="workflow-node-label">Kundenanfragen</span>
+                    </div>
+                    <div class="workflow-node">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                        <span class="workflow-node-label">Termine</span>
+                    </div>
+                    <div class="workflow-node">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                        </svg>
+                        <span class="workflow-node-label">Dokumente</span>
+                    </div>
+                </div>
+
+                <!-- Left SVG lines -->
+                <div class="workflow-lines">
+                    <svg viewBox="0 0 100 200">
+                        <!-- Static lines -->
+                        <path class="workflow-line" d="M 0,33 C 50,33 50,100 100,100" />
+                        <path class="workflow-line" d="M 0,100 C 50,100 50,100 100,100" />
+                        <path class="workflow-line" d="M 0,167 C 50,167 50,100 100,100" />
+                        <!-- Animated glow -->
+                        <path class="workflow-line-glow" d="M 0,33 C 50,33 50,100 100,100" />
+                        <path class="workflow-line-glow" d="M 0,100 C 50,100 50,100 100,100"
+                            style="animation-delay: 0.5s" />
+                        <path class="workflow-line-glow" d="M 0,167 C 50,167 50,100 100,100"
+                            style="animation-delay: 1s" />
+                    </svg>
+                </div>
+
+                <!-- Center: Axionea AI Core -->
+                <div class="workflow-center">
+                    <div class="workflow-core">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="4" width="16" height="16" rx="2" ry="2" />
+                            <rect x="9" y="9" width="6" height="6" />
+                            <line x1="9" y1="1" x2="9" y2="4" />
+                            <line x1="15" y1="1" x2="15" y2="4" />
+                            <line x1="9" y1="20" x2="9" y2="23" />
+                            <line x1="15" y1="20" x2="15" y2="23" />
+                            <line x1="20" y1="9" x2="23" y2="9" />
+                            <line x1="20" y1="14" x2="23" y2="14" />
+                            <line x1="1" y1="9" x2="4" y2="9" />
+                            <line x1="1" y1="14" x2="4" y2="14" />
+                        </svg>
+                        <span class="workflow-core-label">Axionea</span>
+                        <span class="workflow-core-sub">KI-Engine</span>
+                    </div>
+                </div>
+
+                <!-- Right SVG lines -->
+                <div class="workflow-lines">
+                    <svg viewBox="0 0 100 200">
+                        <path class="workflow-line" d="M 0,100 C 50,100 50,67 100,67" />
+                        <path class="workflow-line" d="M 0,100 C 50,100 50,133 100,133" />
+                        <path class="workflow-line-glow workflow-line-glow-reverse" d="M 0,100 C 50,100 50,67 100,67"
+                            style="animation-delay: 0.3s" />
+                        <path class="workflow-line-glow workflow-line-glow-reverse" d="M 0,100 C 50,100 50,133 100,133"
+                            style="animation-delay: 0.8s" />
+                    </svg>
+                </div>
+
+                <!-- Output nodes (right) -->
+                <div class="workflow-column">
+                    <div class="workflow-node">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="20" x2="18" y2="10" />
+                            <line x1="12" y1="20" x2="12" y2="4" />
+                            <line x1="6" y1="20" x2="6" y2="14" />
+                        </svg>
+                        <span class="workflow-node-label">Dashboard</span>
+                    </div>
+                    <div class="workflow-node">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                        </svg>
+                        <span class="workflow-node-label">Benachrichtigungen</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Placeholder for scroll testing -->
+    <section style="height: 100vh; position: relative;"></section>
+
+    <!-- ═══════════════════════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════════════════════ -->
+    <script src="js/theme.js?v=2"></script>
+    <script src="js/navbar.js?v=2"></script>
+    <!-- <script type="module" src="js/spline.js?v=2"></script> -->
+    <script src="js/animations.js?v=2"></script>
+
+</body>
+
+</html>

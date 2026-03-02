@@ -1,0 +1,143 @@
+{
+  "markdown": "[Vercel Logo](https://vercel.com/academy)\n\nChapters\n\n- [Introduction](https://vercel.com/academy/ai-sdk)\n- Fundamentals\n\n\n\n\n\n  - [Introduction to LLMs](https://vercel.com/academy/ai-sdk/introduction-to-llms)\n  - [Prompting Fundamentals](https://vercel.com/academy/ai-sdk/prompting-fundamentals)\n  - [AI SDK Dev Setup](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup)\n  - [Data Extraction](https://vercel.com/academy/ai-sdk/data-extraction)\n  - [Model Types and Performance](https://vercel.com/academy/ai-sdk/model-types-and-performance)\n\n- Invisible AI\n\n- Conversational AI\n\n\nVercel LogoSign in with Vercel\n\nToggle Sidebar\n\nVercel Logo\n\n1. [Builders Guide to the AI SDK](https://vercel.com/academy/ai-sdk)\n3. AI SDK Dev Setup\n\n# [Project Setup - Get Your Hands Dirty!](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup\\#project-setup---get-your-hands-dirty)\n\nYou've grasped some of the core LLM concepts. Now for the exciting part: setting up your local development environment and getting hands-on with the Vercel AI SDK. This is where you _really_ get your hands dirty and prepare to build the cool AI features we've been talking about, like automatic summarization and building intelligent chatbots.\n\nYou will get the starter project running locally, securely configure the Vercel AI Gateway, and confirm everything works so you're ready to start coding AI in the next lesson.\n\nLet's go!\n\nPrerequisites Check\n\nBefore starting, ensure you have Git, Node.js (v20+), and pnpm installed. If you missed any, check the prerequisites section at the beginning of the course for installation links.\n\n## [Step 1: Getting the Code](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup\\#step-1-getting-the-code)\n\nFirst, grab the [starter project code](https://github.com/vercel/ai-sdk-fundamentals-starter). This repository contains all the files and setup needed for the course. Open your terminal (or command prompt) and run this command to clone it:\n\n```\ngit clone https://github.com/vercel/ai-sdk-fundamentals-starter.git\n```\n\nThis copies the project files to your computer.\n\n## [Step 2: Navigating Into the Project](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup\\#step-2-navigating-into-the-project)\n\nNow, move into the project directory you just cloned. Use the `cd` (change directory) command:\n\n```\ncd ai-sdk-fundamentals-starter\n```\n\nYour terminal prompt should now show you're inside the `ai-sdk-fundamentals-starter` folder.\n\n## [Step 3: Installing Dependencies](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup\\#step-3-installing-dependencies)\n\nNext, install the necessary libraries (AI SDK, Next.js, etc.). This project uses `pnpm` for fast and efficient package management. Run:\n\n```\npnpm install\n```\n\nUsing npm or Yarn?\n\nWhile `pnpm` is recommended for this project (due to the lockfile), you can\n_try_ using `npm install` or `yarn install`. Be aware you might encounter\nslight differences if dependency versions vary. To install pnpm globally, run:\n`npm install -g pnpm`.\n\nThis might take a minute or two.\n\n## [Step 4: Setting Up the Vercel AI Gateway](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup\\#step-4-setting-up-the-vercel-ai-gateway)\n\nAI models are accessed through API endpoints and typically this means you need to setup individual accounts and secure API keys for each provider. The [Vercel AI Gateway](https://vercel.com/docs/ai-gateway) simplifies this and allows you to access models from multiple providers through a single endpoint.\n\nWhy Use AI Gateway?\n\n- **Free $5 credit:** Get started without needing an OpenAI account or dealing with their credit requirements\n- **One endpoint, multiple providers:** Switch between OpenAI, Anthropic, Google, and others without code changes\n- **Automatic failover:** If one provider fails, requests automatically retry with another\n- **Cost tracking:** Monitor spending across all providers in one place\n- **Rate limit handling:** Built-in retry logic and request queuing\n- **Bring your own keys:** Use your existing provider API keys if needed\n\nYou have two options for authentication with the AI Gateway:\n\nOption A: OIDC Token Setup (Recommended for Projects Already Deployed to Vercel)\n\nOption B: API Key Setup (Simpler for Local Development)\n\nWhich method should I use?\n\n- **OIDC (Option A):** Best for production deployments and team projects. More secure but requires token refresh.\n- **API Key (Option B):** Simpler for local development and learning. Persistent but requires careful key management.\n\nFor this course, either method works fine!\n\n## [Step 5: Making Sure It Works!](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup\\#step-5-making-sure-it-works)\n\nLet's verify your setup. The project has a simple script (env-check.ts) to confirm your authentication is configured correctly. Run it:\n\n```\npnpm tsx env-check.ts\n```\n\nYou should see this in your terminal:\n\n**If using OIDC (Option A):**\n\n```\n🔍 Checking environment configuration...\n\n✅ VERCEL_OIDC_TOKEN found - Vercel AI Gateway with OIDC auth\n   Token preview: xxxxxxxxxxxxxxxxxxxxxxxx...\n❌ AI_GATEWAY_API_KEY not found\n\n📋 Summary:\n✅ Environment is configured correctly!\n   Using: Vercel AI Gateway (OIDC authentication)\n   Note: OIDC tokens expire after 12 hours. Use 'vercel dev' for auto-refresh.\n```\n\n**If using API Key (Option B):**\n\n```\n🔍 Checking environment configuration...\n\n❌ VERCEL_OIDC_TOKEN not found\n✅ AI_GATEWAY_API_KEY found - Vercel AI Gateway with API key auth\n   Key preview: xxxxxxxxxxxxxxxxxxxxxxxx...\n\n📋 Summary:\n✅ Environment is configured correctly!\n   Using: Vercel AI Gateway (API key authentication)\n```\n\nToken/Key Management\n\n- **OIDC tokens:** Need refreshing every 12 hours. Run `vc env pull` again or use `vc dev` for automatic refresh\n- **API keys:** Persistent and don't expire, but keep them secure and rotate periodically for best security practices\n\n## [Setup Checklist](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup\\#setup-checklist)\n\nSetup Checklist\n\n## [Common Setup Issues & Troubleshooting](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup\\#common-setup-issues--troubleshooting)\n\nStuck? Click here for common solutions\n\n## [Next Up: Your First AI Script](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup\\#next-up-your-first-ai-script)\n\nCongratulations! Your development environment is set up and ready.\n\nNow you'll write and run code that uses the AI SDK to interact with an LLM and perform a practical task: extracting structured data from text. Time to start building.\n\nSign in to track your progress\n\nYou can sign in with your Vercel account or create a new one.\n\nVercel LogoSign in with Vercel\n\n[Previous](https://vercel.com/academy/ai-sdk/prompting-fundamentals)\n\n[Next](https://vercel.com/academy/ai-sdk/data-extraction)\n\nWas this helpful?\n\nsupported.\n\nSend\n\nOn this page\n\n[Project Setup - Get Your Hands Dirty!](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup#project-setup---get-your-hands-dirty) [Step 1: Getting the Code](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup#step-1-getting-the-code) [Step 2: Navigating Into the Project](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup#step-2-navigating-into-the-project) [Step 3: Installing Dependencies](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup#step-3-installing-dependencies) [Step 4: Setting Up the Vercel AI Gateway](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup#step-4-setting-up-the-vercel-ai-gateway) [Step 5: Making Sure It Works!](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup#step-5-making-sure-it-works) [Setup Checklist](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup#setup-checklist) [Common Setup Issues & Troubleshooting](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup#common-setup-issues--troubleshooting) [Next Up: Your First AI Script](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup#next-up-your-first-ai-script)\n\n## Ask AI\n\nBest course to start?What’s in AI SDK course?Can I learn shadcn/ui?How long are modules?\n\nTip: You can open and close chat with `Ctrl`  `I`\n\n0/1000",
+  "branding": {
+    "colorScheme": "light",
+    "fonts": [
+      {
+        "family": "Geist",
+        "role": "body"
+      }
+    ],
+    "colors": {
+      "primary": "#FDF7E6",
+      "accent": "#FFFAE6",
+      "background": "#FFFFFF",
+      "textPrimary": "#171717",
+      "link": "#FFFAE6"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Geist",
+        "heading": "Geist"
+      },
+      "fontStacks": {
+        "heading": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ],
+        "body": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ],
+        "paragraph": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ]
+      },
+      "fontSizes": {
+        "h1": "48px",
+        "h2": "36px",
+        "body": "16px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "6px"
+    },
+    "components": {
+      "input": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "borderColor": null,
+        "borderRadius": "6px",
+        "borderRadiusCorners": {
+          "topLeft": "6px",
+          "topRight": "6px",
+          "bottomRight": "6px",
+          "bottomLeft": "6px"
+        },
+        "shadow": "none"
+      }
+    },
+    "images": {
+      "logo": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2218%22%20stroke-linejoin%3D%22round%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2218%22%20style%3D%22color%3Acurrentcolor%22%20data-fc-idx%3D%220%22%3E%3Ctitle%3EVercel%20Logo%3C%2Ftitle%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M8%201L16%2015H0L8%201Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(23%2C%2023%2C%2023)%20!important%3B%22%2F%3E%3C%2Fsvg%3E",
+      "favicon": "https://vercel.com/favicon.ico?603d046c9a6fdfbb",
+      "ogImage": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=ai-sdk-dev-setup&lang=en&branch=main",
+      "logoHref": "/academy",
+      "logoAlt": "Vercel Logo"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 0,
+      "reasoning": "Selected #0 because it is visible, located in the header, and matches the brand name 'Vercel' from the page title and URL.",
+      "confidence": 0.9,
+      "source": "llm"
+    },
+    "personality": {
+      "tone": "modern",
+      "energy": "medium",
+      "targetAudience": "developers"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0.5,
+      "colors": 0.9,
+      "overall": 0.7
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 0,
+          "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, and matches the brand name 'Vercel' from the page title and URL.",
+          "confidence": 0.9
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": false,
+        "llmSucceeded": true
+      }
+    }
+  },
+  "metadata": {
+    "title": "AI SDK Dev Setup | Vercel Academy",
+    "description": "Set up your local dev environment for the Vercel AI SDK: clone repo, install dependencies (pnpm), configure OpenAI API key (.env), and verify setup.",
+    "og:image": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=ai-sdk-dev-setup&lang=en&branch=main",
+    "twitter:title": "AI SDK Dev Setup | Vercel Academy",
+    "twitter:image": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=ai-sdk-dev-setup&lang=en&branch=main",
+    "twitter:description": "Set up your local dev environment for the Vercel AI SDK: clone repo, install dependencies (pnpm), configure OpenAI API key (.env), and verify setup.",
+    "language": "en",
+    "ogTitle": "AI SDK Dev Setup | Vercel Academy",
+    "theme-color": "#FAFAFA",
+    "viewport": "width=device-width, initial-scale=1",
+    "twitter:card": "summary_large_image",
+    "og:description": "Set up your local dev environment for the Vercel AI SDK: clone repo, install dependencies (pnpm), configure OpenAI API key (.env), and verify setup.",
+    "ogImage": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=ai-sdk-dev-setup&lang=en&branch=main",
+    "og:title": "AI SDK Dev Setup | Vercel Academy",
+    "ogDescription": "Set up your local dev environment for the Vercel AI SDK: clone repo, install dependencies (pnpm), configure OpenAI API key (.env), and verify setup.",
+    "next-size-adjust": "",
+    "favicon": "https://vercel.com/favicon.ico?603d046c9a6fdfbb",
+    "scrapeId": "019c983e-aee0-715f-b06b-219dba82c4c3",
+    "sourceURL": "https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup",
+    "url": "https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "timezone": "America/New_York",
+    "proxyUsed": "basic",
+    "indexId": "004c9f71-f32a-4de6-9548-8ce1f4b3105b",
+    "creditsUsed": 1
+  }
+}

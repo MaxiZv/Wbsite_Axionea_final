@@ -1,0 +1,342 @@
+/* ============================================================
+   AXIONEA — Hero Section
+   Fullscreen Spline 3D background with text overlay
+   ============================================================ */
+
+/* ─── Preloader ────────────────────────────────────────────── */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-primary);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1), visibility 0.8s ease;
+}
+
+.preloader.hidden {
+    transform: translateY(-100%);
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.preloader-logo {
+    height: 48px;
+    width: auto;
+    animation: preloader-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.preloader-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-default);
+    border-top-color: var(--color-sapphire);
+    border-radius: 50%;
+    animation: preloader-spin 1s linear infinite;
+}
+
+@keyframes preloader-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+@keyframes preloader-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ─── Hero Container ───────────────────────────────────────── */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* ─── Spline Background ────────────────────────────────────── */
+.spline-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* Model is deliberately below text */
+    pointer-events: all;
+    /* Try to force it more towards the bottom right conceptually if possible via CSS, 
+       but primarily runtime placement determines this. */
+}
+
+.spline-bg spline-viewer {
+    display: block;
+    width: 100%;
+    height: 100%;
+    contain: strict;
+}
+
+/* ─── Spline Fallback ──────────────────────────────────────── */
+.spline-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: var(--spline-fallback-bg);
+    display: none;
+}
+
+.spline-fallback.active {
+    display: block;
+}
+
+/* Subtle animated gradient for fallback */
+.spline-fallback::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--hero-gradient);
+    animation: pulse-glow 8s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+    0% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ─── Hero Content Overlay ─────────────────────────────────── */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    /* Ensures text is always on top */
+    pointer-events: none;
+    /* Let clicks pass through to 3D model by default */
+    text-align: center;
+    max-width: 800px;
+    padding: 0 var(--space-3);
+    margin-top: -10vh;
+    /* Lift text slightly up to avoid model overlap */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.hero-content * {
+    pointer-events: auto;
+    /* Re-enable pointer events for buttons/text selection */
+}
+
+.hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: 6px 16px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-default);
+    background: var(--bg-navbar);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-family: var(--font-display);
+    font-weight: var(--fw-display-bold);
+    font-size: var(--fs-eyebrow);
+    letter-spacing: var(--ls-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-sapphire);
+}
+
+.hero-eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-sapphire);
+    animation: dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes dot-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+.hero h1 {
+    color: var(--text-primary);
+    max-width: 700px;
+    font-size: clamp(48px, 6vw, 72px);
+    /* Slightly smaller max size to reduce overlap risk */
+    line-height: 1.1;
+}
+
+[data-theme="dark"] .hero h1 {
+    color: #FFFFFF;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    font-weight: var(--fw-body-regular);
+    color: var(--text-secondary);
+    max-width: 520px;
+    line-height: 1.6;
+}
+
+[data-theme="dark"] .hero-subtitle {
+    color: var(--text-secondary);
+}
+
+.hero-ctas {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* ─── Grain Overlay (Light mode only) ──────────────────────── */
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px;
+}
+
+[data-theme="dark"] .grain-overlay {
+    opacity: 0.02;
+}
+
+/* ─── Scroll indicator ─────────────────────────────────────── */
+.scroll-indicator {
+    position: absolute;
+    bottom: var(--space-4);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    opacity: 0.5;
+    animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+.scroll-indicator-line {
+    width: 1px;
+    height: 32px;
+    background: var(--text-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-indicator-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-sapphire);
+    animation: scroll-line 2s ease-in-out infinite;
+}
+
+@keyframes scroll-line {
+    0% {
+        top: -100%;
+    }
+
+    50% {
+        top: 100%;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+@keyframes scroll-bounce {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(8px);
+    }
+}
+
+/* ─── Responsive ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 500px;
+        padding-top: var(--navbar-height);
+    }
+
+    .hero h1 {
+        font-size: clamp(36px, 8vw, 48px);
+        letter-spacing: -1.5px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .hero-ctas {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 var(--space-2);
+    }
+
+    .hero-ctas .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+}

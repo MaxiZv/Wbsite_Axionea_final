@@ -1,0 +1,156 @@
+/* ============================================================
+   AXIONEA — Base Styles
+   Reset, typography, global layout
+   ============================================================ */
+
+/* ─── Reset ────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fix Spline scroll hijacking */
+body {
+    overflow: auto !important;
+    font-family: var(--font-body);
+    font-weight: var(--fw-body-light);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    transition: background-color var(--transition-theme), color var(--transition-theme);
+}
+
+img,
+video,
+canvas {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+button {
+    font: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* ─── Typography ───────────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-display);
+    line-height: var(--lh-heading);
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: var(--fs-hero);
+    font-weight: var(--fw-display-extra);
+    letter-spacing: var(--ls-hero);
+}
+
+h2 {
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-display-bold);
+    letter-spacing: var(--ls-h2);
+}
+
+h3 {
+    font-size: var(--fs-h3);
+    font-weight: var(--fw-display-bold);
+    letter-spacing: var(--ls-h3);
+}
+
+p {
+    font-family: var(--font-body);
+    font-weight: var(--fw-body-light);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--text-secondary);
+}
+
+.eyebrow {
+    font-family: var(--font-display);
+    font-weight: var(--fw-display-bold);
+    font-size: var(--fs-eyebrow);
+    letter-spacing: var(--ls-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-sapphire);
+}
+
+/* ─── Layout ───────────────────────────────────────────────── */
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+}
+
+section {
+    position: relative;
+}
+
+/* ─── Selection ────────────────────────────────────────────── */
+::selection {
+    background-color: var(--color-sapphire);
+    color: #FFFFFF;
+}
+
+/* ─── Scrollbar (subtle) ───────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-default);
+    border-radius: 3px;
+}
+
+[data-theme="dark"]::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ─── Focus Visible ────────────────────────────────────────── */
+:focus-visible {
+    outline: 2px solid var(--color-sapphire);
+    outline-offset: 2px;
+}
+
+/* ─── Reduced Motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

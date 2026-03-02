@@ -1,0 +1,170 @@
+{
+  "markdown": "[![VercelLogotype](https://vercel.com/vc-ap-7ae771/_next/image?url=%2Fvc-ap-7ae771%2F_next%2Fstatic%2Fmedia%2Fvercel-logotype-light.913b90bb.svg&w=256&q=75&dpl=dpl_7E4GLfCLpfpgQtfKNdvcbX5u8sFH)![VercelLogotype](https://vercel.com/vc-ap-7ae771/_next/image?url=%2Fvc-ap-7ae771%2F_next%2Fstatic%2Fmedia%2Fvercel-logotype-dark.f889549a.svg&w=256&q=75&dpl=dpl_7E4GLfCLpfpgQtfKNdvcbX5u8sFH)](https://vercel.com/home)\n\n- Products\n\n\n  - ##### [AI Cloud](https://vercel.com/ai)\n\n\n    - [v0\\\\\n      \\\\\n      Build applications with AI](https://v0.app/)\n    - [AI SDK\\\\\n      \\\\\n      The AI Toolkit for TypeScript](https://sdk.vercel.ai/)\n    - [AI Gateway\\\\\n      \\\\\n      One endpoint, all your models](https://vercel.com/ai-gateway)\n    - [Vercel Agent\\\\\n      \\\\\n      An agent that knows your stack](https://vercel.com/agent)\n    - [Sandbox\\\\\n      \\\\\n      AI workflows in live environments](https://vercel.com/sandbox)\n  - ##### Core Platform\n\n\n    - [CI/CD\\\\\n      \\\\\n      Helping teams ship 6× faster](https://vercel.com/products/previews)\n    - [Content Delivery\\\\\n      \\\\\n      Fast, scalable, and reliable](https://vercel.com/cdn)\n    - [Fluid Compute\\\\\n      \\\\\n      Servers, in serverless form](https://vercel.com/fluid)\n    - [Observability\\\\\n      \\\\\n      Trace every step](https://vercel.com/products/observability)\n  - ##### [Security](https://vercel.com/security)\n\n\n    - [Bot Management\\\\\n      \\\\\n      Scalable bot protection](https://vercel.com/security/bot-management)\n    - [BotID\\\\\n      \\\\\n      Invisible CAPTCHA](https://vercel.com/botid)\n    - [Platform Security\\\\\n      \\\\\n      DDoS Protection, Firewall](https://vercel.com/security)\n    - [Web Application Firewall\\\\\n      \\\\\n      Granular, custom protection](https://vercel.com/security/web-application-firewall)\n\n- Resources\n\n\n  - ##### Company\n\n\n    - [Customers\\\\\n      \\\\\n      Trusted by the best teams](https://vercel.com/customers)\n    - [Blog\\\\\n      \\\\\n      The latest posts and changes](https://vercel.com/blog)\n    - [Changelog\\\\\n      \\\\\n      See what shipped](https://vercel.com/changelog)\n    - [Press\\\\\n      \\\\\n      Read the latest news](https://vercel.com/press)\n    - [Events\\\\\n      \\\\\n      Join us at an event](https://vercel.com/events)\n  - ##### Learn\n\n\n    - [Docs\\\\\n      \\\\\n      Vercel documentation](https://vercel.com/docs)\n    - [Academy\\\\\n      \\\\\n      Linear courses to level up](https://vercel.com/academy)\n    - [Knowledge Base\\\\\n      \\\\\n      Find help quickly](https://vercel.com/kb)\n    - [Community\\\\\n      \\\\\n      Join the conversation](https://community.vercel.com/)\n  - ##### Open Source\n\n\n    - [Next.js\\\\\n      \\\\\n      The native Next.js platform](https://vercel.com/frameworks/nextjs)\n    - [Nuxt\\\\\n      \\\\\n      The progressive web framework](https://nuxt.com/)\n    - [Svelte\\\\\n      \\\\\n      The web’s efficient UI framework](https://svelte.dev/)\n    - [Turborepo\\\\\n      \\\\\n      Speed with Enterprise scale](https://vercel.com/solutions/turborepo)\n\n- Solutions\n\n\n  - ##### Use Cases\n\n\n    - [AI Apps\\\\\n      \\\\\n      Deploy at the speed of AI](https://vercel.com/ai)\n    - [Composable Commerce\\\\\n      \\\\\n      Power storefronts that convert](https://vercel.com/solutions/composable-commerce)\n    - [Marketing Sites\\\\\n      \\\\\n      Launch campaigns fast](https://vercel.com/solutions/marketing-sites)\n    - [Multi-tenant Platforms\\\\\n      \\\\\n      Scale apps with one codebase](https://vercel.com/solutions/multi-tenant-saas)\n    - [Web Apps\\\\\n      \\\\\n      Ship features, not infrastructure](https://vercel.com/solutions/web-apps)\n  - ##### Tools\n\n\n    - [Marketplace\\\\\n      \\\\\n      Extend and automate workflows](https://vercel.com/marketplace)\n    - [Templates\\\\\n      \\\\\n      Jumpstart app development](https://vercel.com/templates)\n    - [Partner Finder\\\\\n      \\\\\n      Get help from solution partners](https://vercel.com/partners/solution-partners)\n  - ##### Users\n\n\n    - [Platform Engineers\\\\\n      \\\\\n      Automate away repetition](https://vercel.com/solutions/platform-engineering)\n    - [Design Engineers\\\\\n      \\\\\n      Deploy for every idea](https://vercel.com/solutions/design-engineering)\n\n- [Enterprise](https://vercel.com/enterprise)\n- [Pricing](https://vercel.com/pricing)\n\nSearch AcademySearch `⌘ K`\n\nAsk AI\n\nSearch AcademySearch `⌘ K`\n\nAsk AI\n\nVercel Logo\n\n# Vercel Academy\n\nGo from beginner to expert by learning the ins and outs of Vercel, Next.js, Turborepo, AI SDK and more to build fully functional apps that use all the latest features.\n\n## Courses\n\n[**Build Visual Workflow Plugins on Vercel** \\\\\nDeploy a visual workflow builder on Vercel and extend it with plugins for the APIs you actually use. Learn Vercel Workflow fundamentals along the way.](https://vercel.com/academy/visual-workflow-builder-on-vercel) [**Builders Guide to the AI SDK** \\\\\nBuild production-ready AI features with the AI SDK & Next.js. Learn LLMs, prompting, extraction, streaming, & more.](https://vercel.com/academy/ai-sdk) [**Building Filesystem Agents** \\\\\nBuild a file system agent that uses bash tools and Vercel Sandbox to explore call transcripts and answer questions.](https://vercel.com/academy/filesystem-agents) [**Creating an AI Summary App with Next.js** \\\\\nBuild an AI-powered summary application using Next.js App Router and the Vercel AI SDK. You'll implement text summarization, structured output, caching, and production-ready patterns.](https://vercel.com/academy/ai-summary-app-with-nextjs) [**Launch a Subscription Store with Vercel and Stripe** \\\\\nBuild a production-ready subscription storefront with Next.js 16, React 19, Supabase Auth, and Stripe. Learn authentication, payments, and access control.](https://vercel.com/academy/subscription-store) [**Microfrontends on Vercel** \\\\\nBuild scalable, independent frontend applications with Vercel's microfrontends platform.](https://vercel.com/academy/microfrontends-on-vercel) [**Next.js Foundations** \\\\\nPrepare for the self-paced Foundations workshop. Across four sections you'll build two production-ready apps (web + blog) using Next.js and Vercel. This page outlines what you'll build, how we teach, prerequisites, and the section-by-section roadmap.](https://vercel.com/academy/nextjs-foundations) [**Production Monorepos with Turborepo** \\\\\nBuild a production monorepo from idea to enterprise scale with Turborepo and Next.js.](https://vercel.com/academy/production-monorepos) [**React UI with shadcn/ui + Radix + Tailwind** \\\\\nLearn the fundamentals of modern UI development with shadcn/ui. Master component libraries, Radix primitives, and build production-ready interfaces.](https://vercel.com/academy/shadcn-ui) [**Slack Agents on Vercel with the AI SDK** \\\\\nStep-by-step course to build, deploy, and run a real Slack bot on Vercel using the AI SDK, with logging, safeguards, and an ops runbook for your team’s workspace.](https://vercel.com/academy/slack-agents)\n\n## Get Started\n\n- [Templates](https://vercel.com/templates)\n- [Supported frameworks](https://vercel.com/docs/frameworks)\n- [Marketplace](https://vercel.com/marketplace)\n- [Domains](https://vercel.com/domains)\n\n## Build\n\n- [Next.js on Vercel](https://vercel.com/frameworks/nextjs)\n- [Turborepo](https://vercel.com/solutions/turborepo)\n- [v0](https://v0.app/)\n\n## Scale\n\n- [Content delivery network](https://vercel.com/cdn)\n- [Fluid compute](https://vercel.com/fluid)\n- [CI/CD](https://vercel.com/products/previews)\n- [Observability](https://vercel.com/products/observability)\n- [AI GatewayNew](https://vercel.com/ai-gateway)\n- [Vercel AgentNew](https://vercel.com/agent)\n\n## Secure\n\n- [Platform security](https://vercel.com/security)\n- [Web Application Firewall](https://vercel.com/security/web-application-firewall)\n- [Bot management](https://vercel.com/security/bot-management)\n- [BotID](https://vercel.com/botid)\n- [SandboxNew](https://vercel.com/sandbox)\n\n## Resources\n\n- [Pricing](https://vercel.com/pricing)\n- [Customers](https://vercel.com/customers)\n- [Enterprise](https://vercel.com/enterprise)\n- [Startups](https://vercel.com/startups)\n- [Solution partners](https://vercel.com/partners/solution-partners)\n\n## Learn\n\n- [Docs](https://vercel.com/docs)\n- [Blog](https://vercel.com/blog)\n- [Changelog](https://vercel.com/changelog)\n- [Knowledge Base](https://vercel.com/kb)\n- [Academy](https://vercel.com/academy)\n- [Community](https://community.vercel.com/)\n\n## Frameworks\n\n- [Next.js](https://vercel.com/frameworks/nextjs)\n- [Nuxt](https://vercel.com/docs/frameworks/full-stack/nuxt)\n- [Svelte](https://vercel.com/docs/frameworks/full-stack/sveltekit)\n- [Nitro](https://vercel.com/docs/frameworks/backend/nitro)\n- [Turbo](https://vercel.com/solutions/turborepo)\n\n## SDKs\n\n- [AI SDK](https://ai-sdk.dev/)\n- [Workflow DevKitNew](https://useworkflow.dev/)\n- [Flags SDK](https://flags-sdk.dev/)\n- [Chat SDK](https://chat-sdk.dev/)\n- [Streamdown AINew](https://streamdown.ai/)\n\n## Use Cases\n\n- [Composable commerce](https://vercel.com/solutions/composable-commerce)\n- [Multi-tenant platforms](https://vercel.com/solutions/multi-tenant-saas)\n- [Web apps](https://vercel.com/solutions/web-apps)\n- [Marketing sites](https://vercel.com/solutions/marketing-sites)\n- [Platform engineers](https://vercel.com/solutions/platform-engineering)\n- [Design engineers](https://vercel.com/solutions/design-engineering)\n\n## Company\n\n- [About](https://vercel.com/about)\n- [Careers](https://vercel.com/careers)\n- [Help](https://vercel.com/help)\n- [Press](https://vercel.com/press)\n- [Legal](https://vercel.com/legal)\n- [Privacy Policy](https://vercel.com/legal/privacy-policy)\n\n## Community\n\n- [Open source program](https://vercel.com/open-source-program)\n- [Events](https://vercel.com/events)\n- [Shipped on Vercel](https://vercel.com/shipped)\n- [GitHub](https://github.com/vercel)\n- [LinkedIn](https://linkedin.com/company/vercel)\n- [X](https://x.com/vercel)\n- [YouTube](https://youtube.com/@VercelHQ)\n\n[All systems normal.](https://vercel-status.com/) Select a display theme:systemlightdark\n\n## Ask AI\n\nBest course to start?What’s in AI SDK course?Can I learn shadcn/ui?How long are modules?\n\nTip: You can open and close chat with `Ctrl`  `I`\n\n0/1000",
+  "branding": {
+    "colorScheme": "light",
+    "fonts": [
+      {
+        "family": "Geist",
+        "role": "unknown"
+      }
+    ],
+    "colors": {
+      "primary": "#F9F3E1",
+      "accent": "#FAF5E1",
+      "background": "#FAFAFA",
+      "textPrimary": "#171717",
+      "link": "#FAF5E1"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Geist",
+        "heading": "Geist"
+      },
+      "fontStacks": {
+        "heading": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ],
+        "body": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ],
+        "paragraph": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ]
+      },
+      "fontSizes": {
+        "h1": "60px",
+        "h2": "36px",
+        "body": "12px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "6px"
+    },
+    "components": {
+      "input": {
+        "background": "transparent",
+        "textColor": "#171717",
+        "borderColor": null,
+        "borderRadius": "0px",
+        "borderRadiusCorners": {
+          "topLeft": "0px",
+          "topRight": "0px",
+          "bottomRight": "0px",
+          "bottomLeft": "0px"
+        },
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(23, 23, 23) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "buttonPrimary": {
+        "background": "#EEEEEE",
+        "textColor": "#171717",
+        "borderRadius": "6px",
+        "borderRadiusCorners": {
+          "topLeft": "6px",
+          "topRight": "6px",
+          "bottomRight": "6px",
+          "bottomLeft": "6px"
+        },
+        "shadow": "none"
+      }
+    },
+    "images": {
+      "logo": "https://vercel.com/vc-ap-7ae771/_next/image?url=%2Fvc-ap-7ae771%2F_next%2Fstatic%2Fmedia%2Fvercel-logotype-light.913b90bb.svg&w=256&q=75&dpl=dpl_7E4GLfCLpfpgQtfKNdvcbX5u8sFH",
+      "favicon": "https://vercel.com/favicon.ico?603d046c9a6fdfbb",
+      "ogImage": "https://academy-front.vercel.sh/academy/api/og",
+      "logoHref": "/home",
+      "logoAlt": "VercelLogotype"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 0,
+      "reasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and matches the brand name 'Vercel'.",
+      "confidence": 0.95,
+      "source": "llm"
+    },
+    "__llm_button_reasoning": {
+      "primary": {
+        "index": 0,
+        "text": "Search AcademySearch⌘ K",
+        "reasoning": "Button #0 is the only button detected and serves as the main interactive element on the page, making it the primary CTA by default."
+      },
+      "secondary": {
+        "index": -1,
+        "text": "N/A",
+        "reasoning": "There is only one button detected, so no secondary button is available."
+      },
+      "confidence": 0.9
+    },
+    "personality": {
+      "tone": "modern",
+      "energy": "medium",
+      "targetAudience": "developers and tech enthusiasts"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0.9,
+      "colors": 0.9,
+      "overall": 0.9
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 0,
+          "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and matches the brand name 'Vercel'.",
+          "confidence": 0.95
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": true,
+        "llmSucceeded": true
+      }
+    }
+  },
+  "metadata": {
+    "twitter:title": "Vercel Academy",
+    "og:title": "Vercel Academy",
+    "theme-color": "#FAFAFA",
+    "ogSiteName": "Vercel Academy",
+    "language": "en",
+    "og:site_name": "Vercel Academy",
+    "twitter:description": "Go from beginner to expert by learning the ins and outs of Vercel, Next.js, Turborepo, AI SDK and more to build fully functional apps that use all the latest features.",
+    "ogImage": "https://academy-front.vercel.sh/academy/api/og",
+    "viewport": "width=device-width, initial-scale=1",
+    "ogDescription": "Go from beginner to expert by learning the ins and outs of Vercel, Next.js, Turborepo, AI SDK and more to build fully functional apps that use all the latest features.",
+    "og:image": "https://academy-front.vercel.sh/academy/api/og",
+    "title": "Vercel Academy",
+    "og:description": "Go from beginner to expert by learning the ins and outs of Vercel, Next.js, Turborepo, AI SDK and more to build fully functional apps that use all the latest features.",
+    "twitter:card": "summary_large_image",
+    "twitter:image": "https://academy-front.vercel.sh/academy/api/og",
+    "ogTitle": "Vercel Academy",
+    "next-size-adjust": "",
+    "description": "Go from beginner to expert by learning the ins and outs of Vercel, Next.js, Turborepo, AI SDK and more to build fully functional apps that use all the latest features.",
+    "favicon": "https://vercel.com/favicon.ico?603d046c9a6fdfbb",
+    "scrapeId": "019c983e-aee0-715f-b06b-16a5af7e11ee",
+    "sourceURL": "https://vercel.com/academy",
+    "url": "https://vercel.com/academy",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "timezone": "America/New_York",
+    "proxyUsed": "basic",
+    "indexId": "f94339b1-c071-4f04-b18b-2281cb2d8871",
+    "creditsUsed": 1
+  }
+}

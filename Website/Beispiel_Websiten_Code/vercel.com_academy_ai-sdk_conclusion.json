@@ -1,0 +1,143 @@
+{
+  "markdown": "[Vercel Logo](https://vercel.com/academy)\n\nChapters\n\n- [Introduction](https://vercel.com/academy/ai-sdk)\n- Fundamentals\n\n- Invisible AI\n\n- Conversational AI\n\n\n\n\n\n  - [Basic Chatbot](https://vercel.com/academy/ai-sdk/basic-chatbot)\n  - [AI Elements](https://vercel.com/academy/ai-sdk/ai-elements)\n  - [System Prompts](https://vercel.com/academy/ai-sdk/system-prompts)\n  - [Tool Use](https://vercel.com/academy/ai-sdk/tool-use)\n  - [Multi-Step & Generative UI](https://vercel.com/academy/ai-sdk/multi-step-and-generative-ui)\n  - [Conclusion](https://vercel.com/academy/ai-sdk/conclusion)\n\nVercel LogoSign in with Vercel\n\nToggle Sidebar\n\nVercel Logo\n\n1. [Builders Guide to the AI SDK](https://vercel.com/academy/ai-sdk)\n3. Conclusion\n\n## [You Built Real Features](https://vercel.com/academy/ai-sdk/conclusion\\#you-built-real-features)\n\nLook at what you actually built:\n\n**Foundations:**\n\n- ✅ Data extraction script comparing text vs structured output modes\n- ✅ Model comparison tool understanding speed vs quality tradeoffs\n\n**Invisible AI Features:**\n\n- ✅ Text classifier that categorizes support tickets by type and urgency\n- ✅ Summarization that condenses conversations into actionable insights\n- ✅ Data extractor that parses natural language into structured appointments\n- ✅ Professional UI components generated with v0 in seconds\n\n**Full-Stack Chatbot:**\n\n- ✅ Streaming chat interface with `useChat` and `streamText`\n- ✅ Professional UI upgrade with AI Elements components\n- ✅ System prompts giving your AI consistent personality\n- ✅ Weather tool integration showing real-time data fetching\n- ✅ Multi-step conversations that chain tool calls and synthesis\n- ✅ Generative UI rendering custom React components from tool results\n\nThis isn't toy code. These are production patterns used by real companies.\n\n## [The Patterns That Matter](https://vercel.com/academy/ai-sdk/conclusion\\#the-patterns-that-matter)\n\nYou learned the critical patterns that power most AI applications:\n\n1. **Structured Extraction** \\- Turn messy text into clean JSON with `generateText` \\+ `Output.object()` and Zod schemas\n2. **Streaming Interfaces** \\- Keep users engaged while AI thinks with `streamText` and `useChat`\n3. **Tool Orchestration** \\- Let AI call functions and APIs to extend beyond text generation\n4. **Component Systems** \\- Professional UI with AI Elements instead of building from scratch\n5. **Multi-Step Workflows** \\- Chain multiple tool calls with natural language synthesis\n\nThese patterns are the foundation. Most AI features are variations or combinations of them.\n\n## [Your Next Move](https://vercel.com/academy/ai-sdk/conclusion\\#your-next-move)\n\nYou have working code for every pattern. Pick ONE and ship it this week:\n\n**Quick Wins (1-2 hours):**\n\n- Add the classification script to your support ticket workflow\n- Drop the summarization Server Action into an existing Next.js app\n- Use the extraction pattern for any form with natural language input\n\n**Medium Projects (1-2 days):**\n\n- Build a support bot using your chatbot code + custom tools\n- Create a documentation assistant with system prompts for your product\n- Add AI Elements to upgrade any existing chat interface\n\n**Ambitious Goals (1 week):**\n\n- Multi-step workflow automation with conditional tool chains\n- RAG system combining extraction + search + synthesis\n- Custom generative UI components for domain-specific displays\n\nThe gap between your code and production is just deployment. You already have the patterns.\n\n## [Key Concepts to Remember](https://vercel.com/academy/ai-sdk/conclusion\\#key-concepts-to-remember)\n\n- **`Output.text()` vs `Output.object()`** \\- Unstructured vs structured output modes\n- **`useChat` \\+ `streamText`** \\- The streaming chat duo\n- **`stepCountIs()`** \\- Enable multi-step conversations\n- **AI Elements** \\- Don't build UI from scratch\n- **System prompts** \\- Control behavior and personality\n- **Tool schemas with Zod** \\- Type-safe tool definitions\n\n## [When You Get Stuck](https://vercel.com/academy/ai-sdk/conclusion\\#when-you-get-stuck)\n\n- **[AI SDK Docs](https://ai-sdk.dev/docs)** \\- Your primary reference\n- **[AI Elements](https://ai-sdk.dev/elements/overview)** \\- Component library documentation\n- **[Vercel AI Chatbot](https://github.com/vercel/ai-chatbot)** \\- Full production example with auth, persistence, and more\n- **[GitHub Discussions](https://github.com/vercel/ai/discussions)** \\- Ask questions, share what you build\n\n## [What You Learned That Others Miss](https://vercel.com/academy/ai-sdk/conclusion\\#what-you-learned-that-others-miss)\n\nMost AI tutorials show you how to call an API. This course taught you:\n\n- **Why structured output (`Output.object()`) beats raw text** for real features\n- **How schema evolution works** \\- start simple, add `.describe()`, refine iteratively\n- **When to use Server Actions vs API routes** for AI calls\n- **Why you experience the pain first** \\- custom UI before Elements\n- **How multi-step changes everything** \\- tool calls AND synthesis\n- **That debugging is part of the process** \\- token counting, error handling, schema validation\n\n## [One Last Thing](https://vercel.com/academy/ai-sdk/conclusion\\#one-last-thing)\n\nThe best AI features are invisible. Users shouldn't marvel at the AI - they should marvel at how much easier their work became. Focus on removing friction, not showcasing technology.\n\nReflection Prompt\n\nFinal Reflection\n\nWhat's the first AI feature you'll ship this week? How will you measure success?\n\nSave Reflection\n\nSign in to track your progress\n\nYou can sign in with your Vercel account or create a new one.\n\nVercel LogoSign in with Vercel\n\n[Previous](https://vercel.com/academy/ai-sdk/multi-step-and-generative-ui)\n\nWas this helpful?\n\nsupported.\n\nSend\n\nOn this page\n\n[You Built Real Features](https://vercel.com/academy/ai-sdk/conclusion#you-built-real-features) [The Patterns That Matter](https://vercel.com/academy/ai-sdk/conclusion#the-patterns-that-matter) [Your Next Move](https://vercel.com/academy/ai-sdk/conclusion#your-next-move) [Key Concepts to Remember](https://vercel.com/academy/ai-sdk/conclusion#key-concepts-to-remember) [When You Get Stuck](https://vercel.com/academy/ai-sdk/conclusion#when-you-get-stuck) [What You Learned That Others Miss](https://vercel.com/academy/ai-sdk/conclusion#what-you-learned-that-others-miss) [One Last Thing](https://vercel.com/academy/ai-sdk/conclusion#one-last-thing)\n\n## Ask AI\n\nBest course to start?What’s in AI SDK course?Can I learn shadcn/ui?How long are modules?\n\nTip: You can open and close chat with `Ctrl`  `I`\n\n0/1000",
+  "branding": {
+    "colorScheme": "light",
+    "fonts": [
+      {
+        "family": "Geist",
+        "role": "body"
+      }
+    ],
+    "colors": {
+      "primary": "#FDF7E6",
+      "accent": "#FFFAE6",
+      "background": "#FFFFFF",
+      "textPrimary": "#171717",
+      "link": "#FFFAE6"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Geist",
+        "heading": "Geist"
+      },
+      "fontStacks": {
+        "heading": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ],
+        "body": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ],
+        "paragraph": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ]
+      },
+      "fontSizes": {
+        "h1": "16px",
+        "h2": "36px",
+        "body": "16px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "6px"
+    },
+    "components": {
+      "input": {
+        "background": "transparent",
+        "textColor": "#171717",
+        "borderColor": "#EAEAEA",
+        "borderRadius": "4px",
+        "borderRadiusCorners": {
+          "topLeft": "4px",
+          "topRight": "4px",
+          "bottomRight": "4px",
+          "bottomLeft": "4px"
+        },
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      }
+    },
+    "images": {
+      "logo": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2218%22%20stroke-linejoin%3D%22round%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2218%22%20style%3D%22color%3A%20currentcolor%3B%22%20data-fc-idx%3D%220%22%3E%3Ctitle%3EVercel%20Logo%3C%2Ftitle%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M8%201L16%2015H0L8%201Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(23%2C%2023%2C%2023)%20!important%3B%22%2F%3E%3C%2Fsvg%3E",
+      "favicon": "https://vercel.com/favicon.ico?603d046c9a6fdfbb",
+      "ogImage": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=conclusion&lang=en&branch=main",
+      "logoHref": "/academy",
+      "logoAlt": "Vercel Logo"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 0,
+      "reasoning": "Selected #0 because it is visible, located in the header, and the alt text matches the brand 'Vercel'.",
+      "confidence": 0.9,
+      "source": "llm"
+    },
+    "personality": {
+      "tone": "modern",
+      "energy": "medium",
+      "targetAudience": "developers and tech enthusiasts"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0,
+      "colors": 0.9,
+      "overall": 0.45
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 0,
+          "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, and the alt text matches the brand 'Vercel'.",
+          "confidence": 0.9
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": false,
+        "llmSucceeded": false
+      }
+    }
+  },
+  "metadata": {
+    "viewport": "width=device-width, initial-scale=1",
+    "theme-color": "#FAFAFA",
+    "og:title": "Conclusion | Vercel Academy",
+    "ogImage": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=conclusion&lang=en&branch=main",
+    "twitter:card": "summary_large_image",
+    "ogDescription": "You've completed the Vercel AI SDK course! Review key learnings (LLMs, prompting, SDK features) and find resources for continued exploration in AI engineering.",
+    "twitter:image": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=conclusion&lang=en&branch=main",
+    "language": "en",
+    "title": "Conclusion | Vercel Academy",
+    "description": "You've completed the Vercel AI SDK course! Review key learnings (LLMs, prompting, SDK features) and find resources for continued exploration in AI engineering.",
+    "og:description": "You've completed the Vercel AI SDK course! Review key learnings (LLMs, prompting, SDK features) and find resources for continued exploration in AI engineering.",
+    "og:image": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=conclusion&lang=en&branch=main",
+    "twitter:title": "Conclusion | Vercel Academy",
+    "twitter:description": "You've completed the Vercel AI SDK course! Review key learnings (LLMs, prompting, SDK features) and find resources for continued exploration in AI engineering.",
+    "next-size-adjust": "",
+    "ogTitle": "Conclusion | Vercel Academy",
+    "favicon": "https://vercel.com/favicon.ico?603d046c9a6fdfbb",
+    "scrapeId": "019c983e-aee0-715f-b06b-2f8a4d0c6d62",
+    "sourceURL": "https://vercel.com/academy/ai-sdk/conclusion",
+    "url": "https://vercel.com/academy/ai-sdk/conclusion",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "timezone": "America/New_York",
+    "proxyUsed": "basic",
+    "indexId": "2f65d974-672e-4750-a56d-1f3c2062c59c",
+    "creditsUsed": 1
+  }
+}

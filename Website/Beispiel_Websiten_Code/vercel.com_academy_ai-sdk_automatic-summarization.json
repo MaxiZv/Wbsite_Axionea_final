@@ -1,0 +1,155 @@
+{
+  "markdown": "[Vercel Logo](https://vercel.com/academy)\n\nChapters\n\n- [Introduction](https://vercel.com/academy/ai-sdk)\n- Fundamentals\n\n- Invisible AI\n\n\n\n\n\n  - [Introduction to Invisible AI](https://vercel.com/academy/ai-sdk/introduction-to-invisible-ai)\n  - [Text Classification](https://vercel.com/academy/ai-sdk/text-classification)\n  - [Automatic Summarization](https://vercel.com/academy/ai-sdk/automatic-summarization)\n  - [Structured Data Extraction](https://vercel.com/academy/ai-sdk/structured-data-extraction)\n  - [UI with v0](https://vercel.com/academy/ai-sdk/ui-with-v0)\n\n- Conversational AI\n\n\nVercel LogoSign in with Vercel\n\nToggle Sidebar\n\nVercel Logo\n\n1. [Builders Guide to the AI SDK](https://vercel.com/academy/ai-sdk)\n3. Automatic Summarization\n\n# [Summarization - Condensing Information Overload](https://vercel.com/academy/ai-sdk/automatic-summarization\\#summarization---condensing-information-overload)\n\nYou've classified unstructured data with structured output which is very useful. Now you'll tackle information overload. Long threads, dense articles, and feedback need summarization - a \"TL;DR\" feature to empower your users and reduce the noise of day-to-day work. You will build a summarization feature with `generateText` and `Output.object()` to condense comments.\n\n## [Too Much Text, Too Little Time](https://vercel.com/academy/ai-sdk/automatic-summarization\\#too-much-text-too-little-time)\n\nWe've all been there. You come back to a Slack channel or email thread with dozens of messages. Reading everything takes time you don't have, but you need the gist. Manual summarization is slow and prone to missing key details.\n\nThis is a perfect job for AI.\n\nWe can feed an entire conversation to the LLM and ask it to pull out the most essential information.\n\nSummarization Example\n\nSee how AI extracts key points from a conversation\n\nResponse will appear here\n\nGenerate Response\n\n## [Setup: The Comment Thread App](https://vercel.com/academy/ai-sdk/automatic-summarization\\#setup-the-comment-thread-app)\n\nProject Setup\n\nContinuing with the same codebase from\n[Lesson 1.4](https://vercel.com/academy/ai-sdk/ai-sdk-dev-setup). For this\nsection, you'll find the summarization example files in the\n`app/(3-summarization)/` directory.\n\nNavigate to the `app/(3-summarization)/summarization/` directory in your project.\n\n1. **Run the Dev Server:** If it's not already running, start it: `pnpm dev`\n2. **Open the Page:** Navigate to `http://localhost:3000/summarization` in your browser.\n\nYou'll see a simple page displaying a list of comments (loaded from `messages.json`). Our task is to make the \"Summarize\" button functional.\n\n![Screenshot of the '/summarization' page showing the list of comments and the 'Summarize' button.](https://vercel.com/vc-ap-7ae771/_next/image?url=https%3A%2F%2Fezs2ytwtdks5l2we.public.blob.vercel-storage.com%2Fai-sdk-course-summarization-pre-dqpjHr4CQh8tPaXOjzMOc4duno9iy9.png&w=1920&q=75)\n\n## [Step 1: Building the Summarization Action](https://vercel.com/academy/ai-sdk/automatic-summarization\\#step-1-building-the-summarization-action)\n\nWe'll use a Next.js Server Action to handle the AI call.\n\nWhat are Server Actions?\n\nNext.js Server Actions let you run secure server-side code directly from your\nReact components without manually creating API routes. They're perfect for AI\nfeatures because they keep your API keys and sensitive logic on the server\nwhile providing a seamless developer experience for calling backend functions\nfrom the frontend. Learn more about [Server\\\\\nActions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations).\n\nServer Actions vs API Routes\n\nChoosing between Server Actions and API routes depends on how the client needs\nto talk to your code. Reach for **Server Actions** when the work is triggered by\nyour App Router UI (forms, buttons, optimistic updates) and you want automatic\ncache revalidation and secure access to secrets without exposing an endpoint.\nPick a **Route Handler** when you need a reusable HTTP surface—mobile apps,\nthird-party integrations, webhooks, or anything the browser will `fetch`—or\nwhen you are building a dedicated backend-for-frontend layer. See the Next.js\ndocs on [Updating Data](https://nextjs.org/docs/app/getting-started/updating-data)\nand [Route Handlers](https://nextjs.org/docs/app/getting-started/route-handlers),\nplus the [Backend for Frontend guide](https://nextjs.org/docs/app/guides/backend-for-frontend)\nfor architecture trade-offs. The AI SDK chat helpers specifically expect a\nRoute Handler at `/app/api/chat` by default, so keep one in place for\nstreaming chat flows—even if you also share mutation logic with Server\nActions—learn more in the [AI SDK Next.js App Router quickstart](https://ai-sdk.dev/docs/getting-started/nextjs-app-router).\nStart with the option that fits your UI flow, and extract shared mutation\nlogic into reusable modules when you need both.\n\n1. **Create ```actions.ts```:** Inside the `app/(3-summarization)/summarization/` directory, create a new file named `actions.ts`.\n\n2. **Start with the basic setup:**\n\n\napp/(3-summarization)/summarization/actions.ts\n\n```\n'use server';\n\nimport { generateText, Output } from 'ai';\nimport { z } from 'zod';\n\n// TODO: Define the structure for our summary\n// Create a Zod schema with these fields:\n// - headline (string)\n// - context (string)\n// - discussionPoints (string)\n// - takeaways (string)\n\nexport const generateSummary = async (comments: any[]) => {\n  console.log('Generating summary for', comments.length, 'comments...');\n\n  // TODO: Use generateText with Output.object() to create the summary\n  // - Model: 'openai/gpt-5-mini'\n  // - Prompt: Ask to summarize the comments, focusing on key decisions and action items\n  // - Output: Output.object({ schema: yourSchema })\n  // - Return the generated summary from the 'output' property\n};\n```\n\n3. **Now implement the schema and `generateText` call:**\n\napp/(3-summarization)/summarization/actions.ts\n\n```\n\"use server\";\n\nimport { generateText, Output } from \"ai\";\nimport { z } from \"zod\";\n\nconst summarySchema = z.object({\n\theadline: z.string(),\n\tcontext: z.string(),\n\tdiscussionPoints: z.string(),\n\ttakeaways: z.string(),\n});\n\nexport const generateSummary = async (comments: any[]) => {\n\tconsole.log(\"Generating summary for\", comments.length, \"comments...\");\n\tconst { output: summary } = await generateText({\n\t\tmodel: \"openai/gpt-5-mini\",\n\t\tprompt: `Please summarize the following comments concisely, focusing on key decisions and action items.\n      Comments:\n      ${JSON.stringify(comments)}`,\n\t\toutput: Output.object({\n\t\t\tschema: summarySchema,\n\t\t}),\n\t});\n\tconsole.log(\"Summary generated:\", summary);\n\treturn summary;\n};\n```\n\n`generateText` with `Output.object()` is versatile. You can use it with a Zod schema anytime you need structured JSON output from an LLM, whether for classification, summarization details, or data extraction.\n\n## [Step 2: Wiring Up the Frontend](https://vercel.com/academy/ai-sdk/automatic-summarization\\#step-2-wiring-up-the-frontend)\n\nLet's connect the button in `page.tsx` to our new server action. The file already has basic state set up.\n\n1. **Add the necessary imports at the top of `page.tsx`:**\n\napp/(3-summarization)/summarization/page.tsx\n\n```\nimport { generateSummary } from './actions'; // Import the action\nimport { SummaryCard } from './summary-card'; // Import the UI component\n\n// Define the expected type based on the action's return type\ntype Summary = Awaited<ReturnType<typeof generateSummary>>;\n```\n\n2. **Add state for the summary (after the existing loading state):**\n\napp/(3-summarization)/summarization/page.tsx\n\n```\n// ... existing code ...\nexport default function Home() {\n\tconst [loading, setLoading] = useState(false);\n\tconst [summary, setSummary] = useState<Summary | null>(null);\n  // ... existing code ...\n```\n\n3. **Replace the button's onClick handler with the actual implementation and add a loading state:**\n\napp/(3-summarization)/summarization/page.tsx\n\n```\n// ... existing code ...\n<Button\n  variant={\"secondary\"}\n  disabled={loading}\n  onClick={async () => {\n    setLoading(true);\n    setSummary(null); // Clear previous summary\n    try {\n      // Call the server action\n      const result = await generateSummary(messages);\n      setSummary(result); // Update state with the result\n    } catch (error) {\n      // Handle potential errors:\n      // - AI might fail schema validation (less likely with good prompts/schemas)\n      // - Network issues or API timeouts (especially with very large inputs)\n      console.error(\"Summarization failed:\", error);\n      // TODO: Add user-friendly error feedback (e.g., toast notification)\n    } finally {\n      setLoading(false);\n    }\n  }}\n>\n  {loading ? \"Summarizing...\" : \"Summarize\"}\n</Button>\n```\n\n1. **Conditionally Render the Summary:** Add the `SummaryCard` component, displaying it only when the `summary` state has data.\n\napp/(3-summarization)/summarization/page.tsx\n\n```\n// ... existing code ...\n  </div>\n  {summary && <SummaryCard {...summary} />}\n  <MessageList messages={messages} />\n</main>\n```\n\n## [Step 3: Run and Observe (Initial Summary)](https://vercel.com/academy/ai-sdk/automatic-summarization\\#step-3-run-and-observe-initial-summary)\n\nCheck your browser (ensure `pnpm run dev` is active). Click \"Summarize\".\n\n![Screenshot of the '/summarization' page showing summarized comments](https://vercel.com/vc-ap-7ae771/_next/image?url=https%3A%2F%2Fezs2ytwtdks5l2we.public.blob.vercel-storage.com%2Fai-sdk-course-summarization-complete.png&w=1920&q=75)\n\nThe initial summary might work, but it could be verbose or unstructured.\n\n## [Step 4: Refining with `.describe()`](https://vercel.com/academy/ai-sdk/automatic-summarization\\#step-4-refining-with-describe)\n\nLet's improve the summary using Zod's `.describe()` method in `actions.ts` to give the AI more precise instructions.\n\nUpdate the schema in `actions.ts`:\n\napp/(3-summarization)/summarization/actions.ts\n\n```\n// Update the summarySchema with detailed descriptions\nconst summarySchema = z.object({\n  headline: z\n    .string()\n    .describe('The main topic or title of the summary. Max 5 words.'), // Concise headline\n  context: z.string().describe(\n    'Briefly explain the situation or background that led to this discussion. Max 2 sentences.', // Length guidance\n  ),\n  discussionPoints: z\n    .string()\n    .describe('Summarize the key topics discussed. Max 2 sentences.'), // Focused points\n  takeaways: z.string().describe(\n    'List the main decisions, action items, or next steps. **Include names** for assigned tasks. Max 2-3 bullet points or sentences.', // Specific instructions!\n  ),\n});\n\n// ... rest of the generateSummary function ...\n```\n\n![Screenshot of the '/summarization' page with enhanced schema](https://vercel.com/vc-ap-7ae771/_next/image?url=https%3A%2F%2Fezs2ytwtdks5l2we.public.blob.vercel-storage.com%2Fai-sdk-course-summarization-enhance-schema.png&w=1920&q=75)\n\nKey changes to the schema code:\n\n- Added `.describe()` to every field.\n- Provided specific guidance on length and content focus (e.g., \"Include names\").\n\nPerformance Note\n\nSummarizing very long conversations can take time and might hit model context\nlimits or timeouts. For production apps with extensive text, consider\ntechniques like chunking the input or using models with larger context\nwindows.\n\nSave `actions.ts`, refresh the browser page, and click \"Summarize\" again. The output should now be much cleaner and follow your instructions more closely, especially the takeaways with assigned names!\n\n💡 Constraining Summary Output\n\nWant more control over summary length and format? Try asking an AI assistant:\n\nPrompt: Controlling Summary Length and Structure\n\n```\n<context>\nI'm building an automatic summarization feature using Vercel AI SDK's generateText with Output.object() and Zod schemas.\nMy current schema has fields: headline, context, discussionPoints, and takeaways.\nI'm using `.describe()` to guide the AI, but the output is still too verbose.\n</context>\n\n<current-schema>\nconst summarySchema = z.object({\n  headline: z.string().describe('The main topic or title of the summary. Max 5 words.'),\n  context: z.string().describe('Briefly explain the situation. Max 2 sentences.'),\n  discussionPoints: z.string().describe('Summarize key topics. Max 2 sentences.'),\n  takeaways: z.string().describe('List main decisions and action items. Max 2-3 bullet points.')\n});\n</current-schema>\n\n<problem>\nEven with \"Max 2 sentences\" in the description, the AI is returning:\n- Summaries that are 4-5 sentences long\n- Bullet points that span multiple lines\n- Inconsistent formatting (sometimes paragraphs, sometimes bullets)\n\nHow can I enforce stricter length constraints and consistent formatting?\n</problem>\n\n<specific-questions>\n1. Should I be more explicit in the prompt itself, not just the schema descriptions?\n2. Can I use Zod refinements to validate length after generation?\n3. Are there better ways to phrase \"Max X sentences\" that the AI respects more consistently?\n4. For bullet points specifically, how do I ensure the AI uses actual markdown bullets vs paragraphs?\n\nProvide concrete code examples showing the techniques that work best.\n</specific-questions>\n```\n\nThis will help you understand advanced techniques for controlling AI output format and length!\n\n## [Key Takeaways](https://vercel.com/academy/ai-sdk/automatic-summarization\\#key-takeaways)\n\n- Summarization is a core Invisible AI task for handling information overload\n- The AI SDK makes it easy to summarize using `generateText` with `Output.object()` and a schema\n- Structured extraction and summarization are powerful together\n\n### [Further Reading: Handling Large Inputs for Summarization](https://vercel.com/academy/ai-sdk/automatic-summarization\\#further-reading-handling-large-inputs-for-summarization)\n\nReal-world summarization often involves content that exceeds token limits.\n\n- [Recursive Summarization Techniques](https://platform.openai.com/docs/guides/prompt-engineering/strategy-recursively-summarize-or-process-long-documents) — OpenAI's guide to summarizing large content\n- [LangChain Summarization Chains](https://python.langchain.com/docs/use_cases/summarization) — Techniques for summarizing long documents using chunking and map-reduce patterns\n- [Managing Context Windows and Token Limits](https://platform.openai.com/docs/guides/tokens) — Best practices for working within token limits\n\nSide QuestScale to 1000+ Comments\n\n## [Next up: Precise Data with Structured Extraction](https://vercel.com/academy/ai-sdk/automatic-summarization\\#next-up-precise-data-with-structured-extraction)\n\nYou've classified and summarized so now you're ready to get even more precise by extracting specific details from text using `generateText` with `Output.object()` and refined Zod schemas.\n\nThis type of invisible AI starts to make mundane form entry a thing of the past.\n\nIn the next lesson, you'll tackle structured extraction for appointments, handling challenges like relative dates with just a few tweaks.\n\nSign in to track your progress\n\nYou can sign in with your Vercel account or create a new one.\n\nVercel LogoSign in with Vercel\n\n[Previous](https://vercel.com/academy/ai-sdk/text-classification)\n\n[Next](https://vercel.com/academy/ai-sdk/structured-data-extraction)\n\nWas this helpful?\n\nsupported.\n\nSend\n\nOn this page\n\n[Summarization - Condensing Information Overload](https://vercel.com/academy/ai-sdk/automatic-summarization#summarization---condensing-information-overload) [Too Much Text, Too Little Time](https://vercel.com/academy/ai-sdk/automatic-summarization#too-much-text-too-little-time) [Setup: The Comment Thread App](https://vercel.com/academy/ai-sdk/automatic-summarization#setup-the-comment-thread-app) [Step 1: Building the Summarization Action](https://vercel.com/academy/ai-sdk/automatic-summarization#step-1-building-the-summarization-action) [Step 2: Wiring Up the Frontend](https://vercel.com/academy/ai-sdk/automatic-summarization#step-2-wiring-up-the-frontend) [Step 3: Run and Observe (Initial Summary)](https://vercel.com/academy/ai-sdk/automatic-summarization#step-3-run-and-observe-initial-summary) [Step 4: Refining with .describe()](https://vercel.com/academy/ai-sdk/automatic-summarization#step-4-refining-with-describe) [Key Takeaways](https://vercel.com/academy/ai-sdk/automatic-summarization#key-takeaways) [Further Reading: Handling Large Inputs for Summarization](https://vercel.com/academy/ai-sdk/automatic-summarization#further-reading-handling-large-inputs-for-summarization) [Next up: Precise Data with Structured Extraction](https://vercel.com/academy/ai-sdk/automatic-summarization#next-up-precise-data-with-structured-extraction)\n\n## Ask AI\n\nBest course to start?What’s in AI SDK course?Can I learn shadcn/ui?How long are modules?\n\nTip: You can open and close chat with `Ctrl`  `I`\n\n0/1000",
+  "branding": {
+    "colorScheme": "light",
+    "fonts": [
+      {
+        "family": "Geist",
+        "role": "body"
+      },
+      {
+        "family": "Arial",
+        "role": "body"
+      },
+      {
+        "family": "Geist Mono",
+        "role": "monospace"
+      },
+      {
+        "family": "Roboto Mono",
+        "role": "monospace"
+      }
+    ],
+    "colors": {
+      "primary": "#7820BC",
+      "accent": "#FDF7E6",
+      "background": "#FFFFFF",
+      "textPrimary": "#171717",
+      "link": "#FDF7E6"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Geist",
+        "heading": "Geist"
+      },
+      "fontStacks": {
+        "heading": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ],
+        "body": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ],
+        "paragraph": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ]
+      },
+      "fontSizes": {
+        "h1": "48px",
+        "h2": "36px",
+        "body": "16px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "6px"
+    },
+    "components": {
+      "input": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "borderColor": null,
+        "borderRadius": "6px",
+        "borderRadiusCorners": {
+          "topLeft": "6px",
+          "topRight": "6px",
+          "bottomRight": "6px",
+          "bottomLeft": "6px"
+        },
+        "shadow": "none"
+      }
+    },
+    "images": {
+      "logo": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2218%22%20stroke-linejoin%3D%22round%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2218%22%20style%3D%22color%3A%20currentcolor%3B%22%20data-fc-idx%3D%220%22%3E%3Ctitle%3EVercel%20Logo%3C%2Ftitle%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M8%201L16%2015H0L8%201Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(23%2C%2023%2C%2023)%20!important%3B%22%2F%3E%3C%2Fsvg%3E",
+      "favicon": "https://vercel.com/favicon.ico?603d046c9a6fdfbb",
+      "ogImage": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=automatic-summarization&lang=en&branch=main",
+      "logoHref": "/academy",
+      "logoAlt": "Vercel Logo"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 0,
+      "reasoning": "Selected #0 because it is visible, located in the header, and the alt text matches the brand 'Vercel'.",
+      "confidence": 0.95,
+      "source": "llm"
+    },
+    "personality": {
+      "tone": "modern",
+      "energy": "medium",
+      "targetAudience": "developers and tech enthusiasts"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0,
+      "colors": 0.9,
+      "overall": 0.45
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 0,
+          "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, and the alt text matches the brand 'Vercel'.",
+          "confidence": 0.95
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": false,
+        "llmSucceeded": false
+      }
+    }
+  },
+  "metadata": {
+    "twitter:image": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=automatic-summarization&lang=en&branch=main",
+    "language": "en",
+    "description": "Implement one-click summarization using `generateText` with `Output.object()`. Create concise summaries on demand with structured outputs.",
+    "og:description": "Implement one-click summarization using `generateText` with `Output.object()`. Create concise summaries on demand with structured outputs.",
+    "twitter:description": "Implement one-click summarization using `generateText` with `Output.object()`. Create concise summaries on demand with structured outputs.",
+    "theme-color": "#FAFAFA",
+    "og:image": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=automatic-summarization&lang=en&branch=main",
+    "twitter:card": "summary_large_image",
+    "viewport": "width=device-width, initial-scale=1",
+    "next-size-adjust": "",
+    "ogImage": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=automatic-summarization&lang=en&branch=main",
+    "ogDescription": "Implement one-click summarization using `generateText` with `Output.object()`. Create concise summaries on demand with structured outputs.",
+    "ogTitle": "Automatic Summarization | Vercel Academy",
+    "og:title": "Automatic Summarization | Vercel Academy",
+    "title": "Automatic Summarization | Vercel Academy",
+    "twitter:title": "Automatic Summarization | Vercel Academy",
+    "favicon": "https://vercel.com/favicon.ico?603d046c9a6fdfbb",
+    "scrapeId": "019c983e-aee0-715f-b06b-25aa47309998",
+    "sourceURL": "https://vercel.com/academy/ai-sdk/automatic-summarization",
+    "url": "https://vercel.com/academy/ai-sdk/automatic-summarization",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "timezone": "America/New_York",
+    "proxyUsed": "basic",
+    "indexId": "1d248e62-0cb1-4351-88bb-97ed7a385d57",
+    "creditsUsed": 1
+  }
+}

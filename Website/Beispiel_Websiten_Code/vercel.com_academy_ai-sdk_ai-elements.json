@@ -1,0 +1,147 @@
+{
+  "markdown": "[Vercel Logo](https://vercel.com/academy)\n\nChapters\n\n- [Introduction](https://vercel.com/academy/ai-sdk)\n- Fundamentals\n\n- Invisible AI\n\n- Conversational AI\n\n\n\n\n\n  - [Basic Chatbot](https://vercel.com/academy/ai-sdk/basic-chatbot)\n  - [AI Elements](https://vercel.com/academy/ai-sdk/ai-elements)\n  - [System Prompts](https://vercel.com/academy/ai-sdk/system-prompts)\n  - [Tool Use](https://vercel.com/academy/ai-sdk/tool-use)\n  - [Multi-Step & Generative UI](https://vercel.com/academy/ai-sdk/multi-step-and-generative-ui)\n  - [Conclusion](https://vercel.com/academy/ai-sdk/conclusion)\n\nVercel LogoSign in with Vercel\n\nToggle Sidebar\n\nVercel Logo\n\n1. [Builders Guide to the AI SDK](https://vercel.com/academy/ai-sdk)\n3. AI Elements\n\n# [Rebuilding the UI with AI Elements](https://vercel.com/academy/ai-sdk/ai-elements\\#rebuilding-the-ui-with-ai-elements)\n\nRemember all that custom UI code we just wrote? The manual state management, the scroll behavior, the message formatting? Professional chat interfaces like ChatGPT, Claude, and Cursor use sophisticated component systems to handle these complexities.\n\n**AI Elements gives you that same power - let's transform your basic chat into something production-ready.**\n\n## [Introducing AI SDK Elements](https://vercel.com/academy/ai-sdk/ai-elements\\#introducing-ai-sdk-elements)\n\nThe AI SDK team has built **Elements** \\- a comprehensive component library specifically designed for AI applications. It's built on top of shadcn/ui and provides everything you need out of the box.\n\nWhat are AI SDK Elements?\n\n[Elements](https://ai-sdk.dev/elements/overview) is a collection of 20+ production-ready React components designed specifically for AI interfaces. These components are tightly integrated with AI SDK hooks like `useChat`, handling the unique challenges of streaming responses, tool displays, and markdown rendering that standard React components don't address.\n\nUnlike regular UI libraries, Elements understands AI-specific patterns - message parts, streaming states, tool calls, and reasoning displays - making it the perfect companion to the AI SDK.\n\n## [Installing Elements](https://vercel.com/academy/ai-sdk/ai-elements\\#installing-elements)\n\nLet's transform our chatbot with a single command:\n\n```\npnpm dlx ai-elements@latest\n```\n\nWhen prompted, press **Enter** to confirm the installation path, and select **Yes** when asked about overwriting existing components.\n\nWhat happens during installation?\n\n## [The New Components](https://vercel.com/academy/ai-sdk/ai-elements\\#the-new-components)\n\nAfter installation, check out what you now have in `components/ai-elements/`:\n\n- **Conversation** \\- Handles the entire chat container with auto-scrolling\n- **Message** \\- Properly styled message display with role-based alignment\n- **MessageResponse** \\- Markdown renderer with syntax highlighting (part of the Message component)\n- **PromptInput** \\- Smart input with auto-resize and attachment support\n- **Reasoning** \\- Displays AI thought processes (for reasoning models)\n- **Tool** \\- Displays tool usage in conversations\n- And 14 more specialized components!\n\n## [Step 1: Add the Elements Imports](https://vercel.com/academy/ai-sdk/ai-elements\\#step-1-add-the-elements-imports)\n\nFirst, we need to import all the Elements components we'll be using. Add these imports at the top of your `app/(5-chatbot)/chat/page.tsx` file, right after your existing imports:\n\napp/(5-chatbot)/chat/page.tsx\n\n```\n// Your existing imports\n'use client';\nimport { useState } from 'react';\nimport { useChat } from '@ai-sdk/react';\n\n// Add ALL these new Elements imports\nimport {\n  Conversation,\n  ConversationContent,\n  ConversationEmptyState\n} from \"@/components/ai-elements/conversation\";\nimport { Message, MessageContent } from \"@/components/ai-elements/message\";\nimport {\n  PromptInput,\n  PromptInputTextarea,\n  PromptInputSubmit\n} from \"@/components/ai-elements/prompt-input\";\n```\n\nWith the imports ready, we can now progressively replace each part of the UI.\n\n## [Step 2: Replace the Message Display](https://vercel.com/academy/ai-sdk/ai-elements\\#step-2-replace-the-message-display)\n\nNow let's replace how messages are displayed using Elements' `Message` component.\n\n**Update just the message rendering part (around line 12-20):**\n\n```\n// Replace this:\n{messages.map(message => (\n  <div key={message.id} className=\"whitespace-pre-wrap mb-4\">\n    <strong>{message.role === 'user' ? 'User: ' : 'AI: '}</strong>\n    {message.parts?.map((part, i) =>\n      part.type === 'text' &&\n      <span key={`${message.id}-${i}`}>{part.text}</span>\n    )}\n  </div>\n))}\n\n// With this:\n{messages.map((message) => (\n  <Message key={message.id} from={message.role}>\n    <MessageContent>\n      {message.parts?.map((part) =>\n        part.type === 'text' && part.text\n      )}\n    </MessageContent>\n  </Message>\n))}\n```\n\n![Screenshot of the chatbot with proper message bubbles](https://vercel.com/vc-ap-7ae771/_next/image?url=https%3A%2F%2Fezs2ytwtdks5l2we.public.blob.vercel-storage.com%2Fai-sdk-course-message-bubbles.png&w=1920&q=75)\n\nSave and test. You'll see proper message bubbles instead of \"User:\" and \"AI:\" labels! But we still have the scrolling issues and basic input.\n\n## [Step 3: Add Smart Scrolling with Conversation Container](https://vercel.com/academy/ai-sdk/ai-elements\\#step-3-add-smart-scrolling-with-conversation-container)\n\nNow let's wrap everything in the `Conversation` component which handles auto-scrolling.\n\n**Wrap your messages in the Conversation components (you already have the imports from Step 1):**\n\n```\n// Replace the outer div and message list with:\n<div className=\"flex flex-col h-screen\">\n  <Conversation>\n    <ConversationContent>\n      {messages.length === 0 ? (\n        <ConversationEmptyState\n          title=\"Start a conversation\"\n          description=\"Type a message below to begin\"\n        />\n      ) : (\n        // Your existing message map code here\n        messages.map((message) => (\n          <Message key={message.id} from={message.role}>\n            <MessageContent>\n              {message.parts?.map((part) =>\n                part.type === 'text' && part.text\n              )}\n            </MessageContent>\n          </Message>\n        ))\n      )}\n    </ConversationContent>\n  </Conversation>\n\n  {/* Keep your existing input form here for now */}\n</div>\n```\n\nTest again with a more complex prompt - now messages stay in view and the view scrolls as they stream in! Plus you get a nice empty state.\n\nThe text input is poorly formatted and needs to be updated too.\n\n## [Step 4: Upgrade the Input with PromptInput](https://vercel.com/academy/ai-sdk/ai-elements\\#step-4-upgrade-the-input-with-promptinput)\n\nFinally, let's replace the basic input with Elements' smart input components.\n\n**Update the status handling (you already have the imports from Step 1):**\n\n```\n// add `status` to the useChat hook\nconst { messages, sendMessage, status } = useChat();\n\n// add `isLoading` based on the current status\nconst isLoading = status === \"streaming\" || status === \"submitted\";\n```\n\n**Replace your form with the PromptInput components:**\n\n```\n// Replace your entire <form> with:\n<div className=\"border-t p-4\">\n  <PromptInput\n    onSubmit={(message, event) => {\n      event.preventDefault();\n      if (message.text) {\n        sendMessage({ text: message.text });\n        setInput(\"\");\n      }\n    }}\n    className=\"max-w-3xl mx-auto flex gap-2 items-end\"\n  >\n    <PromptInputTextarea\n      value={input}\n      onChange={(e) => setInput(e.target.value)}\n      placeholder=\"Type your message...\"\n      disabled={isLoading}\n      rows={1}\n      className=\"flex-1\"\n    />\n    <PromptInputSubmit disabled={isLoading} />\n  </PromptInput>\n</div>\n```\n\n## [Testing After All Four Steps](https://vercel.com/academy/ai-sdk/ai-elements\\#testing-after-all-four-steps)\n\nSave your changes and test the chatbot:\n\n```\npnpm dev\n```\n\nNavigate to [http://localhost:3000/chat](http://localhost:3000/chat) and try it out. After these incremental improvements, you'll notice:\n\n- ✅ **Step 1: All imports ready** \\- Set up for success\n- ✅ **Step 2: Professional message bubbles** \\- Much better than \"User:\" and \"AI:\" labels\n- ✅ **Step 3: Auto-scrolling & empty state** \\- Messages stay in view, clean UI when no messages\n- ✅ **Step 4: Smart input field** \\- With a proper send button and better UX\n- ❌ **But wait...** Ask the AI to write code and you'll see markdown symbols like \\`\\`\\` instead of formatted code blocks!\n\nFour Steps Complete\n\nWe've incrementally replaced our custom UI with Elements components:\n\n1. Added all the necessary imports upfront\n2. Upgraded just the message display\n3. Added smart scrolling with Conversation container\n4. Upgraded the input with PromptInput\n\nThe interface looks professional, but markdown isn't rendering yet. Let's fix that next!\n\n## [Step 5: Enable Markdown Rendering with MessageResponse Component](https://vercel.com/academy/ai-sdk/ai-elements\\#step-5-enable-markdown-rendering-with-messageresponse-component)\n\nThe messages look better, but markdown isn't rendering. Elements includes a `MessageResponse` component that handles markdown beautifully. Let's use it for AI messages:\n\n```\n// Add MessageResponse to your existing message import\nimport { Message, MessageContent, MessageResponse } from \"@/components/ai-elements/message\";\n\n// Then update the message rendering part:\nmessages.map((message) => (\n  <Message key={message.id} from={message.role}>\n    <MessageContent>\n      {message.role === 'assistant' ? (\n        <MessageResponse>\n          {message.parts\n            ?.filter(part => part.type === 'text')\n            .map(part => part.text)\n            .join('')}\n        </MessageResponse>  // 👈 Wrap AI messages in MessageResponse\n      ) : (\n        message.parts?.map((part) =>\n          part.type === 'text' && part.text\n        )\n      )}\n    </MessageContent>\n  </Message>\n))\n```\n\n### [The Magic Moment ✨](https://vercel.com/academy/ai-sdk/ai-elements\\#the-magic-moment-)\n\nRefresh your browser and ask the AI to write code again. Try: \"give me a react app that uses the ai sdk to build a chat\"\n\n![Screenshot of the chatbot with properly formatted code blocks](https://vercel.com/vc-ap-7ae771/_next/image?url=https%3A%2F%2Fezs2ytwtdks5l2we.public.blob.vercel-storage.com%2Fai-sdk-streaming-formatted-chat.gif&w=1920&q=75)\n\n**BOOM!** Look at the transformation:\n\n- ✅ **Syntax-highlighted code blocks** \\- Beautiful, readable code\n- ✅ **Copy and download buttons** \\- Professional code block features\n- ✅ **Proper markdown formatting** \\- Headers, lists, bold, italic\n- ✅ **Inline code styling** \\- `code` appears formatted\n- ✅ **Professional presentation** \\- Looks like ChatGPT or Claude\n\nWith just **one component change**, you've transformed raw markdown text into beautifully formatted content!\n\nPerformance Note\n\nThe `MessageResponse` component is optimized for streaming - it efficiently handles incremental markdown updates without re-parsing the entire content on each stream chunk. This is crucial for maintaining smooth performance during AI responses.\n\n## [The Complete Code](https://vercel.com/academy/ai-sdk/ai-elements\\#the-complete-code)\n\nHere's the final version with both improvements:\n\napp/(5-chatbot)/chat/page.tsx\n\n```\n\"use client\";\n\nimport { useChat } from \"@ai-sdk/react\";\nimport { useState } from \"react\";\n\nimport {\n\tConversation,\n\tConversationContent,\n\tConversationEmptyState,\n} from \"@/components/ai-elements/conversation\";\nimport { Message, MessageContent, MessageResponse } from \"@/components/ai-elements/message\";\nimport {\n\tPromptInput,\n\tPromptInputTextarea,\n\tPromptInputSubmit,\n} from \"@/components/ai-elements/prompt-input\";\n\nexport default function Chat() {\n\tconst [input, setInput] = useState(\"\");\n\tconst { messages, sendMessage, status } = useChat();\n\n\tconst isLoading = status === \"streaming\" || status === \"submitted\";\n\n\treturn (\n\t\t<div className=\"flex flex-col h-screen\">\n\t\t\t<Conversation>\n\t\t\t\t<ConversationContent>\n\t\t\t\t\t{messages.length === 0 ? (\n\t\t\t\t\t\t<ConversationEmptyState\n\t\t\t\t\t\t\ttitle=\"Start a conversation\"\n\t\t\t\t\t\t\tdescription=\"Type a message below to begin\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t) : (\n\t\t\t\t\t\tmessages.map((message) => (\n\t\t\t\t\t\t\t<Message key={message.id} from={message.role}>\n\t\t\t\t\t\t\t\t<MessageContent>\n\t\t\t\t\t\t\t\t\t{message.role === \"assistant\" ? (\n\t\t\t\t\t\t\t\t\t\t<MessageResponse>\n\t\t\t\t\t\t\t\t\t\t\t{message.parts\n\t\t\t\t\t\t\t\t\t\t\t\t?.filter((part) => part.type === \"text\")\n\t\t\t\t\t\t\t\t\t\t\t\t.map((part) => part.text)\n\t\t\t\t\t\t\t\t\t\t\t\t.join(\"\")}\n\t\t\t\t\t\t\t\t\t\t</MessageResponse> // 👈 Wrap AI messages in MessageResponse\n\t\t\t\t\t\t\t\t\t) : (\n\t\t\t\t\t\t\t\t\t\tmessage.parts?.map(\n\t\t\t\t\t\t\t\t\t\t\t(part) => part.type === \"text\" && part.text,\n\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t)}\n\t\t\t\t\t\t\t\t</MessageContent>\n\t\t\t\t\t\t\t</Message>\n\t\t\t\t\t\t))\n\t\t\t\t\t)}\n\t\t\t\t</ConversationContent>\n\t\t\t</Conversation>\n\n\t\t\t<div className=\"border-t p-4\">\n\t\t\t\t<PromptInput\n\t\t\t\t\tonSubmit={(message, event) => {\n\t\t\t\t\t\tevent.preventDefault();\n\t\t\t\t\t\tif (message.text) {\n\t\t\t\t\t\t\tsendMessage({ text: message.text });\n\t\t\t\t\t\t\tsetInput(\"\");\n\t\t\t\t\t\t}\n\t\t\t\t\t}}\n\t\t\t\t\tclassName=\"max-w-3xl mx-auto flex gap-2 items-end\"\n\t\t\t\t>\n\t\t\t\t\t<PromptInputTextarea\n\t\t\t\t\t\tvalue={input}\n\t\t\t\t\t\tonChange={(e) => setInput(e.target.value)}\n\t\t\t\t\t\tplaceholder=\"Type your message...\"\n\t\t\t\t\t\tdisabled={isLoading}\n\t\t\t\t\t\trows={1}\n\t\t\t\t\t\tclassName=\"flex-1\"\n\t\t\t\t\t/>\n\t\t\t\t\t<PromptInputSubmit disabled={isLoading} />\n\t\t\t\t</PromptInput>\n\t\t\t</div>\n\t\t</div>\n\t);\n}\n```\n\nHow useChat Connects to Your API\n\n`useChat()` uses the AI SDK's transport layer to communicate with your backend. By default, it sends requests to `/api/chat` using `DefaultChatTransport`, which handles streaming responses, message formatting, and error handling automatically.\n\nYou can customize the endpoint with the `api` option: `useChat({ api: '/api/custom' })`, or provide a custom transport implementation for advanced scenarios like authentication, request transformation, or non-standard protocols. See the [transport documentation](https://ai-sdk.dev/docs/ai-sdk-ui/transport) for details.\n\n## [The Transformation Summary](https://vercel.com/academy/ai-sdk/ai-elements\\#the-transformation-summary)\n\nLook at what we accomplished in two simple steps:\n\n**Before (Custom UI)**\n\n- 100+ lines of code\n- Manual scroll management\n- Raw markdown text\n- No code highlighting\n- Basic \"User:\" / \"AI:\" labels\n- Fixed input position issues\n\n**After (Elements)**\n\n- ~60 lines of clean code\n- Auto-scrolling built-in\n- Beautiful markdown rendering\n- Syntax-highlighted code blocks\n- Professional message bubbles\n- Smart input with send button\n\n## [What Else is in Elements?](https://vercel.com/academy/ai-sdk/ai-elements\\#what-else-is-in-elements)\n\nYou've installed 20+ components with Elements. While we're focusing on the chat basics now, here's what else you have available:\n\n- **Tool Component** \\- We'll use this when we add weather checking and tool calling\n- **Reasoning Component** \\- Shows AI's thought process (for models like o1)\n- **Suggestion Component** \\- Quick reply buttons below the input\n- **Attachment Component** \\- File upload support\n- **Citation Component** \\- Source references in responses\n\nDon't worry about implementing these now - we'll explore tool usage in the upcoming lessons where you'll see these components in action.\n\n## [Why This Matters](https://vercel.com/academy/ai-sdk/ai-elements\\#why-this-matters)\n\nReflection Prompt\n\nThe Power of Incremental Improvement\n\nThink about the two-step progression we just went through. How did each step improve the user experience? Why is it valuable to see the transformation happen incrementally rather than all at once?\n\nSave Reflection\n\nYou've just experienced firsthand why component libraries exist. Elements didn't just save you time - it provided:\n\n- ✅ **Battle-tested solutions** to common problems\n- ✅ **Accessibility features** built-in\n- ✅ **Performance optimizations** you didn't have to think about\n- ✅ **Consistent design patterns** across your app\n- ✅ **Professional polish** that would take weeks to build yourself\n\n## [Next Steps](https://vercel.com/academy/ai-sdk/ai-elements\\#next-steps)\n\nNow that we have a solid foundation with Elements, we can focus on what really matters - the AI functionality. In the next lessons, we'll explore:\n\n- Adding personality with system prompts\n- Integrating reasoning models\n- File attachments and multimodal input\n- Tool use and function calling\n- Citations and source tracking\n\nAll using the professional components from Elements!\n\nSetup Checklist\n\nExplore More Elements Components\n\nElements includes 20+ components beyond what we've used:\n\n- **Suggestions** \\- Quick prompts below the input\n- **Loader** \\- Custom loading indicators for streaming\n- **ChainOfThought** \\- Visualize reasoning steps\n- **Branch** \\- Enable conversation forking\n- **TypingIndicator** \\- Show when AI is responding\n\nBrowse `components/ai-elements/` to discover more components and enhance your chat interface!\n\nSign in to track your progress\n\nYou can sign in with your Vercel account or create a new one.\n\nVercel LogoSign in with Vercel\n\n[Previous](https://vercel.com/academy/ai-sdk/basic-chatbot)\n\n[Next](https://vercel.com/academy/ai-sdk/system-prompts)\n\nWas this helpful?\n\nsupported.\n\nSend\n\nOn this page\n\n[Rebuilding the UI with AI Elements](https://vercel.com/academy/ai-sdk/ai-elements#rebuilding-the-ui-with-ai-elements) [Introducing AI SDK Elements](https://vercel.com/academy/ai-sdk/ai-elements#introducing-ai-sdk-elements) [Installing Elements](https://vercel.com/academy/ai-sdk/ai-elements#installing-elements) [The New Components](https://vercel.com/academy/ai-sdk/ai-elements#the-new-components) [Step 1: Add the Elements Imports](https://vercel.com/academy/ai-sdk/ai-elements#step-1-add-the-elements-imports) [Step 2: Replace the Message Display](https://vercel.com/academy/ai-sdk/ai-elements#step-2-replace-the-message-display) [Step 3: Add Smart Scrolling with Conversation Container](https://vercel.com/academy/ai-sdk/ai-elements#step-3-add-smart-scrolling-with-conversation-container) [Step 4: Upgrade the Input with PromptInput](https://vercel.com/academy/ai-sdk/ai-elements#step-4-upgrade-the-input-with-promptinput) [Testing After All Four Steps](https://vercel.com/academy/ai-sdk/ai-elements#testing-after-all-four-steps) [Step 5: Enable Markdown Rendering with MessageResponse Component](https://vercel.com/academy/ai-sdk/ai-elements#step-5-enable-markdown-rendering-with-messageresponse-component) [The Magic Moment ✨](https://vercel.com/academy/ai-sdk/ai-elements#the-magic-moment-) [The Complete Code](https://vercel.com/academy/ai-sdk/ai-elements#the-complete-code) [The Transformation Summary](https://vercel.com/academy/ai-sdk/ai-elements#the-transformation-summary) [What Else is in Elements?](https://vercel.com/academy/ai-sdk/ai-elements#what-else-is-in-elements) [Why This Matters](https://vercel.com/academy/ai-sdk/ai-elements#why-this-matters) [Next Steps](https://vercel.com/academy/ai-sdk/ai-elements#next-steps)\n\n## Ask AI\n\nBest course to start?What’s in AI SDK course?Can I learn shadcn/ui?How long are modules?\n\nTip: You can open and close chat with `Ctrl`  `I`\n\n0/1000",
+  "branding": {
+    "colorScheme": "light",
+    "fonts": [
+      {
+        "family": "Geist",
+        "role": "unknown"
+      },
+      {
+        "family": "Arial",
+        "role": "body"
+      }
+    ],
+    "colors": {
+      "primary": "#FDF7E6",
+      "accent": "#FFFAE6",
+      "background": "#FFFFFF",
+      "textPrimary": "#171717",
+      "link": "#FFFAE6"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Arial",
+        "heading": "Arial"
+      },
+      "fontStacks": {
+        "heading": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ],
+        "body": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ],
+        "paragraph": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ]
+      },
+      "fontSizes": {
+        "h1": "48px",
+        "h2": "36px",
+        "body": "16px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "6px"
+    },
+    "components": {
+      "input": {
+        "background": "transparent",
+        "textColor": "#171717",
+        "borderColor": "#EAEAEA",
+        "borderRadius": "4px",
+        "borderRadiusCorners": {
+          "topLeft": "4px",
+          "topRight": "4px",
+          "bottomRight": "4px",
+          "bottomLeft": "4px"
+        },
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      }
+    },
+    "images": {
+      "logo": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2218%22%20stroke-linejoin%3D%22round%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2218%22%20style%3D%22color%3Acurrentcolor%22%20data-fc-idx%3D%220%22%3E%3Ctitle%3EVercel%20Logo%3C%2Ftitle%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M8%201L16%2015H0L8%201Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(23%2C%2023%2C%2023)%20!important%3B%22%2F%3E%3C%2Fsvg%3E",
+      "favicon": "https://vercel.com/favicon.ico?603d046c9a6fdfbb",
+      "ogImage": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=ai-elements&lang=en&branch=main",
+      "logoHref": "/academy",
+      "logoAlt": "Vercel Logo"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 0,
+      "reasoning": "Selected #0 because it is visible, located in the header, and the alt text matches the brand 'Vercel'.",
+      "confidence": 0.95,
+      "source": "llm"
+    },
+    "personality": {
+      "tone": "modern",
+      "energy": "medium",
+      "targetAudience": "developers and tech enthusiasts"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0,
+      "colors": 0.9,
+      "overall": 0.45
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 0,
+          "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, and the alt text matches the brand 'Vercel'.",
+          "confidence": 0.95
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": false,
+        "llmSucceeded": false
+      }
+    }
+  },
+  "metadata": {
+    "og:title": "AI Elements | Vercel Academy",
+    "og:description": "Transform your chatbot with professional AI components",
+    "twitter:image": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=ai-elements&lang=en&branch=main",
+    "theme-color": "#FAFAFA",
+    "ogTitle": "AI Elements | Vercel Academy",
+    "description": "Transform your chatbot with professional AI components",
+    "ogDescription": "Transform your chatbot with professional AI components",
+    "title": "AI Elements | Vercel Academy",
+    "ogImage": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=ai-elements&lang=en&branch=main",
+    "twitter:description": "Transform your chatbot with professional AI components",
+    "next-size-adjust": "",
+    "language": "en",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "AI Elements | Vercel Academy",
+    "viewport": "width=device-width, initial-scale=1",
+    "og:image": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=ai-elements&lang=en&branch=main",
+    "favicon": "https://vercel.com/favicon.ico?603d046c9a6fdfbb",
+    "scrapeId": "019c983e-aee0-715f-b06b-1ebd13d44e5e",
+    "sourceURL": "https://vercel.com/academy/ai-sdk/ai-elements",
+    "url": "https://vercel.com/academy/ai-sdk/ai-elements",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "timezone": "America/New_York",
+    "proxyUsed": "basic",
+    "indexId": "da3e310f-5ef1-44bf-aaa2-43e0d772c868",
+    "creditsUsed": 1
+  }
+}

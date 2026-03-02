@@ -1,0 +1,143 @@
+{
+  "markdown": "[Vercel Logo](https://vercel.com/academy)\n\nChapters\n\n- [Introduction](https://vercel.com/academy/ai-sdk)\n- Fundamentals\n\n- Invisible AI\n\n- Conversational AI\n\n\n\n\n\n  - [Basic Chatbot](https://vercel.com/academy/ai-sdk/basic-chatbot)\n  - [AI Elements](https://vercel.com/academy/ai-sdk/ai-elements)\n  - [System Prompts](https://vercel.com/academy/ai-sdk/system-prompts)\n  - [Tool Use](https://vercel.com/academy/ai-sdk/tool-use)\n  - [Multi-Step & Generative UI](https://vercel.com/academy/ai-sdk/multi-step-and-generative-ui)\n  - [Conclusion](https://vercel.com/academy/ai-sdk/conclusion)\n\nVercel LogoSign in with Vercel\n\nToggle Sidebar\n\nVercel Logo\n\n1. [Builders Guide to the AI SDK](https://vercel.com/academy/ai-sdk)\n3. Basic Chatbot\n\n# [Build a Chatbot](https://vercel.com/academy/ai-sdk/basic-chatbot\\#build-a-chatbot)\n\nYou've been using AI behind the scenes for classification, summarization, and extraction. Now let's build something that everyone recognizes; a ChatGPT-style conversational interface. Over the next five lessons, you'll start with the fundamentals of streaming chat, then progressively add the features that make these interfaces powerful: professional UI components, system prompts for personality, tool calling to connect with real-world data, and multi-step reasoning with dynamic UI generation.\n\nWe'll begin with the core architecture that powers every AI chat interface:\n\n- Set up an API route that uses `streamText`.\n- Implement the frontend with `useChat`.\n\nProject Context\n\nWe're working in `app/(5-chatbot)/` directory. Same project setup as before,\nbut now we're building both server and client sides.\n\n## [Chatbot Architecture Overview](https://vercel.com/academy/ai-sdk/basic-chatbot\\#chatbot-architecture-overview)\n\nYour chatbot will have two parts: backend + frontend. The backend connects to the LLM and provides the frontend with an API to use. The backend is required because calling the LLM apis requires secret token, authentication, rate limiting, and other functionality that runs on the server.\n\nThe frontend is what the user interacts with in the browser. It's the UI.\n\n**The flow:** User → React UI (useChat) → API Route (/api/chat with streamText) → LLM → Stream chunks back → Server-Sent Events (SSE) → UI → User\n\n## [Step 1: Create Route Handler](https://vercel.com/academy/ai-sdk/basic-chatbot\\#step-1-create-route-handler)\n\nFirst, create the API endpoint that will handle chat requests from your frontend.\n\nWhat are Next.js Route Handlers?\n\n[Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers) are serverless endpoints in your Next.js app. They can live anywhere in the `app/` directory (not just `/api/`), though we'll use the `/api/` convention here. No separate backend needed - perfect for AI functionality.\n\n1. **Create the file:**`app/api/chat/route.ts`\n\n2. **Start with this basic structure:**\n\n\napp/api/chat/route.ts\n\n```\nimport { streamText, convertToModelMessages } from 'ai';\n\n// Allow streaming responses up to 30 seconds\nexport const maxDuration = 30;\n\nexport async function POST(req: Request) {\n  // TODO: Extract messages from the request body\n\n  // TODO: Create a streamText call with:\n  // - model: 'openai/gpt-5-mini'\n  // - messages: converted using convertToModelMessages\n\n  // TODO: Return the stream response using toUIMessageStreamResponse()\n}\n```\n\n3. **Now implement the streaming chat endpoint:**\n\napp/api/chat/route.ts\n\n```\nimport { streamText, convertToModelMessages } from \"ai\";\n\n// Allow streaming responses up to 30 seconds\nexport const maxDuration = 30;\n\nexport async function POST(req: Request) {\n  try {\n    const { messages } = await req.json();\n\n    const result = streamText({\n      model: \"openai/gpt-5-mini\", // Fast model for real-time chat (immediate streaming, low latency)\n                                // Reasoning models ('openai/gpt-5') would add 10-15s delay - poor UX for chat\n      messages: await convertToModelMessages(messages),\n    });\n\n    return result.toUIMessageStreamResponse();\n  } catch (error) {\n    console.error(\"Chat API error:\", error);\n\n    // Return a proper error response\n    return new Response(\n      JSON.stringify({\n        error: \"Failed to process chat request\",\n        details: error instanceof Error ? error.message : \"Unknown error\",\n      }),\n      {\n        status: 500,\n        headers: { \"Content-Type\": \"application/json\" },\n      },\n    );\n  }\n}\n```\n\nKey components explained:\n\n- `streamText` \\- Enables real-time streaming from the AI model\n- `convertToModelMessages` \\- Converts frontend message format to AI model format\n- `toUIMessageStreamResponse()` \\- Formats the stream for the frontend to consume\n\n## [Step 2: Implement Frontend with useChat](https://vercel.com/academy/ai-sdk/basic-chatbot\\#step-2-implement-frontend-with-usechat)\n\nNow let's build the UI using the `useChat` hook. Open `app/(5-chatbot)/chat/page.tsx` and replace the placeholder content.\n\n1. **Start with the imports and basic setup:**\n\napp/(5-chatbot)/chat/page.tsx\n\n```\n'use client';\n\nimport { useChat } from '@ai-sdk/react';\nimport { useState } from 'react';\n\nexport default function Chat() {\n  const [input, setInput] = useState('');\n\n  // TODO: Initialize useChat hook\n  // - Extract: messages and sendMessage\n\n  return (\n    <div className=\"flex flex-col w-full max-w-md py-24 mx-auto stretch\">\n      {/* TODO: Display messages here */}\n\n      {/* TODO: Add input form here */}\n    </div>\n  );\n}\n```\n\n2. **Add the useChat hook and message display:**\n\napp/(5-chatbot)/chat/page.tsx\n\n```\n\"use client\";\n\nimport { useChat } from \"@ai-sdk/react\";\nimport { useState } from \"react\";\n\nexport default function Chat() {\n\tconst [input, setInput] = useState(\"\");\n\tconst { messages, sendMessage } = useChat();\n\n\treturn (\n\t\t<div className=\"flex flex-col w-full max-w-md py-24 mx-auto stretch\">\n\t\t\t{messages.map((message) => (\n\t\t\t\t<div key={message.id} className=\"whitespace-pre-wrap mb-4\">\n\t\t\t\t\t<strong>{message.role === \"user\" ? \"User: \" : \"AI: \"}</strong>\n\t\t\t\t\t{message.parts?.map(\n\t\t\t\t\t\t(part, i) =>\n\t\t\t\t\t\t\tpart.type === \"text\" && (\n\t\t\t\t\t\t\t\t<span key={`${message.id}-${i}`}>{part.text}</span>\n\t\t\t\t\t\t\t),\n\t\t\t\t\t)}\n\t\t\t\t</div>\n\t\t\t))}\n\n\t\t\t{/* TODO: Add input form here */}\n\t\t</div>\n\t);\n}\n```\n\nDefault API Endpoint\n\nThe `useChat` hook automatically uses `/api/chat` as its endpoint. If you need a different endpoint or custom transport behavior, check out the [transport documentation](https://ai-sdk.dev/docs/ai-sdk-ui/transport).\n\n3. **Add the input form:**\n\napp/(5-chatbot)/chat/page.tsx\n\n```\n\"use client\";\n\nimport { useChat } from \"@ai-sdk/react\";\nimport { useState } from \"react\";\n\nexport default function Chat() {\n\tconst [input, setInput] = useState(\"\");\n\tconst { messages, sendMessage } = useChat();\n\n\treturn (\n\t\t<div className=\"flex flex-col w-full max-w-md py-24 mx-auto stretch\">\n\t\t\t{messages.map((message) => (\n\t\t\t\t<div key={message.id} className=\"whitespace-pre-wrap mb-4\">\n\t\t\t\t\t<strong>{message.role === \"user\" ? \"User: \" : \"AI: \"}</strong>\n\t\t\t\t\t{message.parts?.map(\n\t\t\t\t\t\t(part, i) =>\n\t\t\t\t\t\t\tpart.type === \"text\" && (\n\t\t\t\t\t\t\t\t<span key={`${message.id}-${i}`}>{part.text}</span>\n\t\t\t\t\t\t\t),\n\t\t\t\t\t)}\n\t\t\t\t</div>\n\t\t\t))}\n\n\t\t\t<form\n\t\t\t\tonSubmit={async (e) => {\n\t\t\t\t\te.preventDefault();\n\t\t\t\t\tif (!input.trim()) return;\n\n\t\t\t\t\ttry {\n\t\t\t\t\t\tawait sendMessage({ text: input });\n\t\t\t\t\t\tsetInput(\"\");\n\t\t\t\t\t} catch (error) {\n\t\t\t\t\t\tconsole.error(\"Failed to send message:\", error);\n\t\t\t\t\t\t// TODO: Show user-friendly error message\n\t\t\t\t\t\t// You could add a toast notification here\n\t\t\t\t\t}\n\t\t\t\t}}\n\t\t\t>\n\t\t\t\t<input\n\t\t\t\t\tclassName=\"fixed bottom-0 w-full max-w-md p-2 mb-8 border border-gray-300 rounded shadow-xl\"\n\t\t\t\t\tvalue={input}\n\t\t\t\t\tplaceholder=\"Say something...\"\n\t\t\t\t\tonChange={(e) => setInput(e.target.value)}\n\t\t\t\t/>\n\t\t\t</form>\n\t\t</div>\n\t);\n}\n```\n\nHow it works:\n\n- `useChat()` manages the entire chat state and API communication\n- `messages` contains the conversation history\n- `sendMessage()` sends user input to your API\n- Messages have `parts` for different content types (text, tool calls, etc.)\n\nThe combination of `streamText` and `useChat` handles most of the streaming complexity for you - no manual WebSocket management or stream parsing needed.\n\n## [Step 3: Test Your Chatbot](https://vercel.com/academy/ai-sdk/basic-chatbot\\#step-3-test-your-chatbot)\n\nRun the development server:\n\n```\npnpm dev\n```\n\nNavigate to [`http://localhost:3000/chat`](http://localhost:3000/chat)\n\nTry it out - type a message and hit Enter. Watch the AI response appear in real time!\n\n![simple chat UI. User types 'Hello!' and presses Enter. AI response 'Hello there! How can I help you today?' streams into the chat window.](https://vercel.com/vc-ap-7ae771/_next/image?url=https%3A%2F%2Fezs2ytwtdks5l2we.public.blob.vercel-storage.com%2Fai-sdk-course-basic-streaming-chat.gif&w=1920&q=75)\n\n## [Experience the Limitations](https://vercel.com/academy/ai-sdk/basic-chatbot\\#experience-the-limitations)\n\nBefore moving on, test these scenarios to understand why we need better tooling:\n\n1. **Ask for code**: \"Write a Python function to calculate fibonacci numbers\"\n   - Notice how code blocks appear as raw \\`\\`\\` text\n2. **Have a long conversation**: Keep chatting until messages go below the fold\n   - You'll have to manually scroll to see new responses\n3. **Ask for formatted content**: \"Explain AI with headers and lists\"\n   - Markdown formatting shows as plain text\n4. **Refresh the page**: All your conversation history disappears\n\n5. **Try to edit a long prompt**: The single-line input is limiting\n\n\nThese aren't bugs - they're missing features that every chat interface needs.\n\nModel Choice for Streaming\n\nWe use `openai/gpt-5-mini` for fast, visible streaming responses. Unlike reasoning\nmodels like `openai/gpt-5-mini` (which think for 10-15 seconds before streaming),\n`gpt-5-mini` starts streaming immediately for a responsive user experience. Swap out\nthe model in the `streamText` call to `openai/gpt-5-mini` to see the difference.\n\n## [What you've built so far:](https://vercel.com/academy/ai-sdk/basic-chatbot\\#what-youve-built-so-far)\n\n- Two components: Backend (`streamText` API route) + Frontend (`useChat` component)\n- `streamText` manages server-side AI calls and streaming\n- `useChat` handles UI state, messages, and API calls\n- `toUIMessageStreamResponse()` connects backend to frontend\n- display the messages in the UI by parsing the response from the backend\n\nFeeling the Pain Yet?\n\nNotice how much custom code we had to write just for basic functionality? Try having a longer conversation and watch the problems pile up:\n\n**Immediate Issues You'll Notice:**\n\n- **No markdown rendering** \\- If the AI sends code blocks or formatting, they show as raw text\n- **No auto-scrolling** \\- New messages appear below the viewport, you have to manually scroll\n- **Basic styling** \\- Just \"User:\" and \"AI:\" labels, no proper message bubbles\n- **Fixed input weirdness** \\- The input floats awkwardly at the bottom\n\n**Missing Features You'll Need:**\n\n- **Loading indicators** \\- No visual feedback while waiting for AI\n- **Error handling** \\- If the API fails, users see nothing\n- **Multi-line input** \\- Can't compose longer messages easily\n- **Message persistence** \\- Refresh = conversation gone\n- **Code syntax highlighting** \\- Code examples are unreadable\n\nYou could spend weeks building all this from scratch... or there might be a better way. 🤔\n\nSide QuestConversation Memory System\n\n## [Next Step: A Professional Solution](https://vercel.com/academy/ai-sdk/basic-chatbot\\#next-step-a-professional-solution)\n\nIn the next lesson, we'll discover how to transform this basic chatbot into a professional interface with a single command. Get ready to have your mind blown by AI SDK Elements!\n\nSign in to track your progress\n\nYou can sign in with your Vercel account or create a new one.\n\nVercel LogoSign in with Vercel\n\n[Previous](https://vercel.com/academy/ai-sdk/ui-with-v0)\n\n[Next](https://vercel.com/academy/ai-sdk/ai-elements)\n\nWas this helpful?\n\nsupported.\n\nSend\n\nOn this page\n\n[Build a Chatbot](https://vercel.com/academy/ai-sdk/basic-chatbot#build-a-chatbot) [Chatbot Architecture Overview](https://vercel.com/academy/ai-sdk/basic-chatbot#chatbot-architecture-overview) [Step 1: Create Route Handler](https://vercel.com/academy/ai-sdk/basic-chatbot#step-1-create-route-handler) [Step 2: Implement Frontend with useChat](https://vercel.com/academy/ai-sdk/basic-chatbot#step-2-implement-frontend-with-usechat) [Step 3: Test Your Chatbot](https://vercel.com/academy/ai-sdk/basic-chatbot#step-3-test-your-chatbot) [Experience the Limitations](https://vercel.com/academy/ai-sdk/basic-chatbot#experience-the-limitations) [What you've built so far:](https://vercel.com/academy/ai-sdk/basic-chatbot#what-youve-built-so-far) [Next Step: A Professional Solution](https://vercel.com/academy/ai-sdk/basic-chatbot#next-step-a-professional-solution)\n\n## Ask AI\n\nBest course to start?What’s in AI SDK course?Can I learn shadcn/ui?How long are modules?\n\nTip: You can open and close chat with `Ctrl`  `I`\n\n0/1000",
+  "branding": {
+    "colorScheme": "light",
+    "fonts": [
+      {
+        "family": "Geist",
+        "role": "body"
+      }
+    ],
+    "colors": {
+      "primary": "#7820BC",
+      "accent": "#FDF7E6",
+      "background": "#FFFFFF",
+      "textPrimary": "#171717",
+      "link": "#FDF7E6"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Geist",
+        "heading": "Geist"
+      },
+      "fontStacks": {
+        "heading": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ],
+        "body": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ],
+        "paragraph": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ]
+      },
+      "fontSizes": {
+        "h1": "48px",
+        "h2": "36px",
+        "body": "16px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "6px"
+    },
+    "components": {
+      "input": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "borderColor": null,
+        "borderRadius": "6px",
+        "borderRadiusCorners": {
+          "topLeft": "6px",
+          "topRight": "6px",
+          "bottomRight": "6px",
+          "bottomLeft": "6px"
+        },
+        "shadow": "none"
+      }
+    },
+    "images": {
+      "logo": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2218%22%20stroke-linejoin%3D%22round%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2218%22%20style%3D%22color%3Acurrentcolor%22%20data-fc-idx%3D%220%22%3E%3Ctitle%3EVercel%20Logo%3C%2Ftitle%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M8%201L16%2015H0L8%201Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(23%2C%2023%2C%2023)%20!important%3B%22%2F%3E%3C%2Fsvg%3E",
+      "favicon": "https://vercel.com/favicon.ico?603d046c9a6fdfbb",
+      "ogImage": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=basic-chatbot&lang=en&branch=main",
+      "logoHref": "/academy",
+      "logoAlt": "Vercel Logo"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 0,
+      "reasoning": "Selected #0 because it is visible, located in the header, and the alt text matches the brand 'Vercel'.",
+      "confidence": 0.9,
+      "source": "llm"
+    },
+    "personality": {
+      "tone": "modern",
+      "energy": "medium",
+      "targetAudience": "developers and tech enthusiasts"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0.5,
+      "colors": 0.9,
+      "overall": 0.7
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 0,
+          "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, and the alt text matches the brand 'Vercel'.",
+          "confidence": 0.9
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": false,
+        "llmSucceeded": true
+      }
+    }
+  },
+  "metadata": {
+    "twitter:image": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=basic-chatbot&lang=en&branch=main",
+    "title": "Basic Chatbot | Vercel Academy",
+    "viewport": "width=device-width, initial-scale=1",
+    "next-size-adjust": "",
+    "ogDescription": "Use the AI SDK `useChat` hook to build a streaming chatbot interface in Next.js. Experience the complexity of custom UI before discovering a better way.",
+    "og:description": "Use the AI SDK `useChat` hook to build a streaming chatbot interface in Next.js. Experience the complexity of custom UI before discovering a better way.",
+    "language": "en",
+    "og:image": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=basic-chatbot&lang=en&branch=main",
+    "twitter:card": "summary_large_image",
+    "twitter:title": "Basic Chatbot | Vercel Academy",
+    "ogTitle": "Basic Chatbot | Vercel Academy",
+    "og:title": "Basic Chatbot | Vercel Academy",
+    "twitter:description": "Use the AI SDK `useChat` hook to build a streaming chatbot interface in Next.js. Experience the complexity of custom UI before discovering a better way.",
+    "description": "Use the AI SDK `useChat` hook to build a streaming chatbot interface in Next.js. Experience the complexity of custom UI before discovering a better way.",
+    "ogImage": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lesson=basic-chatbot&lang=en&branch=main",
+    "theme-color": "#FAFAFA",
+    "favicon": "https://vercel.com/favicon.ico?603d046c9a6fdfbb",
+    "scrapeId": "019c983e-aee0-715f-b06b-2b877dac4e4d",
+    "sourceURL": "https://vercel.com/academy/ai-sdk/basic-chatbot",
+    "url": "https://vercel.com/academy/ai-sdk/basic-chatbot",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "timezone": "America/New_York",
+    "proxyUsed": "basic",
+    "indexId": "0705678d-5f40-45cc-b207-90728349d167",
+    "creditsUsed": 1
+  }
+}

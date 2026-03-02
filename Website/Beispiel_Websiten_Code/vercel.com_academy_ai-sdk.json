@@ -1,0 +1,147 @@
+{
+  "markdown": "[Vercel Logo](https://vercel.com/academy)\n\nChapters\n\n- [Introduction](https://vercel.com/academy/ai-sdk)\n- Fundamentals\n\n- Invisible AI\n\n- Conversational AI\n\n\nVercel LogoSign in with Vercel\n\nToggle Sidebar\n\nVercel Logo\n\n# Builders Guide to the AI SDK\n\nBuild production-ready AI features with the AI SDK & Next.js. Learn LLMs, prompting, extraction, streaming, & more.\n\n![Joel Hooks](https://github.com/joelhooks.png)\n\nJoel Hooks\n\n![Nico Albanese](https://github.com/nicoalbanese.png)\n\nNico Albanese\n\nThe AI SDK is a free open-source library that gives you the tools you need to build AI-powered products. The AI SDK is built and maintained by Vercel, the creators of Next.js.\n\nUsing the AI SDK will save you hours of frustration and help you ship faster than ever before. The SDK abstracts away the complexity of streaming responses, managing tool calls, and handling provider-specific APIs so you can focus on building features instead of infrastructure.\n\nThis course is designed to get you building with the AI SDK as quickly as possible, through hands-on examples and practical projects that you can immediately apply to your own work.\n\nUpdated for AI SDK v6\n\nThis course uses the latest AI SDK v6 patterns including the new `Output.object()` API for structured generation.\n\n### [What you'll actually build (hands-on)](https://vercel.com/academy/ai-sdk\\#what-youll-actually-build-hands-on)\n\n**Progressive Script Development:**\n\n- **Data Extraction Script**: Compare plain text vs structured output using `generateText` with `Output.object()`\n- **Classification System**: Batch-process support tickets with categories and urgency using `output: 'array'`\n- **Summarization with Server Actions**: Build Next.js Server Actions that condense conversations into actionable insights\n- **Smart Form Parser**: Extract appointment details from natural language with schema refinement\n\n**Production Chatbot (built incrementally):**\n\n- **Phase 1**: Basic streaming chat with `useChat` and `streamText`\n- **Phase 2**: Professional transformation with AI Elements - one command to add 20+ production components\n- **Phase 3**: Personality with system prompts - from generic to Steve Jobs to support bot\n- **Phase 4**: Real-world data with tool calling - connect to weather APIs with proper validation\n- **Phase 5**: Advanced workflows with `stepCountIs` and custom Weather components instead of debug UI\n\nIf you'd like to see what's possible with the AI SDK, you can try out [Vercel's Chat SDK](https://chat-sdk.dev/). This is a full-featured open-source AI Chatbot template built using everything you'll learn here (plus a whole lot more).\n\n### [How this course teaches](https://vercel.com/academy/ai-sdk\\#how-this-course-teaches)\n\nThis isn't a watch-and-copy tutorial. You'll build everything incrementally:\n\n- **Start with broken code** \\- See why custom solutions are painful\n- **Discover better patterns** \\- Learn through progressive improvements\n- **Use production tools** \\- AI Elements, Zod schemas, Server Actions\n- **Debug real issues** \\- Handle errors, validate schemas, manage tokens\n- **Ship working features** \\- Every lesson produces runnable, useful code\n\n**Learning with AI assistance:** This course teaches you to build with AI while modeling how to _learn_ with AI. When you encounter complex design decisions (schema design, prompt engineering, error handling), you'll find structured prompts you can use with ChatGPT, Claude, or other AI assistants to deepen your understanding. These aren't shortcuts - they're guided exploration tools that help you think through trade-offs and discover solutions independently.\n\n## [Prerequisites](https://vercel.com/academy/ai-sdk\\#prerequisites)\n\nBefore diving in, make sure you're set with:\n\n- JavaScript/TypeScript: Comfortable with modern JS syntax and basic TS concepts\n- React: Familiar with components, hooks, and state management\n- Git: [Version control system](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for cloning the starter code\n- Node.js: [Latest LTS version](https://nodejs.org/en/download) (v20 or later recommended)\n- pnpm: [Package manager](https://pnpm.io/installation) used throughout the course\n- Vercel account: [Create one for free](https://vercel.com/signup)\n\nThe code examples will be written in TypeScript and use React, but they will be step-by-step instructions that you can follow along with. Under the hood the example app is built on Next.js, but it's not a focus and you won't spend time learning any specific Next.js concepts.\n\nNote the AI SDK doesn't require Next.js! Everything you'll learn here is portable to any TypeScript project, with or without a framework.\n\n## [What you'll build & learn in this course](https://vercel.com/academy/ai-sdk\\#what-youll-build--learn-in-this-course)\n\nThis course is split into three sections:\n\n1. **Foundations**: Build your first AI-powered data extraction script using `generateText()` with structured output via `Output.object()`\n2. **Invisible AI**: Build AI features that work behind the scenes - auto-classification, summarization, and structured extraction\n3. **Conversational AI**: Build a full-featured chatbot with streaming responses, system prompts, tool calling, and generative UI\n\nEach of these sections will build on the previous one, so it's recommended to follow the order.\n\nHere are details about each section:\n\n### [Section 1: Foundations](https://vercel.com/academy/ai-sdk\\#section-1-foundations)\n\nBuild your AI knowledge foundation with:\n\n- **LLM Concepts**: Understand how LLMs work as APIs and the power of structured vs unstructured output\n- **Prompting Techniques**: Practice Zero-Shot, Few-Shot, and Chain-of-Thought in the AI SDK Playground\n- **Dev Environment Setup**: Configure your project with API keys and proper tooling\n- **Hands-On Data Extraction**: Build working scripts that demonstrate plain text vs structured output using `Output.object()`\n- **Model Selection**: Create a comparison tool to understand fast vs reasoning models and their UX impact\n\nYou'll gain the conceptual understanding and practical tools needed to build production-ready AI features, with clear connections to the invisible AI patterns you'll implement next.\n\n### [Section 2: Invisible AI](https://vercel.com/academy/ai-sdk\\#section-2-invisible-ai)\n\n\"Invisible AI\" means features that work behind the scenes - users don't even know AI is involved, they just see things working better.\n\nYou'll learn to build structured AI features:\n\n- **Smart Classification**: Automatically categorize support tickets, user feedback, and content using `generateText` with `Output.object()` and Zod schemas\n- **Intelligent Summarization**: Build Next.js Server Actions that condense long conversations into actionable insights\n- **Data Extraction**: Parse natural language into structured calendar events and forms with schema refinement techniques\n- **UI Integration**: Use Vercel v0 to generate and integrate professional React components that display your AI-generated data\n\nEach lesson builds incrementally with clear TODO guidance, teaching you production patterns for schema evolution, error handling, and real-world deployment.\n\n### [Section 3: Conversational AI](https://vercel.com/academy/ai-sdk\\#section-3-conversational-ai)\n\nBuild production-ready chat interfaces that combine everything you've learned into interactive AI experiences.\n\nThis capstone section takes you through the complete chatbot development journey:\n\n- **Basic Chat Foundation**: Build streaming chat interfaces using `streamText` and `useChat` with proper error handling\n- **Professional UI Transformation**: Experience the power of [AI Elements](https://ai-sdk.dev/elements/overview) to instantly upgrade from basic chat to professional interfaces\n- **Personality & Context**: Implement system prompts to give your AI consistent behavior and voice\n- **External Integration**: Connect your chatbot to real-world data through tool calling with weather APIs and proper validation\n- **Advanced Workflows**: Build multi-step conversations and generative UI that renders dynamic React components based on AI responses\n\nYou'll learn production patterns for error handling, debugging tools, and deployment considerations, ending with a fully functional chatbot that demonstrates enterprise-ready AI features.\n\nBy the end, you'll know how to ship AI features that actually work. No fluff, just practical patterns you can use immediately.\n\nReady to start building? Let's begin!\n\nStart Your Learning Journey\n\nBegin with the first lesson to start this course\n\n1\n\nIntroduction to LLMs\n\n0 of 16 lessons completed (0%)\n\n[Begin Course](https://vercel.com/academy/ai-sdk/introduction-to-llms)\n\nOn this page\n\n[What you'll actually build (hands-on)](https://vercel.com/academy/ai-sdk#what-youll-actually-build-hands-on) [How this course teaches](https://vercel.com/academy/ai-sdk#how-this-course-teaches) [Prerequisites](https://vercel.com/academy/ai-sdk#prerequisites) [What you'll build & learn in this course](https://vercel.com/academy/ai-sdk#what-youll-build--learn-in-this-course) [Section 1: Foundations](https://vercel.com/academy/ai-sdk#section-1-foundations) [Section 2: Invisible AI](https://vercel.com/academy/ai-sdk#section-2-invisible-ai) [Section 3: Conversational AI](https://vercel.com/academy/ai-sdk#section-3-conversational-ai)\n\n## Ask AI\n\nBest course to start?What’s in AI SDK course?Can I learn shadcn/ui?How long are modules?\n\nTip: You can open and close chat with `Ctrl`  `I`\n\n0/1000",
+  "branding": {
+    "colorScheme": "light",
+    "fonts": [
+      {
+        "family": "Geist",
+        "role": "unknown"
+      },
+      {
+        "family": "Arial",
+        "role": "unknown"
+      }
+    ],
+    "colors": {
+      "primary": "#FDF7E6",
+      "accent": "#FFFAE6",
+      "background": "#FFFFFF",
+      "textPrimary": "#171717",
+      "link": "#FFFAE6"
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Geist",
+        "heading": "Geist"
+      },
+      "fontStacks": {
+        "heading": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ],
+        "body": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ],
+        "paragraph": [
+          "Geist",
+          "Arial",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol"
+        ]
+      },
+      "fontSizes": {
+        "h1": "48px",
+        "h2": "36px",
+        "body": "16px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "6px"
+    },
+    "components": {
+      "input": {
+        "background": "transparent",
+        "textColor": "#171717",
+        "borderColor": null,
+        "borderRadius": "0px",
+        "borderRadiusCorners": {
+          "topLeft": "0px",
+          "topRight": "0px",
+          "bottomRight": "0px",
+          "bottomLeft": "0px"
+        },
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(23, 23, 23) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      }
+    },
+    "images": {
+      "logo": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2218%22%20stroke-linejoin%3D%22round%22%20viewBox%3D%220%200%2016%2016%22%20width%3D%2218%22%20style%3D%22color%3Acurrentcolor%22%20data-fc-idx%3D%220%22%3E%3Ctitle%3EVercel%20Logo%3C%2Ftitle%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M8%201L16%2015H0L8%201Z%22%20fill%3D%22currentColor%22%20style%3D%22fill%3A%20rgb(23%2C%2023%2C%2023)%20!important%3B%22%2F%3E%3C%2Fsvg%3E",
+      "favicon": "https://vercel.com/favicon.ico?603d046c9a6fdfbb",
+      "ogImage": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lang=en&branch=main",
+      "logoHref": "/academy",
+      "logoAlt": "Vercel Logo"
+    },
+    "__llm_logo_reasoning": {
+      "selectedIndex": 0,
+      "reasoning": "Selected #0 because it is visible, located in the header, and the alt text matches the brand 'Vercel'.",
+      "confidence": 0.9,
+      "source": "llm"
+    },
+    "personality": {
+      "tone": "modern",
+      "energy": "medium",
+      "targetAudience": "developers and tech enthusiasts"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "componentLibrary": ""
+    },
+    "confidence": {
+      "buttons": 0,
+      "colors": 0.9,
+      "overall": 0.45
+    },
+    "__llm_metadata": {
+      "logoSelection": {
+        "llmCalled": true,
+        "llmSucceeded": true,
+        "finalSource": "llm",
+        "rawLogoSelection": {
+          "selectedLogoIndex": 0,
+          "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, and the alt text matches the brand 'Vercel'.",
+          "confidence": 0.9
+        }
+      },
+      "buttonClassification": {
+        "llmCalled": false,
+        "llmSucceeded": false
+      }
+    }
+  },
+  "metadata": {
+    "next-size-adjust": "",
+    "og:title": "Builders Guide to the AI SDK | Vercel Academy",
+    "title": "Builders Guide to the AI SDK | Vercel Academy",
+    "ogDescription": "Build production-ready AI features with the AI SDK & Next.js. Learn LLMs, prompting, extraction, streaming, & more.",
+    "ogImage": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lang=en&branch=main",
+    "og:description": "Build production-ready AI features with the AI SDK & Next.js. Learn LLMs, prompting, extraction, streaming, & more.",
+    "twitter:title": "Builders Guide to the AI SDK | Vercel Academy",
+    "og:image": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lang=en&branch=main",
+    "ogTitle": "Builders Guide to the AI SDK | Vercel Academy",
+    "twitter:card": "summary_large_image",
+    "twitter:description": "Build production-ready AI features with the AI SDK & Next.js. Learn LLMs, prompting, extraction, streaming, & more.",
+    "viewport": "width=device-width, initial-scale=1",
+    "language": "en",
+    "description": "Build production-ready AI features with the AI SDK & Next.js. Learn LLMs, prompting, extraction, streaming, & more.",
+    "twitter:image": "https://academy-front.vercel.sh/academy/api/og?module=ai-sdk&lang=en&branch=main",
+    "theme-color": "#FAFAFA",
+    "favicon": "https://vercel.com/favicon.ico?603d046c9a6fdfbb",
+    "scrapeId": "019c983e-aee0-715f-b06b-1856a54c41cd",
+    "sourceURL": "https://vercel.com/academy/ai-sdk",
+    "url": "https://vercel.com/academy/ai-sdk",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "timezone": "America/New_York",
+    "proxyUsed": "basic",
+    "indexId": "98fad915-8d38-4ed1-abd6-9207444760a8",
+    "creditsUsed": 1
+  }
+}
