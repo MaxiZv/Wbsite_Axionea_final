@@ -88,7 +88,7 @@ export default function Footer() {
                 <div className="w-full h-px bg-black/5 dark:bg-white/5 mb-6" />
 
                 {/* Copyright */}
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground" suppressHydrationWarning>
                     AXIONEA © {new Date().getFullYear()}. All rights reserved.
                 </p>
             </div>

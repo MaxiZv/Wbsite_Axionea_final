@@ -6,6 +6,7 @@ import Preloader from "@/components/Preloader";
 import ClickSpark from "@/components/ClickSpark";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ChatBot from "@/components/ChatBot";
+import CookieBanner from "@/components/CookieBanner";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -18,6 +19,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://axionea.de"),
   title: "Axionea | KI-Automatisierung für den Mittelstand",
   description: "Axionea ist die führende KI-Agentur im DACH-Raum für den Mittelstand. Wir automatisieren Prozesse mit KI-Agenten, Chatbots und nahtloser Software-Integration – ohne versteckte Kosten.",
   keywords: [
@@ -70,6 +72,7 @@ export default function RootLayout({
             <AnimatedNavbar />
             <ChatBot />
             {children}
+            <CookieBanner />
           </ClickSpark>
         </ThemeProvider>
       </body>
