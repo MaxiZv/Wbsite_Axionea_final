@@ -1,0 +1,576 @@
+{
+  "meta": {
+    "version": "1.0",
+    "last_updated": "2026-03-02",
+    "author": "Axionea GbR",
+    "purpose": "Shared data for ROI Calculator + Website Chatbot",
+    "update_instructions": "Update factors when new studies are published. Always add source citation."
+  },
+
+  "constants": {
+    "weeks_per_month": 4.33,
+    "realization_rate_without_help": 0.25,
+    "realization_rate_without_help_source": "McKinsey: Bits, Bytes und Butter (Sept. 2025) – nur 25% der angestrebten Kosteneinsparungen werden bei IT-Transformationen realisiert",
+    "realization_rate_with_axionea": 0.70,
+    "realization_rate_with_axionea_source": "Konservatives Axionea-Ziel basierend auf Branchen-Benchmarks für begleitete Projekte",
+    "revenue_realization_without_help": 0.30,
+    "revenue_realization_source": "McKinsey: 30% des erhofften Mehrumsatzes werden durch IT-Transformationen realisiert (Bits, Bytes und Butter, Sept. 2025)",
+    "axionea_investment_multiplier": 3,
+    "axionea_investment_note": "Kalkulatorische Annahme: Investment = 3x monatliche Netto-Einsparung"
+  },
+
+  "industries": {
+    "versicherung": {
+      "id": "versicherung",
+      "name_de": "Versicherung / Claims",
+      "name_en": "Insurance / Claims",
+      "automation_min": 0.30,
+      "automation_max": 0.50,
+      "confidence": "high",
+      "icon": "shield-check",
+      "color_accent": "#1E40AF",
+      "primary_source": {
+        "name": "EY: Agentic AI im Claims Management",
+        "date": "2025-11",
+        "url": "https://www.ey.com/de_de/insights/ai/wie-agentic-ai-das-claims-management-verschlankt",
+        "key_finding": "30-50% geringere operative Prozesskosten durch Agentic AI im Schadenmanagement"
+      },
+      "additional_facts": [
+        "Standardisierte Prozesse werden 50%+ schneller abgewickelt",
+        "Dokumentenverarbeitung: von Stunden/Tagen auf Minuten reduzierbar",
+        "End-to-End Automatisierung durch KI-Agenten möglich",
+        "Viele Versicherer arbeiten noch mit Legacy-Systemen und manuellen Abläufen"
+      ]
+    },
+
+    "banken": {
+      "id": "banken",
+      "name_de": "Banken / Finanzdienstleister",
+      "name_en": "Banking / Financial Services",
+      "automation_min": 0.15,
+      "automation_max": 0.20,
+      "confidence": "high",
+      "icon": "landmark",
+      "color_accent": "#0F766E",
+      "primary_source": {
+        "name": "McKinsey: KI-Agenten könnten Bankenbranche grundlegend verändern",
+        "date": "2025-10",
+        "url": "https://www.mckinsey.de/branchen/finanzsektor",
+        "key_finding": "KI-Agenten können Bankkosten um 700-800 Mrd. USD (15-20%) senken"
+      },
+      "additional_facts": [
+        "Ohne Anpassung könnten Bankgewinne um bis zu 170 Mrd. USD (9%) sinken",
+        "5-10% Umverteilung von Einlagen durch KI-Agenten → 20% Umsatzrückgang bei Einlagen",
+        "Banken erzielten 2024 Rekordgewinne von 1,2 Billionen USD",
+        "200-340 Mrd. USD zusätzlicher Wert/Jahr durch GenAI im Finanzsektor (McKinsey 2023)"
+      ]
+    },
+
+    "konsumgueter": {
+      "id": "konsumgueter",
+      "name_de": "Konsumgüter / Handel / Retail",
+      "name_en": "Consumer Goods / Retail",
+      "automation_min": 0.20,
+      "automation_max": 0.30,
+      "confidence": "high",
+      "icon": "shopping-cart",
+      "color_accent": "#B45309",
+      "primary_source": {
+        "name": "McKinsey: Bits, Bytes und Butter",
+        "date": "2025-09",
+        "url": "https://www.mckinsey.de/branchen/konsumguter-handel/akzente/akzente-2-2025/2025-2-bytes-bits-butter",
+        "key_finding": "ERP-Transformation kann IT-Kosten um 20-30% senken"
+      },
+      "additional_facts": [
+        "35-40 Geschäftsbereiche (Domains) können durch Tech/KI optimiert werden",
+        "400-660 Mrd. USD zusätzlicher Wert/Jahr durch GenAI im Retail (McKinsey 2023)",
+        "Fast jedes zweite Unternehmen setzt GenAI in Marketing/Vertrieb ein",
+        "Systemintegratoren machen 50-70% der ERP-Transformationskosten aus",
+        ">2/3 nutzen GenAI regelmäßig in mindestens einer Geschäftsfunktion"
+      ]
+    },
+
+    "marketing": {
+      "id": "marketing",
+      "name_de": "Marketing / Agentur / Kreativ",
+      "name_en": "Marketing / Agency / Creative",
+      "automation_min": 0.20,
+      "automation_max": 0.40,
+      "confidence": "high",
+      "icon": "megaphone",
+      "color_accent": "#9333EA",
+      "primary_source": {
+        "name": "McKinsey: KI im Marketing – Turbo für die Kreativität",
+        "date": "2025-01",
+        "url": "https://www.mckinsey.com/de/branchen/konsumguter-handel/akzente/akzente-2-2024/2024-2-ki-marketing",
+        "key_finding": "20-40% Marketingkosten einsparbar ohne Verringerung der Werbeintensität"
+      },
+      "additional_facts": [
+        "Kampagnenerstellung wird 50-80% schneller durch GenAI",
+        "Konversionsrate kann um 20-40% gesteigert werden",
+        "Marketing ROI (MROI) bis zu +30% steigerbar",
+        "GenAI im Kundenservice führt zu 4x höheren Konversionsraten",
+        "Copywriter: von 30 Stunden auf 30 Minuten/Monat für 120 Produktbeschreibungen",
+        "72% der Gen Z zahlen 10%+ Aufpreis für persönliche Kaufbegleitung",
+        ">70% der Kunden erwarten personalisierte Kundenansprache",
+        "Nur 17% der Unternehmen führen GenAI-Pilotprojekte durch, nur 2% erreichen das Ziel"
+      ]
+    },
+
+    "oeffentlich": {
+      "id": "oeffentlich",
+      "name_de": "Öffentlicher Sektor / Verwaltung",
+      "name_en": "Public Sector / Government",
+      "automation_min": 0.33,
+      "automation_max": 0.50,
+      "confidence": "high",
+      "icon": "building-columns",
+      "color_accent": "#DC2626",
+      "primary_source": {
+        "name": "McKinsey: KI-Agenten in der öffentlichen Verwaltung",
+        "date": "2025-05",
+        "url": "https://www.mckinsey.de/branchen/public-sector",
+        "key_finding": "GenAI kann Personalbedarf um bis zu ein Drittel reduzieren, KI-Agenten schließen bis zu 50% der Personallücke"
+      },
+      "additional_facts": [
+        "Aktuell fehlen >500.000 Vollzeitstellen im öffentlichen Dienst, bis 2030 ~840.000",
+        "GenAI kann Produktivitätseffekte von bis zu 440 Mrd. EUR/Jahr global im öffentlichen Sektor erzielen",
+        "Jeder Fachkraft könnten 3-5 spezialisierte KI-Agenten zur Seite stehen",
+        "Bundesregierung: 'KI-Aktionsplan' mit 1,5 Mrd. EUR Investment bis 2025",
+        "Nur 48 von 179 geplanten KI-Anwendungen in der Bundesverwaltung operativ"
+      ]
+    },
+
+    "gesundheit": {
+      "id": "gesundheit",
+      "name_de": "Arztpraxis / Gesundheitswesen",
+      "name_en": "Healthcare / Medical Practice",
+      "automation_min": 0.20,
+      "automation_max": 0.35,
+      "confidence": "medium",
+      "icon": "heart-pulse",
+      "color_accent": "#E11D48",
+      "primary_source": {
+        "name": "McKinsey MGI: A new future of work",
+        "date": "2024-05",
+        "url": "https://www.mckinsey.de/news/presse/2024-05-23-mgi-genai-future-of-work",
+        "key_finding": "Bis zu 30% der Arbeitsstunden automatisierbar, 54% der Veränderungen in administrativen Tätigkeiten"
+      },
+      "additional_facts": [
+        "Nachfrage nach Gesundheitsfachkräften steigt bis 2030 um bis zu 25% (MINT/Gesundheitswesen)",
+        "Administrative Bürotätigkeiten machen den größten Automatisierungsblock aus",
+        "Terminverwaltung, Dokumentation, Abrechnungen sind hochgradig automatisierbar",
+        "Fachkräftemangel im Gesundheitswesen macht Automatisierung zur Notwendigkeit"
+      ]
+    },
+
+    "handwerk": {
+      "id": "handwerk",
+      "name_de": "Handwerk / Produktion",
+      "name_en": "Trades / Manufacturing",
+      "automation_min": 0.10,
+      "automation_max": 0.15,
+      "confidence": "medium",
+      "icon": "wrench",
+      "color_accent": "#A16207",
+      "primary_source": {
+        "name": "McKinsey: GenAI als Produktivitätsbooster",
+        "date": "2023-06",
+        "url": "https://www.mckinsey.de/news/presse/genai-produktivitaetsbooster",
+        "key_finding": "Bauarbeiter: nur 5 Prozentpunkte zusätzliches Automationspotenzial, Fokus liegt auf Admin-Anteil"
+      },
+      "additional_facts": [
+        "Hauptpotenzial liegt in Angebotserstellung, Terminplanung, Buchhaltung, Kundenkommunikation",
+        "Physische Tätigkeiten haben geringeres KI-Automationspotenzial",
+        "Administrative Begleitprozesse (Auftragsmanagement, Rechnungen) bieten hohes Potenzial",
+        "40% der Beschäftigten im deutschen Einzelhandel erwägen Jobwechsel (McKinsey 2025)"
+      ]
+    },
+
+    "buero": {
+      "id": "buero",
+      "name_de": "Büro / Administration / Dienstleistung",
+      "name_en": "Office / Administration / Services",
+      "automation_min": 0.25,
+      "automation_max": 0.54,
+      "confidence": "high",
+      "icon": "briefcase",
+      "color_accent": "#4F46E5",
+      "primary_source": {
+        "name": "McKinsey MGI: A new future of work",
+        "date": "2024-05",
+        "url": "https://www.mckinsey.de/news/presse/2024-05-23-mgi-genai-future-of-work",
+        "key_finding": "54% der erwarteten Jobwechsel in Deutschland betreffen administrative Bürotätigkeiten"
+      },
+      "additional_facts": [
+        "Bis zu 3 Millionen Berufswechsel in Deutschland bis 2030",
+        "Beschäftigte in den untersten Lohngruppen sind 3-5x häufiger von Wechseln betroffen",
+        "Verdopplung des Veränderungstempos gegenüber vor der Pandemie nötig",
+        "Nachfrage nach Tech-Fähigkeiten steigt um 25%, soziale Fähigkeiten um 11%"
+      ]
+    },
+
+    "automotive": {
+      "id": "automotive",
+      "name_de": "Automotive / Vertrieb",
+      "name_en": "Automotive / Sales",
+      "automation_min": 0.20,
+      "automation_max": 0.30,
+      "confidence": "medium",
+      "icon": "car",
+      "color_accent": "#0369A1",
+      "primary_source": {
+        "name": "McKinsey: KI im Automarketing und -verkauf",
+        "date": "2019-02",
+        "url": "https://www.mckinsey.de/publikationen/2019-02-20-ai-in-automotive-marketing-and-sales",
+        "key_finding": "KI in Marketing & Sales der Autoindustrie kann 44 Mrd. USD an Wert schaffen"
+      },
+      "additional_facts": [
+        "Höhere Marketingeffizienz durch KI-gestützte Personalisierung",
+        "Bessere Planungsmöglichkeiten für Konfigurationen und Derivate",
+        "Customer Journey Personalisierung als größter Werttreiber",
+        "Basierend auf über 100 Experteninterviews"
+      ]
+    },
+
+    "sonstige": {
+      "id": "sonstige",
+      "name_de": "Sonstige KMU",
+      "name_en": "Other SMB",
+      "automation_min": 0.20,
+      "automation_max": 0.30,
+      "confidence": "medium",
+      "icon": "building",
+      "color_accent": "#6B7280",
+      "primary_source": {
+        "name": "McKinsey/QuantumBlack: State of AI 2025",
+        "date": "2025-11",
+        "url": "https://www.mckinsey.com/ch/our-insights/mckinsey-jahresbericht-zu-kunstlicher-intelligenz",
+        "key_finding": "88% setzen KI ein, aber >60% berichten von keiner signifikanten EBIT-Wirkung"
+      },
+      "additional_facts": [
+        "Nur 1/3 der Unternehmen hat begonnen, KI-Programme zu skalieren",
+        "Große Unternehmen (>5 Mrd. USD): ~50% in Skalierungsphase vs. 29% bei <100 Mio. USD",
+        "84% nennen Effizienz als Hauptziel für KI-Einsatz",
+        "GenAI kann jährliche Produktivitätssteigerung von 2,6-4,4 Billionen USD global ermöglichen"
+      ]
+    }
+  },
+
+  "global_facts": {
+    "ai_adoption": [
+      {
+        "fact": "88% der Unternehmen setzen KI in mindestens einer Geschäftsfunktion ein (2025: +10 Pp. vs. Vorjahr)",
+        "source": "McKinsey/QuantumBlack: State of AI 2025 (Nov. 2025)",
+        "category": "adoption"
+      },
+      {
+        "fact": "78% der Befragten nutzen KI-Tools im Beruf (Vorjahr: 72%)",
+        "source": "EY European AI Barometer 2025",
+        "category": "adoption"
+      },
+      {
+        "fact": "85% der deutschen Unternehmen haben mindestens eine KI-Technologie eingeführt, 59% auch GenAI",
+        "source": "McKinsey MGI: Future of Work (Mai 2024)",
+        "category": "adoption_germany"
+      },
+      {
+        "fact": "50% der Unternehmen nutzen GenAI in Marketing/Vertrieb, 42% in Produktentwicklung, 33% in anderen Funktionen",
+        "source": "McKinsey: Bits, Bytes und Butter (Sept. 2025)",
+        "category": "adoption"
+      }
+    ],
+    "productivity": [
+      {
+        "fact": "GenAI kann jährliche Produktivitätssteigerung von 2,6-4,4 Billionen USD global ermöglichen",
+        "source": "McKinsey: GenAI als Produktivitätsbooster (Juni 2023)",
+        "category": "productivity"
+      },
+      {
+        "fact": "Bis zu 3% Produktivitätswachstum pro Jahr durch schnellen KI-Einsatz möglich",
+        "source": "McKinsey MGI: Future of Work (Mai 2024)",
+        "category": "productivity"
+      },
+      {
+        "fact": "KI kann Produktivität um fast 20% steigern durch Automatisierung repetitiver Aufgaben",
+        "source": "McKinsey/Stifterverband: KI-Kompetenzen in deutschen Unternehmen (Jan. 2025)",
+        "category": "productivity"
+      },
+      {
+        "fact": "Langsame KI-Einführung begrenzt Produktivitätswachstum auf nur 0,2% (Status quo Westeuropa)",
+        "source": "McKinsey MGI: Future of Work (Mai 2024)",
+        "category": "productivity"
+      },
+      {
+        "fact": "75% des GenAI-Werts entsteht in: Kundenservice, Marketing/Sales, Softwareentwicklung, R&D",
+        "source": "McKinsey: GenAI als Produktivitätsbooster (Juni 2023)",
+        "category": "productivity"
+      }
+    ],
+    "risks": [
+      {
+        "fact": "99% der Unternehmen erlitten bereits finanzielle Verluste durch KI-bezogene Vorfälle",
+        "source": "EY: Global Responsible AI Pulse (Nov. 2025)",
+        "category": "risk"
+      },
+      {
+        "fact": "Durchschnittlicher Schaden: >4,4 Mio. USD pro Unternehmen",
+        "source": "EY: Global Responsible AI Pulse (Nov. 2025)",
+        "category": "risk"
+      },
+      {
+        "fact": "Unternehmen mit KI-Governance haben 30% weniger Risikoexposition",
+        "source": "EY: Global Responsible AI Pulse (Nov. 2025)",
+        "category": "risk"
+      },
+      {
+        "fact": "Nur 12% der Führungskräfte können KI-Risiken den richtigen Kontrollen korrekt zuordnen",
+        "source": "EY: Global Responsible AI Pulse (Nov. 2025)",
+        "category": "risk"
+      }
+    ],
+    "transformation_gap": [
+      {
+        "fact": "9 von 10 Unternehmen haben digitale Change-Programme, realisieren aber nur 25% der Einsparungen und 30% des Mehrumsatzes",
+        "source": "McKinsey: Bits, Bytes und Butter (Sept. 2025)",
+        "category": "gap"
+      },
+      {
+        "fact": "Nur 1/3 der Unternehmen hat begonnen, KI-Programme zu skalieren",
+        "source": "McKinsey/QuantumBlack: State of AI 2025 (Nov. 2025)",
+        "category": "gap"
+      },
+      {
+        "fact": ">60% berichten von keiner signifikanten EBIT-Wirkung durch KI",
+        "source": "McKinsey/QuantumBlack: State of AI 2025 (Nov. 2025)",
+        "category": "gap"
+      },
+      {
+        "fact": "86% der Führungskräfte sagen, KI-Potenzial ist noch nicht voll ausgeschöpft",
+        "source": "McKinsey/Stifterverband: KI-Kompetenzen (Jan. 2025)",
+        "category": "gap"
+      },
+      {
+        "fact": "Wer jetzt bei der Einführung zögert, riskiert in 3-5 Jahren den Anschluss zu verlieren",
+        "source": "McKinsey: Die Macht der Agenten (Nov. 2025)",
+        "category": "gap"
+      }
+    ],
+    "skills_gap": [
+      {
+        "fact": "79% der Unternehmen fehlen die nötigen KI-Kompetenzen",
+        "source": "McKinsey/Stifterverband: KI-Kompetenzen (Jan. 2025)",
+        "category": "skills"
+      },
+      {
+        "fact": "43% der Beschäftigten erhalten keinerlei KI-Schulung – besonders ältere Mitarbeitende und Frauen",
+        "source": "EY European AI Barometer 2025",
+        "category": "skills"
+      },
+      {
+        "fact": "82% sagen, deutsche Universitäten bereiten Studierende schlecht auf KI-Arbeitsplätze vor",
+        "source": "McKinsey/Stifterverband: KI-Kompetenzen (Jan. 2025)",
+        "category": "skills"
+      },
+      {
+        "fact": "Über 50% der Unternehmen investieren zu wenig in KI-Weiterbildungsprogramme",
+        "source": "McKinsey/Stifterverband: KI-Kompetenzen (Jan. 2025)",
+        "category": "skills"
+      }
+    ],
+    "europe_germany": [
+      {
+        "fact": "EU kann BIP durch KI bis 2030 um 2,7 Billionen EUR (+19%) steigern",
+        "source": "McKinsey MGI: Europas KI-Nachholbedarf (Feb. 2019)",
+        "category": "europe"
+      },
+      {
+        "fact": "Europa nutzt nur 12% seines digitalen Potenzials – nur 2/3 des US-Niveaus",
+        "source": "McKinsey MGI: Europas KI-Nachholbedarf (Feb. 2019)",
+        "category": "europe"
+      },
+      {
+        "fact": "Deutschlands IKT-Umsatzanteil am BIP: nur 1,7% (USA: 3,3%, China: 2,1%)",
+        "source": "McKinsey MGI: Europas KI-Nachholbedarf (Feb. 2019)",
+        "category": "europe"
+      },
+      {
+        "fact": "Deutschland liegt bei KI-Einsatzfähigkeit im globalen Mittelfeld",
+        "source": "McKinsey MGI: Europas KI-Nachholbedarf (Feb. 2019)",
+        "category": "europe"
+      }
+    ],
+    "agentic_ai": [
+      {
+        "fact": "70% Zeitersparnis durch KI-Agenten bei IT-Modernisierung (Bank mit 2,5 Mio. Zeilen Code)",
+        "source": "McKinsey: Die Macht der Agenten (Nov. 2025)",
+        "category": "agentic"
+      },
+      {
+        "fact": "Innerhalb von 3 Jahren kann Agentic AI zentrale Unternehmensfunktionen grundlegend verändern",
+        "source": "McKinsey: Die Macht der Agenten (Nov. 2025)",
+        "category": "agentic"
+      },
+      {
+        "fact": "Agentische KI wird derzeit nur von 23% skaliert, 39% experimentieren noch",
+        "source": "McKinsey/QuantumBlack: State of AI 2025 (Nov. 2025)",
+        "category": "agentic"
+      },
+      {
+        "fact": "3-köpfiges Team implementierte über 100 KI-Agenten bei einer Bank",
+        "source": "McKinsey: Die Macht der Agenten (Nov. 2025)",
+        "category": "agentic"
+      }
+    ],
+    "labor_market": [
+      {
+        "fact": "Bis 2030 können ~30% der Arbeitsstunden durch Technologie inkl. GenAI automatisiert werden",
+        "source": "McKinsey MGI: Future of Work (Mai 2024)",
+        "category": "labor"
+      },
+      {
+        "fact": "Bis zu 3 Millionen Berufswechsel in Deutschland bis 2030 (7% der Gesamtbeschäftigung)",
+        "source": "McKinsey MGI: Future of Work (Mai 2024)",
+        "category": "labor"
+      },
+      {
+        "fact": "54% der Jobwechsel in Deutschland betreffen administrative Bürotätigkeiten",
+        "source": "McKinsey MGI: Future of Work (Mai 2024)",
+        "category": "labor"
+      },
+      {
+        "fact": "Nachfrage nach MINT- und Gesundheitsfachkräften steigt bis 2030 um bis zu 25%",
+        "source": "McKinsey MGI: Future of Work (Mai 2024)",
+        "category": "labor"
+      },
+      {
+        "fact": "Im öffentlichen Dienst fehlen aktuell >500.000 Vollzeitstellen, bis 2030 ~840.000",
+        "source": "McKinsey: KI-Agenten öffentliche Verwaltung (Mai 2025)",
+        "category": "labor"
+      }
+    ]
+  },
+
+  "sources_registry": [
+    {
+      "id": "mckinsey_bits_bytes_2025",
+      "name": "McKinsey: Bits, Bytes und Butter",
+      "date": "2025-09",
+      "type": "article",
+      "url": "https://www.mckinsey.de/branchen/konsumguter-handel/akzente/akzente-2-2025/2025-2-bytes-bits-butter",
+      "authors": "Holger Harreis, Marcus Keutel, Joe Boden"
+    },
+    {
+      "id": "mckinsey_macht_agenten_2025",
+      "name": "McKinsey: Die Macht der Agenten",
+      "date": "2025-11",
+      "type": "article",
+      "url": "https://www.mckinsey.com/de/branchen/konsumguter-handel/akzente/akzente-2-2025/2025-2-power-of-agents",
+      "authors": "Claus Heintzeler, Gereon Sommer, Thomas Lehmann, Aleksandr Labut"
+    },
+    {
+      "id": "mckinsey_state_of_ai_2025",
+      "name": "McKinsey/QuantumBlack: State of AI 2025",
+      "date": "2025-11",
+      "type": "report",
+      "url": "https://www.mckinsey.com/ch/our-insights/mckinsey-jahresbericht-zu-kunstlicher-intelligenz",
+      "authors": "QuantumBlack, AI by McKinsey"
+    },
+    {
+      "id": "mckinsey_future_of_work_2024",
+      "name": "McKinsey MGI: A new future of work",
+      "date": "2024-05",
+      "type": "study",
+      "url": "https://www.mckinsey.de/news/presse/2024-05-23-mgi-genai-future-of-work",
+      "authors": "McKinsey Global Institute"
+    },
+    {
+      "id": "mckinsey_ki_marketing_2025",
+      "name": "McKinsey: KI im Marketing",
+      "date": "2025-01",
+      "type": "article",
+      "url": "https://www.mckinsey.com/de/branchen/konsumguter-handel/akzente/akzente-2-2024/2024-2-ki-marketing",
+      "authors": "Holger Hürtgen, Richard Li, Sebastian Kerkhoff"
+    },
+    {
+      "id": "mckinsey_genai_booster_2023",
+      "name": "McKinsey: GenAI als Produktivitätsbooster",
+      "date": "2023-06",
+      "type": "study",
+      "url": "https://www.mckinsey.de/news/presse/genai-produktivitaetsbooster",
+      "authors": "McKinsey Global Institute"
+    },
+    {
+      "id": "mckinsey_ki_verwaltung_2025",
+      "name": "McKinsey: KI-Agenten in der öffentlichen Verwaltung",
+      "date": "2025-05",
+      "type": "study",
+      "url": "https://www.mckinsey.de/branchen/public-sector",
+      "authors": "McKinsey & Company"
+    },
+    {
+      "id": "mckinsey_ki_banken_2025",
+      "name": "McKinsey: KI-Agenten Bankenbranche",
+      "date": "2025-10",
+      "type": "study",
+      "url": "https://www.mckinsey.de/branchen/finanzsektor",
+      "authors": "McKinsey & Company"
+    },
+    {
+      "id": "mckinsey_ki_kompetenzen_2025",
+      "name": "McKinsey/Stifterverband: KI-Kompetenzen in deutschen Unternehmen",
+      "date": "2025-01",
+      "type": "study",
+      "url": "https://www.mckinsey.de/publikationen/ki-kompetenzen",
+      "authors": "McKinsey & Company, Stifterverband"
+    },
+    {
+      "id": "mckinsey_europa_ki_2019",
+      "name": "McKinsey MGI: Europas KI-Nachholbedarf",
+      "date": "2019-02",
+      "type": "study",
+      "url": "https://www.mckinsey.com/de/en/news/presse/2019-02-11-ai-in-europe-l-mgi",
+      "authors": "McKinsey Global Institute"
+    },
+    {
+      "id": "mckinsey_ki_auto_2019",
+      "name": "McKinsey: KI im Automarketing und -verkauf",
+      "date": "2019-02",
+      "type": "analysis",
+      "url": "https://www.mckinsey.de/publikationen/2019-02-20-ai-in-automotive-marketing-and-sales",
+      "authors": "Bastian Grühn, Matthias Kässer, Jan-Christoph Köstring, Asutosh Padhi, Andreas Tschiesner"
+    },
+    {
+      "id": "mckinsey_ki_kompendium_2018",
+      "name": "McKinsey: KI-Kompendium",
+      "date": "2018-08",
+      "type": "compendium",
+      "url": "https://www.mckinsey.com/de/publikationen/2018-08-16---ai-kompendium",
+      "authors": "Nicolaus Henke, Noshir Kaka"
+    },
+    {
+      "id": "ey_claims_2025",
+      "name": "EY: Agentic AI im Claims Management",
+      "date": "2025-11",
+      "type": "article",
+      "url": "https://www.ey.com/de_de/insights/ai/wie-agentic-ai-das-claims-management-verschlankt",
+      "authors": "Sabrina Bayer, Christian Küchler"
+    },
+    {
+      "id": "ey_rai_2025",
+      "name": "EY: Responsible AI / KI-Investitionen",
+      "date": "2025-11",
+      "type": "study",
+      "url": "https://www.ey.com/de_de/insights/ai/wie-ki-investitionen-effektiver-umsetzt",
+      "authors": "Christian Wesp, Thomas Erwin, Clemens Schier"
+    },
+    {
+      "id": "ey_barometer_2025",
+      "name": "EY: European AI Barometer 2025",
+      "date": "2025-07",
+      "type": "survey",
+      "url": "https://www.ey.com/de_de/functional/forms/download/2025/07/ey-european-ai-barometer-2025",
+      "authors": "EY Deutschland"
+    }
+  ]
+}
