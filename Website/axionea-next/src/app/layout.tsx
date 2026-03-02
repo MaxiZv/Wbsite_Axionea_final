@@ -3,7 +3,6 @@ import { Syne, DM_Sans } from "next/font/google";
 import "./globals.css";
 import AnimatedNavbar from "@/components/AnimatedNavbar";
 import Preloader from "@/components/Preloader";
-import ClickSpark from "@/components/ClickSpark";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ChatBot from "@/components/ChatBot";
 import CookieBanner from "@/components/CookieBanner";
@@ -67,13 +66,11 @@ export default function RootLayout({
         className={`${syne.variable} ${dmSans.variable} font-sans antialiased`}
       >
         <ThemeProvider>
-          <ClickSpark sparkColor="#4A90D9" sparkSize={12} sparkRadius={20} sparkCount={8} duration={500}>
-            <Preloader />
-            <AnimatedNavbar />
-            <ChatBot />
-            {children}
-            <CookieBanner />
-          </ClickSpark>
+          <Preloader />
+          <AnimatedNavbar />
+          <ChatBot />
+          {children}
+          <CookieBanner />
         </ThemeProvider>
       </body>
     </html>

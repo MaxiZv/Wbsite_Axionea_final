@@ -3,7 +3,6 @@
 import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { GoArrowUpRight } from 'react-icons/go';
-import ClickSpark from './ClickSpark';
 import RotatingText from './RotatingText';
 import DockCTA from './DockCTA';
 
@@ -52,8 +51,15 @@ const CardNav: React.FC<CardNavProps> = ({
 
   // Scroll detection
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 100);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
@@ -205,37 +211,29 @@ const CardNav: React.FC<CardNavProps> = ({
           </div>
 
           <div className="flex items-center gap-2 order-2 overflow-visible">
-            <ClickSpark
-              sparkColor="#E07B00"
-              sparkSize={6}
-              sparkRadius={10}
-              sparkCount={6}
-              duration={400}
-            >
-              <a href="#kontakt" className="group relative overflow-hidden inline-flex h-10 items-center justify-center rounded-lg bg-sapphire px-5 text-sm font-semibold text-white shadow transition-all duration-300 hover:bg-sapphire-hover hover:shadow-[0_4px_16px_rgba(15,82,186,0.3)] hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
-                {/* Shine effect */}
-                <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
+            <a href="#kontakt" className="group relative overflow-hidden inline-flex h-10 items-center justify-center rounded-lg bg-sapphire px-5 text-sm font-semibold text-white shadow transition-all duration-300 hover:bg-sapphire-hover hover:shadow-[0_4px_16px_rgba(15,82,186,0.3)] hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+              {/* Shine effect */}
+              <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
 
-                <div className="flex items-center space-x-1.5 relative z-10 transition-colors duration-300">
-                  <span className="font-bold tracking-tight">Kostenlos beraten lassen</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="ml-1 transition-transform duration-300 group-hover:translate-x-1"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </div>
-              </a>
-            </ClickSpark>
+              <div className="flex items-center space-x-1.5 relative z-10 transition-colors duration-300">
+                <span className="font-bold tracking-tight">Kostenlos beraten lassen</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="ml-1 transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </div>
+            </a>
           </div>
         </div>
 
