@@ -96,6 +96,7 @@ function ProcessCard({
                         alt={title}
                         width={600}
                         height={400}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                         className="w-full h-48 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                     />
                     {/* Image overlay gradient */}
