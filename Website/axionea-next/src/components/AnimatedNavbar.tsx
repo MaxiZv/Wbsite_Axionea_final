@@ -42,7 +42,7 @@ export default function AnimatedNavbar() {
 
     return (
         <CardNav
-            logo="/assets/logo/Asset 4@4x.png"
+            logo="/assets/logo/Asset 3@4x.png"
             logoAlt="Axionea Logo"
             items={navItems}
             baseColor={isDark ? "rgba(10, 10, 12, 0.85)" : "rgba(255, 255, 255, 0.85)"}
