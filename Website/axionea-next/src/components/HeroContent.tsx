@@ -20,11 +20,19 @@ export default function HeroContent() {
         <div className="relative z-10 w-full min-h-[calc(100vh-6rem)] flex flex-col justify-center items-center overflow-hidden">
 
             {/* ─── FULLSCREEN: Spline 3D Model ─── */}
+            {/* 
+                HACK FOR MOBILE: Spline cameras automatically crop the sides on tall screens (mobile) 
+                because they often use horizontal-fov clipping. To fix this without editing the Spline scene,
+                we force the container to be wide (like a desktop), and use CSS transform to scale it down 
+                to fit the mobile width.
+            */}
             <div className="absolute inset-x-0 bottom-0 top-[-6rem] w-full h-[100vh] pointer-events-none mix-blend-screen z-0 flex items-center justify-center overflow-hidden">
-                <Spline
-                    scene="https://prod.spline.design/RnkVGevCFnxoOpEI/scene.splinecode"
-                    className="w-full h-full transform object-cover scale-[0.6] sm:scale-75 md:scale-100 origin-center transition-transform duration-700"
-                />
+                <div className="relative w-[1200px] h-[900px] md:h-[100vh] md:w-full scale-[0.28] sm:scale-50 md:scale-100 origin-center transition-transform duration-700 flex items-center justify-center">
+                    <Spline
+                        scene="https://prod.spline.design/RnkVGevCFnxoOpEI/scene.splinecode"
+                        className="w-full h-full"
+                    />
+                </div>
             </div>
 
             {/* Blinking blue scroll arrow at absolute bottom */}
