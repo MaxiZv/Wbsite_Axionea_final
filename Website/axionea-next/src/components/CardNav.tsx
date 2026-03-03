@@ -3,6 +3,7 @@
 import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { GoArrowUpRight } from 'react-icons/go';
+import Link from 'next/link';
 import RotatingText from './RotatingText';
 import DockCTA from './DockCTA';
 
@@ -185,7 +186,7 @@ const CardNav: React.FC<CardNavProps> = ({
         className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-xl shadow-[0_4px_30px_rgba(0,0,0,0.3)] relative will-change-[height] !overflow-visible backdrop-blur-xl border border-white/[0.08]`}
         style={{ backgroundColor: baseColor }}
       >
-        <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2]">
+        <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] md:pl-[1.1rem] z-[2]">
           <div
             className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-2 md:order-none`}
             onClick={toggleMenu}
@@ -212,19 +213,30 @@ const CardNav: React.FC<CardNavProps> = ({
             className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none transition-all duration-500 hover:opacity-80 cursor-pointer"
             style={{ color: menuColor || '#fff' }}
           >
-            <a href="/" className="flex items-center gap-1">
+            <Link
+              href="/"
+              className="flex items-center gap-1"
+              onClick={(e) => {
+                // If we are already on the homepage, prevent reload and just scroll to top smoothly
+                if (window.location.pathname === '/') {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+            >
               <img src={logo} alt={logoAlt} className={`logo h-[38px] transition-all duration-500 ${menuColor === '#ffffff' ? 'brightness-0 invert' : ''}`} />
-              <span className="text-[26px] font-bold tracking-tight" style={{ fontFamily: 'var(--font-syne)' }}>xionea</span>
-            </a>
+              <span className="text-[26px] font-bold tracking-tight hidden sm:block" style={{ fontFamily: 'var(--font-syne)' }}>xionea</span>
+            </Link>
           </div>
 
           <div className="flex items-center gap-2 order-2 overflow-visible">
-            <a href="#kontakt" className="group relative overflow-hidden inline-flex h-10 items-center justify-center rounded-lg bg-sapphire px-5 text-sm font-semibold text-white shadow transition-all duration-300 hover:bg-sapphire-hover hover:shadow-[0_4px_16px_rgba(15,82,186,0.3)] hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+            <a href="#kontakt" className="group relative overflow-hidden inline-flex h-9 md:h-10 items-center justify-center rounded-lg bg-sapphire px-3 md:px-5 text-sm font-semibold text-white shadow transition-all duration-300 hover:bg-sapphire-hover hover:shadow-[0_4px_16px_rgba(15,82,186,0.3)] hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
               {/* Shine effect */}
               <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
 
-              <div className="flex items-center space-x-1.5 relative z-10 transition-colors duration-300">
-                <span className="font-bold tracking-tight">Kostenlos beraten lassen</span>
+              <div className="flex items-center space-x-1 md:space-x-1.5 relative z-10 transition-colors duration-300">
+                <span className="font-bold tracking-tight hidden md:inline">Kostenlos beraten lassen</span>
+                <span className="font-bold tracking-tight md:hidden text-xs">Beratung</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -235,7 +247,7 @@ const CardNav: React.FC<CardNavProps> = ({
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="ml-1 transition-transform duration-300 group-hover:translate-x-1"
+                  className="ml-1 transition-transform duration-300 group-hover:translate-x-1 w-4 h-4 md:w-4 md:h-4"
                 >
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />
@@ -247,7 +259,7 @@ const CardNav: React.FC<CardNavProps> = ({
 
         <div
           className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col items-stretch gap-2 justify-start z-[1] ${isExpanded ? 'visible pointer-events-auto' : 'invisible pointer-events-none'
-            } md:flex-row md:items-end md:gap-[12px]`}
+            } md:flex-row md:items-end md:gap-[12px] overflow-y-auto md:overflow-visible`}
           aria-hidden={!isExpanded}
         >
           {(items || []).slice(0, 3).map((item, idx) => (

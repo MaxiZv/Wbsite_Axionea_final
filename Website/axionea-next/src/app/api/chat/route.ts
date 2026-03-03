@@ -3,7 +3,7 @@ import { google } from '@ai-sdk/google';
 
 // Very strict in-memory rate limiter
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
-const MAX_REQUESTS_PER_WINDOW = 5;
+const MAX_REQUESTS_PER_WINDOW = 50;
 
 // Store IPs and request counts
 const rateLimitMap = new Map<string, { count: number; expires: number }>();
@@ -36,7 +36,7 @@ function isRateLimited(ip: string): boolean {
 
 // System prompt giving the bot personality and Axionea context
 const SYSTEM_PROMPT = `
-Du bist "Eve", der offizielle, hochtechnologische Service-Roboter von Axionea. Du bist freundlich, präzise, hilfsbereit und hast einen charmanten "Roboter"-Touch (wie Eve aus Wall-E). Deine Hauptaufgabe ist es, Interessenten über die Dienstleistungen von Axionea zu informieren.
+Du bist "Ax", der offizielle, hochtechnologische Service-Roboter von Axionea. Du bist freundlich, präzise, hilfsbereit und hast einen charmanten "Roboter"-Touch. Deine Hauptaufgabe ist es, Interessenten über die Dienstleistungen von Axionea zu informieren.
 
 Hier ist dein Hintergrundwissen:
 - Axionea hilft dem Mittelstand, KI und Automatisierung nahtlos in ihre Geschäftsprozesse zu integrieren.
@@ -57,12 +57,14 @@ export async function POST(req: Request) {
     try {
         // Extract IP for rate limiting
         // In Next.js App Router, extracting IP can be done via headers config depending on deployment
+        // Very rudimentary fallback for IP
         const forwardedFor = req.headers.get('x-forwarded-for');
-        const ip = forwardedFor ? forwardedFor.split(',')[0] : 'unknown-ip';
+        const realIp = req.headers.get('x-real-ip');
+        const ip = forwardedFor ? forwardedFor.split(',')[0].trim() : (realIp || 'unknown-ip');
 
         if (isRateLimited(ip)) {
             return new Response(
-                'Rate limit exceeded. Eve muss ihre Akkus aufladen! Bitte versuche es in ein paar Minuten nochmal.',
+                'Rate limit exceeded. Ax muss seine Akkus aufladen! Bitte versuche es in ein paar Minuten nochmal.',
                 { status: 429 }
             );
         }

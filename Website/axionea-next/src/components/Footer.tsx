@@ -7,6 +7,7 @@ export default function Footer() {
         { label: "Prozess", href: "#prozess" },
         { label: "FAQ", href: "#faq" },
         { label: "Datenschutz", href: "#" },
+        { label: "Impressum", href: "/impressum" },
     ];
 
     return (

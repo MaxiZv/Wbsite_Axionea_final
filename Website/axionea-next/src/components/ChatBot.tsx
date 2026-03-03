@@ -109,7 +109,7 @@ export default function ChatBot() {
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-sm" style={{ fontFamily: "var(--font-syne)" }}>Eve</h3>
+                                    <h3 className="font-bold text-sm" style={{ fontFamily: "var(--font-syne)" }}>Ax</h3>
                                     <p className="text-[10px] text-green-500 font-medium tracking-wide uppercase">Online</p>
                                 </div>
                             </div>
@@ -127,7 +127,7 @@ export default function ChatBot() {
                             {messages.length === 0 && (
                                 <div className="flex gap-3 justify-start">
                                     <div className="max-w-[80%] rounded-2xl p-3 px-4 bg-gray-100 dark:bg-[#0f172a] text-sm text-gray-800 dark:text-gray-200 rounded-tl-none">
-                                        Beep boop! Ich bin Eve, der digitale Assistent von Axionea. Wie kann ich dir heute mit KI und Automatisierung weiterhelfen? ✨
+                                        Beep boop! Ich bin Ax, der digitale Assistent von Axionea. Wie kann ich dir heute mit KI und Automatisierung weiterhelfen? ✨
                                     </div>
                                 </div>
                             )}
@@ -153,7 +153,7 @@ export default function ChatBot() {
                             {error && (
                                 <div className="flex gap-3 justify-center">
                                     <div className="text-xs text-red-500 bg-red-50 dark:bg-red-500/10 px-3 py-1.5 rounded-lg border border-red-200 dark:border-red-500/20">
-                                        Eve hat gerade Verbindungsstörungen. (Rate Limit erreicht?)
+                                        Ax hat gerade Verbindungsstörungen. (Rate Limit erreicht?)
                                     </div>
                                 </div>
                             )}
@@ -167,7 +167,7 @@ export default function ChatBot() {
                                 <input
                                     className="flex-1 bg-gray-50 dark:bg-[#0a1628] border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-sapphire transition-all dark:text-white"
                                     value={input}
-                                    placeholder="Frag Eve..."
+                                    placeholder="Frag Ax..."
                                     onChange={handleInputChange}
                                     disabled={isLoading}
                                 />
@@ -184,7 +184,7 @@ export default function ChatBot() {
                 )}
             </AnimatePresence>
 
-            {/* Eve Robot Trigger Button */}
+            {/* Ax Robot Trigger Button */}
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
                 animate={{
@@ -196,9 +196,9 @@ export default function ChatBot() {
                     ease: "easeInOut"
                 }}
                 className={`relative group w-20 h-24 flex flex-col items-center justify-center focus:outline-none transition-transform hover:scale-105 duration-300 ${isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}
-                aria-label="Chat with Eve"
+                aria-label="Chat with Ax"
             >
-                {/* Glow behind Eve */}
+                {/* Glow behind Ax */}
                 <div className="absolute inset-0 bg-blue-400/20 rounded-full blur-xl scale-125 pointer-events-none" />
 
                 {/* EVE HEAD */}
