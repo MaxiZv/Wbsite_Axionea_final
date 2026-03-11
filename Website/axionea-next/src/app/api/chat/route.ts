@@ -1,6 +1,10 @@
 import { streamText } from 'ai';
 import { google } from '@ai-sdk/google';
 
+// Wichtig für Serverless Environments (AWS Amplify, Vercel), damit die Route nicht statisch gecacht wird
+export const dynamic = 'force-dynamic';
+export const maxDuration = 60;
+
 // Very strict in-memory rate limiter
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
 const MAX_REQUESTS_PER_WINDOW = 50;
