@@ -1,55 +1,76 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef, useCallback } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { type Container, type ISourceOptions, MoveDirection, OutMode } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 
 export default function InteractiveParticles() {
     const [init, setInit] = useState(false);
-    const [scrollY, setScrollY] = useState(0);
-    const [isAtBottom, setIsAtBottom] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const rafRef = useRef<number | null>(null);
+    const lastScrollClass = useRef<string>("");
 
     // This should be run only once per application lifetime
     useEffect(() => {
         initParticlesEngine(async (engine) => {
-            // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-            // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-            // starting from v2 you can add only the features you need reducing the bundle size
             await loadSlim(engine);
         }).then(() => {
             setInit(true);
         });
+    }, []);
+
+    // Use direct DOM manipulation for scroll-driven style changes to avoid React re-renders
+    useEffect(() => {
+        const el = containerRef.current;
+        if (!el) return;
 
         const handleScroll = () => {
-            const currentScrollY = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const documentHeight = Math.max(
-                document.body.scrollHeight,
-                document.body.offsetHeight,
-                document.documentElement.clientHeight,
-                document.documentElement.scrollHeight,
-                document.documentElement.offsetHeight
-            );
+            // Cancel any pending animation frame to prevent stacking
+            if (rafRef.current) cancelAnimationFrame(rafRef.current);
 
-            // Check if we are near the bottom (Footer/Contact area)
-            // Using 1200px as the threshold for "near bottom"
-            const isBottom = (currentScrollY + windowHeight) >= (documentHeight - 1200);
+            rafRef.current = requestAnimationFrame(() => {
+                const currentScrollY = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
 
-            setScrollY(currentScrollY);
-            setIsAtBottom(isBottom);
+                const isHero = currentScrollY <= 150;
+                const isBottom = (currentScrollY + windowHeight) >= (documentHeight - 1200);
+                const isBlurred = !isHero && !isBottom;
+
+                // Determine the class we want
+                const newClass = isBlurred ? "blurred" : "clear";
+
+                // Only apply DOM changes if the state actually changed
+                if (newClass !== lastScrollClass.current) {
+                    lastScrollClass.current = newClass;
+
+                    if (isBlurred) {
+                        el.style.filter = "blur(4px)";
+                        el.style.opacity = "0.4";
+                        el.style.backgroundColor = "rgba(0,0,0,0.4)";
+                    } else {
+                        el.style.filter = "blur(0px)";
+                        el.style.opacity = "1";
+                        el.style.backgroundColor = "transparent";
+                    }
+                }
+            });
         };
 
-        // Call once to set initial state
+        // Set initial state
         handleScroll();
 
         window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            if (rafRef.current) cancelAnimationFrame(rafRef.current);
+        };
+    }, [init]);
 
-    const particlesLoaded = async (container?: Container): Promise<void> => {
-        // console.log(container);
-    };
+    const particlesLoaded = useCallback(async (container?: Container): Promise<void> => {
+        // noop
+    }, []);
 
     const options: ISourceOptions = useMemo(
         () => ({
@@ -59,7 +80,7 @@ export default function InteractiveParticles() {
                     value: "transparent",
                 },
             },
-            fpsLimit: 60, // reduced from 120 for better performance
+            fpsLimit: 60,
             interactivity: {
                 events: {
                     onClick: {
@@ -109,7 +130,7 @@ export default function InteractiveParticles() {
                     density: {
                         enable: true,
                     },
-                    value: 120, // Mehr Partikel für breitere Screens
+                    value: 120,
                 },
                 opacity: {
                     value: 0.3,
@@ -126,26 +147,25 @@ export default function InteractiveParticles() {
         [],
     );
 
-    if (init) {
-        const isHero = scrollY <= 150;
-        const isBlurred = !isHero && !isAtBottom;
+    if (!init) return null;
 
-        return (
-            <div
-                className={`fixed inset-0 w-full h-full z-0 pointer-events-none transition-all duration-700 ease-in-out ${isBlurred ? "blur-[4px] opacity-40 bg-black/40" : "blur-0 opacity-100 bg-transparent"
-                    }`}
-            >
-                <div className="w-full h-full pointer-events-auto">
-                    <Particles
-                        id="tsparticles"
-                        particlesLoaded={particlesLoaded}
-                        options={options}
-                        className="w-full h-full"
-                    />
-                </div>
+    return (
+        <div
+            ref={containerRef}
+            className="fixed inset-0 w-full h-full z-0 pointer-events-none"
+            style={{
+                transition: "filter 0.7s ease-in-out, opacity 0.7s ease-in-out, background-color 0.7s ease-in-out",
+                willChange: "filter, opacity",
+            }}
+        >
+            <div className="w-full h-full pointer-events-auto">
+                <Particles
+                    id="tsparticles"
+                    particlesLoaded={particlesLoaded}
+                    options={options}
+                    className="w-full h-full"
+                />
             </div>
-        );
-    }
-
-    return null;
+        </div>
+    );
 }

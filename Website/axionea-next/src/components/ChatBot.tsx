@@ -38,15 +38,20 @@ export default function ChatBot() {
             if (!response.ok) {
                 let errorMessage = response.statusText;
                 try {
-                    const errData = await response.json();
+                    // Clone the response so we can safely attempt multiple reads
+                    const errData = await response.clone().json();
                     if (errData.error) {
                         errorMessage = errData.error;
                         if (errData.details) errorMessage += ` (${errData.details})`;
                     }
                 } catch (e) {
-                    // Fallback if not JSON
-                    const errText = await response.text();
-                    if (errText) errorMessage = errText;
+                    // Fallback if response is not JSON — read from original response
+                    try {
+                        const errText = await response.text();
+                        if (errText) errorMessage = errText;
+                    } catch {
+                        // Body already consumed or unreadable, use statusText
+                    }
                 }
                 throw new Error(errorMessage);
             }

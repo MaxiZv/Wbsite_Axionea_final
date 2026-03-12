@@ -100,11 +100,13 @@ export async function POST(req: Request) {
 
         // 4. Stream Response
         const result = streamText({
-            model: google('gemini-2.5-flash'), // or gemini-1.5-[flash/pro] depending on SDK version
+            model: google('gemini-2.5-flash'),
             system: SYSTEM_PROMPT,
             messages,
-            // You can tune settings here for stability:
             temperature: 0.7,
+            onError({ error }) {
+                console.error('[STREAM ERROR]:', error);
+            },
         });
 
         // Error handling during stream configuration
