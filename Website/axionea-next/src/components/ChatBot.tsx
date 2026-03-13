@@ -44,7 +44,7 @@ export default function ChatBot() {
                         errorMessage = errData.error;
                         if (errData.details) errorMessage += ` (${errData.details})`;
                     }
-                } catch (e) {
+                } catch {
                     // Fallback if response is not JSON — read from original response
                     try {
                         const errText = await response.text();
@@ -86,9 +86,9 @@ export default function ChatBot() {
                     }
                 }
             }
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error("Chat error:", err);
-            setError(err);
+            setError(err instanceof Error ? err : new Error(String(err)));
         } finally {
             setIsLoading(false);
         }
@@ -158,7 +158,7 @@ export default function ChatBot() {
                                     </div>
                                 )}
 
-                                {messages.map((m: any) => (
+                                {messages.map((m) => (
                                     <div key={m.id} className={`flex gap-3 ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                                         <div className={`max-w-[80%] rounded-2xl p-3 px-4 text-sm whitespace-pre-wrap ${m.role === 'user' ? 'bg-sapphire text-white rounded-tr-none' : 'bg-gray-100 dark:bg-[#0f172a] text-gray-800 dark:text-gray-200 rounded-tl-none'}`}>
                                             {m.content}

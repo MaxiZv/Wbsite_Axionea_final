@@ -120,18 +120,19 @@ export async function POST(req: Request) {
                 'X-Content-Type-Options': 'nosniff',
             }
         });
-    } catch (error: any) {
+    } catch (error: unknown) {
+        const e = error instanceof Error ? error : new Error(String(error));
         console.error("--- CHAT API FATAL ERROR ---");
-        console.error("Error Name:", error.name);
-        console.error("Error Message:", error.message);
-        if (error.cause) console.error("Error Cause:", error.cause);
-        if (error.stack) console.error("Error Stack:", error.stack);
+        console.error("Error Name:", e.name);
+        console.error("Error Message:", e.message);
+        if (e.cause) console.error("Error Cause:", e.cause);
+        if (e.stack) console.error("Error Stack:", e.stack);
 
         // Return a clean error to the frontend
         return new Response(
             JSON.stringify({
                 error: 'Fehler beim Abrufen der Antwort. Bitte versuche es später erneut.',
-                details: process.env.NODE_ENV === 'development' ? error.message : undefined
+                details: process.env.NODE_ENV === 'development' ? e.message : undefined
             }),
             {
                 status: 500,

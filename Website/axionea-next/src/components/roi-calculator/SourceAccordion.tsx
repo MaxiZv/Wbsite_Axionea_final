@@ -64,7 +64,7 @@ export function SourceAccordion({ industry }: SourceAccordionProps) {
                             <div className="space-y-2">
                                 <p><strong>Allgemeine Methodik:</strong></p>
                                 <ul className="list-disc pl-4 space-y-1">
-                                    <li>Die Realisierungsrate von 25% ohne professionelle Begleitung basiert auf McKinsey-Analysen, nach denen Unternehmen bei digitalen Transformationen lediglich 25% der angestrebten Kosteneinsparungen realisieren (McKinsey, "Bits, Bytes und Butter", Sept. 2025).</li>
+                                    <li>Die Realisierungsrate von 25% ohne professionelle Begleitung basiert auf McKinsey-Analysen, nach denen Unternehmen bei digitalen Transformationen lediglich 25% der angestrebten Kosteneinsparungen realisieren (McKinsey, &quot;Bits, Bytes und Butter&quot;, Sept. 2025).</li>
                                     <li>Der Wert von 70% Realisierung mit Axionea ist ein konservatives Ziel basierend auf branchenüblichen Benchmarks für professionell begleitete Automatisierungsprojekte.</li>
                                     <li>Die Stundenkosten umfassen den vollständigen Arbeitgeberbeitrag (Brutto + AG-Anteile).</li>
                                 </ul>
